@@ -58,12 +58,12 @@ class VariationalAutoencoder(nn.Module):
     * a Gaussian posterior `q_\phi(z|x) = N(z | \mu(x), \sigma(x))`
     """
 
-    def __init__(self, input_shape:torch.Size, latent_features:int, recovered_features:int) -> None:
+    def __init__(self, input_shape:torch.Size, latent_features:int) -> None:
         super(VariationalAutoencoder, self).__init__()
 
         self.input_shape = input_shape
         self.latent_features = latent_features
-        self.observation_features = recovered_features
+        self.observation_features = np.prod(input_shape)
 
 
         # Inference Network
@@ -97,12 +97,8 @@ class VariationalAutoencoder(nn.Module):
         # define the parameters of the prior, chosen as p(z) = N(0, I)
         self.register_buffer('prior_params', torch.zeros(torch.Size([1, 2*latent_features])))
 
-    def reduce_input(self, x: Tensor) -> Tensor:
-        return x[:, :self.input_shape]     # Slice the dataset to use the encoder dimensions
-
     def posterior(self, x:Tensor) -> Distribution:
         """return the distribution `q(x|x) = N(z | \mu(x), \sigma(x))`"""
-        x = self.reduce_input(x)
 
         # compute the parameters of the posterior
         h_x = self.encoder(x)
@@ -130,7 +126,6 @@ class VariationalAutoencoder(nn.Module):
         """compute the posterior q(z|x) (encoder), sample z~q(z|x) and return the distribution p(x|z) (decoder)"""
 
         # flatten the input
-        x = self.reduce_input(x)
         x = x.view(x.size(0), -1)
 
         # define the posterior q(z|x) / encode x into q(z|x)
@@ -206,16 +201,21 @@ class VariationalInference(nn.Module):
 # Define the train and test sets
 # train_set = 
 # test_set =
-input_encoder_shape = 18966
-output_decoder_shape = (18966 + 156959)
 batch_size = 128
 eval_batch_size = 100
 
 # Initialization of the model, evaluator and optimizer
 
+# Unlabeled gene-expression dataframe read (in chunks)
+reader_archs4 = pd.read_csv(unlabeled_gene_expression_file, compression='gzip', header=0, sep='\t', quotechar='"', error_bad_lines=False, chunksize=32)
+for i, chunk in enumerate(reader_isoform):
+    if i >= 2:
+        break  # Exit the loop after two iterations
+    input_example = chunk
+
 # VAE
 latent_features = 64
-vae = VariationalAutoencoder(input_encoder_shape, latent_features, output_decoder_shape)
+vae = VariationalAutoencoder(input_example[0].shape, latent_features)
 
 # Evaluator: Variational Inference
 beta = 1
