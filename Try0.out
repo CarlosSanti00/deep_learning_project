@@ -1,0 +1,58 @@
+gtex training set size: 14714
+gtex test set size: 2642
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19270219: <Try> in cluster <dcc> Done
+
+Job <Try> was submitted from host <gbarlogin2> by user <s222766> in cluster <dcc> at Mon Nov 13 12:00:15 2023
+Job was executed on host(s) <n-62-20-4>, in queue <gpuv100>, as user <s222766> in cluster <dcc> at Mon Nov 13 12:00:17 2023
+</zhome/5a/4/181325> was used as the home directory.
+</zhome/5a/4/181325/deep_learning> was used as the working directory.
+Started at Mon Nov 13 12:00:17 2023
+Terminated at Mon Nov 13 12:00:29 2023
+Results reported at Mon Nov 13 12:00:29 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J Try
+#BSUB -n 1
+#BSUB -W 10:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -o Try0.out
+#BSUB -e Try.err
+
+module load python3/3.11.4
+module load h5py
+python3 "Tries.py"
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   5.76 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   19 sec.
+    Turnaround time :                            14 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <Try.err> for stderr output of this job.
+

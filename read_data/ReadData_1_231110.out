@@ -1,0 +1,147 @@
+Shape of the labeled gene expression dataset: (17356, 18966)
+
+Isoform-expression dataframe preview:
+                  sample_id  ...  ENST00000636657.1
+0  GTEX-1117F-0226-SM-5GZZ7  ...           0.807355
+1  GTEX-1117F-0426-SM-5EGHI  ...           0.799087
+2  GTEX-1117F-0526-SM-5EGHJ  ...           0.000000
+3  GTEX-1117F-0626-SM-5N9CS  ...           0.985500
+4  GTEX-1117F-0726-SM-5GIEN  ...           1.310340
+5  GTEX-1117F-1326-SM-5EGHH  ...           0.000000
+6  GTEX-1117F-2426-SM-5EGGH  ...           0.722466
+7  GTEX-1117F-2526-SM-5GZY6  ...           0.516015
+8  GTEX-1117F-2826-SM-5GZXL  ...           0.669027
+9  GTEX-1117F-2926-SM-5GZYI  ...           0.475085
+
+[10 rows x 156959 columns]
+                   sample_id  ...  ENST00000636657.1
+10  GTEX-1117F-3026-SM-5GZYU  ...           0.000000
+11  GTEX-1117F-3226-SM-5N9CT  ...           0.000000
+12  GTEX-111CU-0126-SM-5GZWZ  ...           0.432959
+13  GTEX-111CU-0226-SM-5GZXC  ...           1.790772
+14  GTEX-111CU-0326-SM-5GZXO  ...           1.097611
+15  GTEX-111CU-0426-SM-5GZY1  ...           0.000000
+16  GTEX-111CU-0526-SM-5EGHK  ...           0.378512
+17  GTEX-111CU-0626-SM-5EGHL  ...           0.773996
+18  GTEX-111CU-0726-SM-5GZYD  ...           0.847997
+19  GTEX-111CU-0826-SM-5EGIJ  ...           1.632268
+
+[10 rows x 156959 columns]
+
+Total Shape: Rows = 17326 , Columns = 156959
+
+Shape of the isoform annotation file: (199324, 3)
+
+Number of possible tissues: 54
+
+Muscle - Skeletal                            803
+Whole Blood                                  755
+Skin - Sun Exposed (Lower leg)               701
+Artery - Tibial                              663
+Adipose - Subcutaneous                       663
+Thyroid                                      653
+Nerve - Tibial                               619
+Skin - Not Sun Exposed (Suprapubic)          604
+Lung                                         578
+Esophagus - Mucosa                           555
+Adipose - Visceral (Omentum)                 541
+Esophagus - Muscularis                       515
+Cells - Cultured fibroblasts                 504
+Breast - Mammary Tissue                      459
+Heart - Left Ventricle                       432
+Artery - Aorta                               432
+Heart - Atrial Appendage                     429
+Colon - Transverse                           406
+Esophagus - Gastroesophageal Junction        375
+Colon - Sigmoid                              373
+Testis                                       361
+Stomach                                      359
+Pancreas                                     328
+Pituitary                                    283
+Adrenal Gland                                258
+Brain - Cortex                               255
+Brain - Caudate (basal ganglia)              246
+Brain - Nucleus accumbens (basal ganglia)    246
+Prostate                                     245
+Spleen                                       241
+Brain - Cerebellum                           241
+Artery - Coronary                            240
+Liver                                        226
+Brain - Cerebellar Hemisphere                215
+Brain - Frontal Cortex (BA9)                 209
+Brain - Putamen (basal ganglia)              205
+Brain - Hypothalamus                         202
+Brain - Hippocampus                          197
+Small Intestine - Terminal Ileum             187
+Ovary                                        180
+Brain - Anterior cingulate cortex (BA24)     176
+Cells - EBV-transformed lymphocytes          174
+Minor Salivary Gland                         162
+Brain - Spinal cord (cervical c-1)           159
+Vagina                                       156
+Brain - Amygdala                             152
+Uterus                                       142
+Brain - Substantia nigra                     139
+Kidney - Cortex                               85
+Bladder                                       21
+Cervix - Endocervix                           10
+Fallopian Tube                                 9
+Cervix - Ectocervix                            9
+Kidney - Medulla                               4
+Name: tissue, dtype: int64
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19221731: <ReadData> in cluster <dcc> Done
+
+Job <ReadData> was submitted from host <gbarlogin2> by user <s222766> in cluster <dcc> at Fri Nov 10 16:28:43 2023
+Job was executed on host(s) <n-62-20-13>, in queue <gpuv100>, as user <s222766> in cluster <dcc> at Fri Nov 10 16:28:43 2023
+</zhome/5a/4/181325> was used as the home directory.
+</zhome/5a/4/181325/deep_learning> was used as the working directory.
+Started at Fri Nov 10 16:28:43 2023
+Terminated at Sat Nov 11 00:14:43 2023
+Results reported at Sat Nov 11 00:14:43 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J ReadData
+#BSUB -n 1
+#BSUB -W 10:00
+#BSUB -R "rusage[mem=64GB]"
+#BSUB -o ReadData_1_231110.out
+#BSUB -e ReadData_1_231110.err
+
+module load python3/3.6.2
+python3 "231107_read_data.py"
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   27883.50 sec.
+    Max Memory :                                 5965 MB
+    Average Memory :                             5920.76 MB
+    Total Requested Memory :                     65536.00 MB
+    Delta Memory :                               59571.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   28012 sec.
+    Turnaround time :                            27960 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <ReadData_1_231110.err> for stderr output of this job.
+

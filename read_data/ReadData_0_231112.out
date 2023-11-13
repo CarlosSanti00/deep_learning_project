@@ -1,0 +1,119 @@
+Shape of the labeled gene expression dataset: (17356, 18966)
+
+Total shape of the isoform-expression file: Rows = 17356 , Columns = 156959
+
+Shape of the isoform annotation file: (199324, 3)
+
+Number of possible tissues: 54
+
+Muscle - Skeletal                            803
+Whole Blood                                  755
+Skin - Sun Exposed (Lower leg)               701
+Adipose - Subcutaneous                       663
+Artery - Tibial                              663
+Thyroid                                      653
+Nerve - Tibial                               619
+Skin - Not Sun Exposed (Suprapubic)          604
+Lung                                         578
+Esophagus - Mucosa                           555
+Adipose - Visceral (Omentum)                 541
+Esophagus - Muscularis                       515
+Cells - Cultured fibroblasts                 504
+Breast - Mammary Tissue                      459
+Artery - Aorta                               432
+Heart - Left Ventricle                       432
+Heart - Atrial Appendage                     429
+Colon - Transverse                           406
+Esophagus - Gastroesophageal Junction        375
+Colon - Sigmoid                              373
+Testis                                       361
+Stomach                                      359
+Pancreas                                     328
+Pituitary                                    283
+Adrenal Gland                                258
+Brain - Cortex                               255
+Brain - Caudate (basal ganglia)              246
+Brain - Nucleus accumbens (basal ganglia)    246
+Prostate                                     245
+Brain - Cerebellum                           241
+Spleen                                       241
+Artery - Coronary                            240
+Liver                                        226
+Brain - Cerebellar Hemisphere                215
+Brain - Frontal Cortex (BA9)                 209
+Brain - Putamen (basal ganglia)              205
+Brain - Hypothalamus                         202
+Brain - Hippocampus                          197
+Small Intestine - Terminal Ileum             187
+Ovary                                        180
+Brain - Anterior cingulate cortex (BA24)     176
+Cells - EBV-transformed lymphocytes          174
+Minor Salivary Gland                         162
+Brain - Spinal cord (cervical c-1)           159
+Vagina                                       156
+Brain - Amygdala                             152
+Uterus                                       142
+Brain - Substantia nigra                     139
+Kidney - Cortex                               85
+Bladder                                       21
+Cervix - Endocervix                           10
+Cervix - Ectocervix                            9
+Fallopian Tube                                 9
+Kidney - Medulla                               4
+Name: tissue, dtype: int64
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19246089: <ReadData> in cluster <dcc> Done
+
+Job <ReadData> was submitted from host <gbarlogin2> by user <s222766> in cluster <dcc> at Sun Nov 12 12:47:25 2023
+Job was executed on host(s) <n-62-11-14>, in queue <gpuv100>, as user <s222766> in cluster <dcc> at Sun Nov 12 12:47:25 2023
+</zhome/5a/4/181325> was used as the home directory.
+</zhome/5a/4/181325/deep_learning> was used as the working directory.
+Started at Sun Nov 12 12:47:25 2023
+Terminated at Sun Nov 12 17:36:04 2023
+Results reported at Sun Nov 12 17:36:04 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J ReadData
+#BSUB -n 1
+#BSUB -W 24:00
+#BSUB -R "rusage[mem=64GB]"
+#BSUB -o ReadData_0_231112.out
+#BSUB -e ReadData_0_231112.err
+
+module load python3/3.6.2
+python3 "231107_read_data.py"
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   17264.78 sec.
+    Max Memory :                                 6397 MB
+    Average Memory :                             6024.38 MB
+    Total Requested Memory :                     65536.00 MB
+    Delta Memory :                               59139.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   17323 sec.
+    Turnaround time :                            17319 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <ReadData_0_231112.err> for stderr output of this job.
+
