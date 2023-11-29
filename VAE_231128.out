@@ -1,0 +1,61 @@
+Archs4 training set size: 167884
+Gtex test set size: 2642
+Shape of the archs4 dataset (hd5): (18965,)
+Shape of the gtex dataset (hd5): (18965,)
+>> Using device: cuda:0
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19592625: <VAE_23/11/28> in cluster <dcc> Exited
+
+Job <VAE_23/11/28> was submitted from host <gbarlogin2> by user <s222766> in cluster <dcc> at Tue Nov 28 21:13:38 2023
+Job was executed on host(s) <n-62-11-16>, in queue <gpuv100>, as user <s222766> in cluster <dcc> at Tue Nov 28 21:13:38 2023
+</zhome/5a/4/181325> was used as the home directory.
+</zhome/5a/4/181325/deep_learning/deep_learning_project> was used as the working directory.
+Started at Tue Nov 28 21:13:38 2023
+Terminated at Tue Nov 28 21:28:36 2023
+Results reported at Tue Nov 28 21:28:36 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J VAE_23/11/28
+#BSUB -n 1
+#BSUB -W 10:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -o VAE_231128.out
+#BSUB -e VAE_231128.err
+
+module load python3/3.11.4
+module load h5py
+python3 "231113_VAE.py"
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   49.43 sec.
+    Max Memory :                                 603 MB
+    Average Memory :                             559.14 MB
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               15781.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                11
+    Run time :                                   1010 sec.
+    Turnaround time :                            898 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <VAE_231128.err> for stderr output of this job.
+

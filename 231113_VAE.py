@@ -4,8 +4,6 @@ import matplotlib
 import matplotlib.pyplot as plt
 from IPython.display import Image, display, clear_output
 import numpy as np
-%matplotlib nbagg
-%matplotlib inline
 import seaborn as sns
 import pandas as pd
 sns.set_style("whitegrid")
@@ -14,6 +12,7 @@ from plotting import make_vae_plots
 
 import math
 import torch
+import IsoDatasets
 from torch import nn, Tensor
 from torch.nn.functional import softplus
 from torch.distributions import Distribution
@@ -77,7 +76,7 @@ class VariationalAutoencoder(nn.Module):
             nn.Linear(in_features=256, out_features=128),
             nn.LeakyReLU(0.2),
             # A Gaussian is fully characterised by its mean \mu and variance \sigma**2
-            nn.Linear(in_features=128, out_features=2*latent_features) # <- note the 2*latent_features
+            nn.Linear(in_features=128, out_features=2*latent_features), # <- note the 2*latent_features
             nn.Sigmoid()  # Sigmoid activation to the last layer
         )
 
@@ -198,24 +197,26 @@ class VariationalInference(nn.Module):
 
 ## --- Training and evaluation ---
 
-# Define the train and test sets
-# train_set = 
-# test_set =
-batch_size = 128
-eval_batch_size = 100
+# Define the train sets
+train_batch_size = 64
+archs4_train = IsoDatasets.Archs4GeneExpressionDataset("/dtu-compute/datasets/iso_02456/hdf5/")
+archs4_train_dataloader = DataLoader(archs4_train, batch_size=train_batch_size, shuffle=True)
+print("Archs4 training set size:", len(archs4_train))
+
+# Define the test sets (gtex_gene_expression)
+eval_batch_size = 64
+gtex_test = IsoDatasets.GtexDataset("/dtu-compute/datasets/iso_02456/hdf5/", include='brain')
+gtex_test_dataloader = DataLoader(gtex_test, batch_size=eval_batch_size, shuffle=True)
+print("Gtex test set size:", len(gtex_test))
+
 
 # Initialization of the model, evaluator and optimizer
 
-# Unlabeled gene-expression dataframe read (in chunks)
-reader_archs4 = pd.read_csv(unlabeled_gene_expression_file, compression='gzip', header=0, sep='\t', quotechar='"', error_bad_lines=False, chunksize=32)
-for i, chunk in enumerate(reader_isoform):
-    if i >= 2:
-        break  # Exit the loop after two iterations
-    input_example = chunk
-
 # VAE
 latent_features = 64
-vae = VariationalAutoencoder(input_example[0].shape, latent_features)
+print(f'Shape of the archs4 dataset (hd5): {archs4_train[0].shape}')
+print(f'Shape of the gtex dataset (hd5): {gtex_test[0][0].shape}')
+vae = VariationalAutoencoder(archs4_train[0].shape, latent_features)
 
 # Evaluator: Variational Inference
 beta = 1
@@ -247,7 +248,7 @@ while epoch < num_epochs:
 
     # Go through each batch in the training dataset using the loader
     # Note that y is not necessarily known as it is here
-    for x, y in train_loader:
+    for x in archs4_train_dataloader:
 
         x = x.to(device)
 
@@ -271,7 +272,7 @@ while epoch < num_epochs:
         vae.eval()
 
         # Just load a single batch from the test loader
-        x, y = next(iter(test_loader))
+        x, y = next(iter(gtex_test_dataloader))
         x = x.to(device)
 
         # perform a forward pass through the model and compute the ELBO
@@ -282,4 +283,4 @@ while epoch < num_epochs:
             validation_data[k] += [v.mean().item()]
 
     # Reproduce the figure from the begining of the notebook, plot the training curves and show latent samples
-    make_vae_plots(vae, x, y, outputs, training_data, validation_data)
+    make_vae_plots(vae, x, outputs, training_data, validation_data)

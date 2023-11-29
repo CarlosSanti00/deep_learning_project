@@ -136,9 +136,8 @@ def plot_grid(ax, vae):
     ax.axis('off')
 
 
-def plot_2d_latents(ax, qz, z, y):
+def plot_2d_latents(ax, qz, z):
     z = z.to('cpu')
-    y = y.to('cpu')
     scale_factor = 2
     batch_size = z.shape[0]
     palette = sns.color_palette()
@@ -154,7 +153,7 @@ def plot_2d_latents(ax, qz, z, y):
     sigmas = [sigmas[i].numpy().tolist() for i in range(batch_size)]
 
     posteriors = [
-        plt.matplotlib.patches.Ellipse(mus[i], *(scale_factor * s for s in sigmas[i]), color=colors[i], fill=False,
+        plt.matplotlib.patches.Ellipse(mus[i], *(scale_factor * s for s in sigmas[i]), fill=False,
                                        alpha=0.3) for i in range(batch_size)]
     for p in posteriors:
         ax.add_artist(p)
@@ -166,15 +165,13 @@ def plot_2d_latents(ax, qz, z, y):
     ax.set_aspect('equal', 'box')
 
 
-def plot_latents(ax, z, y):
+def plot_latents(ax, z):
     z = z.to('cpu')
-    palette = sns.color_palette()
-    colors = [palette[l] for l in y]
     z = TSNE(n_components=2).fit_transform(z)
-    ax.scatter(z[:, 0], z[:, 1], color=colors)
+    ax.scatter(z[:, 0], z[:, 1])
 
 
-def make_vae_plots(vae, x, y, outputs, training_data, validation_data, tmp_img="tmp_vae_out.png", figsize=(18, 18)):
+def make_vae_plots(vae, x, outputs, training_data, validation_data, tmp_img="tmp_vae_out.png", figsize=(18, 18)):
     fig, axes = plt.subplots(3, 3, figsize=figsize, squeeze=False)
 
     # plot the observation
@@ -187,10 +184,10 @@ def make_vae_plots(vae, x, y, outputs, training_data, validation_data, tmp_img="
         if z.shape[1] == 2:
             axes[0, 1].set_title(r'Latent Samples $\mathbf{z} \sim q_\phi(\mathbf{z} | \mathbf{x})$')
             qz = outputs['qz']
-            plot_2d_latents(axes[0, 1], qz, z, y)
+            plot_2d_latents(axes[0, 1], qz, z)
         else:
             axes[0, 1].set_title(r'Latent Samples $\mathbf{z} \sim q_\phi(\mathbf{z} | \mathbf{x})$ (t-SNE)')
-            plot_latents(axes[0, 1], z, y)
+            plot_latents(axes[0, 1], z)
     except Exception as e:
         print(f"Could not generate the plot of the latent sanples because of exception")
         print(e)
