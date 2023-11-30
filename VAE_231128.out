@@ -3,18 +3,118 @@ Gtex test set size: 2642
 Shape of the archs4 dataset (hd5): (18965,)
 Shape of the gtex dataset (hd5): (18965,)
 >> Using device: cuda:0
-
+<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K<IPython.core.display.Image object>
+[2K[2K
 ------------------------------------------------------------
 Sender: LSF System <lsfadmin@hpc.dtu.dk>
-Subject: Job 19592625: <VAE_23/11/28> in cluster <dcc> Exited
+Subject: Job 19615194: <VAE_23/11/28> in cluster <dcc> Done
 
-Job <VAE_23/11/28> was submitted from host <gbarlogin2> by user <s222766> in cluster <dcc> at Tue Nov 28 21:13:38 2023
-Job was executed on host(s) <n-62-11-16>, in queue <gpuv100>, as user <s222766> in cluster <dcc> at Tue Nov 28 21:13:38 2023
-</zhome/5a/4/181325> was used as the home directory.
-</zhome/5a/4/181325/deep_learning/deep_learning_project> was used as the working directory.
-Started at Tue Nov 28 21:13:38 2023
-Terminated at Tue Nov 28 21:28:36 2023
-Results reported at Tue Nov 28 21:28:36 2023
+Job <VAE_23/11/28> was submitted from host <hpclogin1> by user <s222498> in cluster <dcc> at Wed Nov 29 16:01:10 2023
+Job was executed on host(s) <n-62-20-7>, in queue <gpuv100>, as user <s222498> in cluster <dcc> at Wed Nov 29 16:01:11 2023
+</zhome/36/6/181069> was used as the home directory.
+</zhome/36/6/181069/DL_project/project/deep_learning_project> was used as the working directory.
+Started at Wed Nov 29 16:01:11 2023
+Terminated at Wed Nov 29 16:58:16 2023
+Results reported at Wed Nov 29 16:58:16 2023
 
 Your job looked like:
 
@@ -36,20 +136,20 @@ module load h5py
 python3 "231113_VAE.py"
 ------------------------------------------------------------
 
-Exited with exit code 1.
+Successfully completed.
 
 Resource usage summary:
 
-    CPU time :                                   49.43 sec.
-    Max Memory :                                 603 MB
-    Average Memory :                             559.14 MB
+    CPU time :                                   2291.25 sec.
+    Max Memory :                                 1687 MB
+    Average Memory :                             1205.25 MB
     Total Requested Memory :                     16384.00 MB
-    Delta Memory :                               15781.00 MB
+    Delta Memory :                               14697.00 MB
     Max Swap :                                   -
     Max Processes :                              4
     Max Threads :                                11
-    Run time :                                   1010 sec.
-    Turnaround time :                            898 sec.
+    Run time :                                   3441 sec.
+    Turnaround time :                            3426 sec.
 
 The output (if any) is above this job summary.
 

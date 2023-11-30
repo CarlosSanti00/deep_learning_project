@@ -95,11 +95,10 @@ def plot_autoencoder_stats(
 
     os.remove(tmp_img)
 
-
 def plot_samples(ax, x):
     x = x.to('cpu')
     nrow = int(np.sqrt(x.size(0)))
-    x_grid = make_grid(x.view(-1, 1, 28, 28), nrow=nrow).permute(1, 2, 0)
+    x_grid = make_grid(x.view(-1, 1), nrow=nrow).permute(1, 2, 0)
     ax.imshow(x_grid)
     ax.axis('off')
 
@@ -117,7 +116,7 @@ def plot_interpolations(ax, vae):
     px = vae.observation_model(zs.view(nrow * nsteps, -1))
     x = px.sample()
     x = x.to('cpu')
-    x_grid = make_grid(x.view(-1, 1, 28, 28), nrow=nrow).permute(1, 2, 0)
+    x_grid = make_grid(x.view(-1, 1), nrow=nrow).permute(1, 2, 0)
     ax.imshow(x_grid)
     ax.axis('off')
 
@@ -192,7 +191,7 @@ def make_vae_plots(vae, x, outputs, training_data, validation_data, tmp_img="tmp
         print(f"Could not generate the plot of the latent sanples because of exception")
         print(e)
 
-    # plot posterior samples
+  #  plot posterior samples
     axes[0, 2].set_title(
         r'Reconstruction $\mathbf{x} \sim p_\theta(\mathbf{x} | \mathbf{z}), \mathbf{z} \sim q_\phi(\mathbf{z} | \mathbf{x})$')
     px = outputs['px']
@@ -244,6 +243,7 @@ def make_vae_plots(vae, x, outputs, training_data, validation_data, tmp_img="tmp
     plt.savefig(tmp_img)
     plt.close(fig)
     display(Image(filename=tmp_img))
+    plt.savefig('plots.png')
     clear_output(wait=True)
 
     os.remove(tmp_img)
