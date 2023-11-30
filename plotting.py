@@ -89,9 +89,9 @@ def plot_autoencoder_stats(
 
     tmp_img = "tmp_ae_out.png"
     plt.savefig(tmp_img)
-    plt.close(f)
-    display(Image(filename=tmp_img))
-    clear_output(wait=True)
+    # plt.close(f)
+    # display(Image(filename=tmp_img))
+    # clear_output(wait=True)
 
     os.remove(tmp_img)
 
@@ -241,9 +241,9 @@ def make_vae_plots(vae, x, outputs, training_data, validation_data, tmp_img="tmp
     # display
     plt.tight_layout()
     plt.savefig(tmp_img)
-    plt.close(fig)
-    display(Image(filename=tmp_img))
+    # plt.close(fig)
+    # display(Image(filename=tmp_img))
     plt.savefig('plots.png')
-    clear_output(wait=True)
+    # clear_output(wait=True)
 
     os.remove(tmp_img)
