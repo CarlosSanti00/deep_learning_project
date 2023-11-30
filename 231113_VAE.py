@@ -283,4 +283,31 @@ while epoch < num_epochs:
             validation_data[k] += [v.mean().item()]
 
     # Reproduce the figure from the begining of the notebook, plot the training curves and show latent samples
-    make_vae_plots(vae, x, outputs, training_data, validation_data)
+    # make_vae_plots(vae, x, outputs, training_data, validation_data)
+
+# Plot ELBO and save as PNG
+fig, ax = plt.subplots()
+ax.set_title(r'ELBO: $\mathcal{L} ( \mathbf{x} )$')
+ax.plot(training_data['elbo'], label='Training')
+ax.plot(validation_data['elbo'], label='Validation')
+ax.legend()
+fig.savefig('elbo_plot.png')
+plt.close(fig)
+
+# Plot KL and save as PNG
+fig, ax = plt.subplots()
+ax.set_title(r'$\mathcal{D}_{\operatorname{KL}}\left(q_\phi(\mathbf{z}|\mathbf{x})\ |\ p(\mathbf{z})\right)$')
+ax.plot(training_data['kl'], label='Training')
+ax.plot(validation_data['kl'], label='Validation')
+ax.legend()
+fig.savefig('kl_plot.png')
+plt.close(fig)
+
+# Plot NLL and save as PNG
+fig, ax = plt.subplots()
+ax.set_title(r'$\log p_\theta(\mathbf{x} | \mathbf{z})$')
+ax.plot(training_data['log_px'], label='Training')
+ax.plot(validation_data['log_px'], label='Validation')
+ax.legend()
+fig.savefig('nll_plot.png')
+plt.close(fig)

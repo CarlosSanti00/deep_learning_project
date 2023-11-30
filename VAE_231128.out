@@ -4,106 +4,305 @@ Shape of the archs4 dataset (hd5): (18965,)
 Shape of the gtex dataset (hd5): (18965,)
 >> Using device: cuda:0
 <IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K<IPython.core.display.Image object>
-[2K[2K
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
+<IPython.core.display.Image object>
+[2K
+[2K
 ------------------------------------------------------------
 Sender: LSF System <lsfadmin@hpc.dtu.dk>
 Subject: Job 19615194: <VAE_23/11/28> in cluster <dcc> Done
