@@ -1,0 +1,50 @@
+Loaded dependency [python3/3.11.4]: gcc/12.3.0-binutils-2.40
+Loaded dependency [python3/3.11.4]: sqlite3/3.42.0
+Loaded module: python3/3.11.4
+
+Loading python3/3.11.4
+  Loading requirement: gcc/12.3.0-binutils-2.40 sqlite3/3.42.0
+Loaded dependency [numpy/1.24.3-python-3.11.4-openblas-0.3.23]: openblas/0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: numpy/1.24.3-python-3.11.4-openblas-0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: hdf5/1.12.2-gcc-11.3.0
+Loaded module: h5py/3.8.0-python-3.11.4
+
+Loading h5py/3.8.0-python-3.11.4
+  Loading requirement: openblas/0.3.23
+    numpy/1.24.3-python-3.11.4-openblas-0.3.23 hdf5/1.12.2-gcc-11.3.0
+Traceback (most recent call last):
+  File "/zhome/98/3/181284/Project29/Git_Repo/deep_learning_project/231113_VAE.py", line 286, in <module>
+    make_vae_plots(vae, x, outputs, training_data, validation_data)
+  File "/zhome/98/3/181284/Project29/Git_Repo/deep_learning_project/plotting.py", line 179, in make_vae_plots
+    plot_samples(axes[0, 0], x)
+  File "/zhome/98/3/181284/Project29/Git_Repo/deep_learning_project/plotting.py", line 102, in plot_samples
+    x_grid = make_grid(x.view(-1, 1, 28, 28), nrow=nrow).permute(1, 2, 0)
+                       ^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: shape '[-1, 1, 28, 28]' is invalid for input of size 1213760
+Loaded dependency [python3/3.11.4]: gcc/12.3.0-binutils-2.40
+Loaded dependency [python3/3.11.4]: sqlite3/3.42.0
+Loaded module: python3/3.11.4
+
+Loading python3/3.11.4
+  Loading requirement: gcc/12.3.0-binutils-2.40 sqlite3/3.42.0
+Loaded dependency [numpy/1.24.3-python-3.11.4-openblas-0.3.23]: openblas/0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: numpy/1.24.3-python-3.11.4-openblas-0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: hdf5/1.12.2-gcc-11.3.0
+Loaded module: h5py/3.8.0-python-3.11.4
+
+Loading h5py/3.8.0-python-3.11.4
+  Loading requirement: openblas/0.3.23
+    numpy/1.24.3-python-3.11.4-openblas-0.3.23 hdf5/1.12.2-gcc-11.3.0
+Traceback (most recent call last):
+  File "/zhome/98/3/181284/Project29/Git_Repo/deep_learning_project/ANA_VAE_metrics.py", line 287, in <module>
+    average_nll = np.mean(reconstruction_losses)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<__array_function__ internals>", line 200, in mean
+  File "/appl/numpy/1.24.3-python-3.11.4-openblas-0.3.23/lib/python3.11/site-packages/numpy/core/fromnumeric.py", line 3462, in mean
+    return mean(axis=axis, dtype=dtype, out=out, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: mean() received an invalid combination of arguments - got (dtype=NoneType, out=NoneType, axis=NoneType, ), but expected one of:
+ * (*, torch.dtype dtype)
+ * (tuple of ints dim, bool keepdim, *, torch.dtype dtype)
+ * (tuple of names dim, bool keepdim, *, torch.dtype dtype)
+
