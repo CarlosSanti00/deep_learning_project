@@ -1,0 +1,63 @@
+Archs4 training set size: 167884
+Gtex test set size: 2642
+Shape of the archs4 dataset (hd5): (18965,)
+Shape of the gtex dataset (hd5): (18965,)
+18965
+>> Using device: cuda:0
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19652212: <VAE_Ana> in cluster <dcc> Done
+
+Job <VAE_Ana> was submitted from host <gbarlogin2> by user <s222761> in cluster <dcc> at Fri Dec  1 12:13:40 2023
+Job was executed on host(s) <n-62-20-10>, in queue <gpuv100>, as user <s222761> in cluster <dcc> at Fri Dec  1 12:13:42 2023
+</zhome/98/3/181284> was used as the home directory.
+</zhome/98/3/181284/Project29/Git_Repo/deep_learning_project/scripts_VAE> was used as the working directory.
+Started at Fri Dec  1 12:13:42 2023
+Terminated at Fri Dec  1 13:28:08 2023
+Results reported at Fri Dec  1 13:28:08 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J VAE_Ana
+#BSUB -n 1
+#BSUB -W 05:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -o ../Log_out_files/VAE_Ana_01.out
+#BSUB -e ../Log_out_files/VAE_Ana_01.err
+
+module load python3/3.11.4
+module load h5py
+python3 "011223_VAE.py"
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   4057.71 sec.
+    Max Memory :                                 695 MB
+    Average Memory :                             639.85 MB
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               15689.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                11
+    Run time :                                   4467 sec.
+    Turnaround time :                            4468 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <../Log_out_files/VAE_Ana_01.err> for stderr output of this job.
+
