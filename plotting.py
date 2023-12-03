@@ -93,7 +93,7 @@ def plot_autoencoder_stats(
     # display(Image(filename=tmp_img))
     # clear_output(wait=True)
 
-    os.remove(tmp_img)
+   # os.remove(tmp_img)
 
 def plot_samples(ax, x):
     x = x.to('cpu')

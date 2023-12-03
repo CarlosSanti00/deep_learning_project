@@ -213,17 +213,17 @@ print("Gtex test set size:", len(gtex_test))
 # Initialization of the model, evaluator and optimizer
 
 # VAE
-latent_features = 32
+latent_features = 128 #changed from 64
 print(f'Shape of the archs4 dataset (hd5): {archs4_train[0].shape}')
 print(f'Shape of the gtex dataset (hd5): {gtex_test[0][0].shape}')
 vae = VariationalAutoencoder(archs4_train[0].shape, latent_features)
 
 # Evaluator: Variational Inference
-beta = 2
+beta = 1
 vi = VariationalInference(beta=beta)
 
 # The Adam optimizer works really well with VAEs.
-optimizer = torch.optim.Adam(vae.parameters(), lr=1e-4)
+optimizer = torch.optim.Adam(vae.parameters(), lr=1e-3)
 
 # Define dictionary to store the training curves
 training_data = defaultdict(list)
@@ -282,31 +282,32 @@ while epoch < num_epochs:
         for k, v in diagnostics.items():
             validation_data[k] += [v.mean().item()]
 
-        # Compute Negative Log Likelihood (NLL) on validation set
-        reconstruction_losses = diagnostics['log_px']
-      #  average_nll = np.mean(reconstruction_losses)
-        print(f"Epoch [{epoch}/{num_epochs}] - Average Negative Log Likelihood (NLL) on validation set: {average_nll}")
-
-        # Visualize a batch of reconstructed images
-        reconstructed = vae(x)['px'].probs.view(-1, *vae.input_shape).cpu().numpy()
-        n = min(x.size(0), 8)  # number of images to visualize
-        fig, axes = plt.subplots(2, n, figsize=(n * 2, 4))
-        for i in range(n):
-            axes[0, i].imshow(x[i].squeeze().cpu().numpy(), cmap='gray')
-            axes[0, i].axis('off')
-            axes[0, i].set_title('Original')
-            axes[1, i].imshow(reconstructed[i].squeeze(), cmap='gray')
-            axes[1, i].axis('off')
-            axes[1, i].set_title('Reconstructed')
-        plt.tight_layout()
-        plt.show()
-
-        # Compute and print average KL divergence
-        kl_divergence = diagnostics['kl']
-        average_kl = np.mean(kl_divergence)
-        print(f"Epoch [{epoch}/{num_epochs}] - Average KL Divergence on validation set: {average_kl}")
-
-
     # Reproduce the figure from the begining of the notebook, plot the training curves and show latent samples
     # make_vae_plots(vae, x, outputs, training_data, validation_data)
 
+# Plot ELBO and save as PNG
+fig, ax = plt.subplots()
+ax.set_title(r'ELBO: $\mathcal{L} ( \mathbf{x} )$')
+ax.plot(training_data['elbo'], label='Training')
+ax.plot(validation_data['elbo'], label='Validation')
+ax.legend()
+fig.savefig('elbo_plot.png')
+plt.close(fig)
+
+# Plot KL and save as PNG
+fig, ax = plt.subplots()
+ax.set_title(r'$\mathcal{D}_{\operatorname{KL}}\left(q_\phi(\mathbf{z}|\mathbf{x})\ |\ p(\mathbf{z})\right)$')
+ax.plot(training_data['kl'], label='Training')
+ax.plot(validation_data['kl'], label='Validation')
+ax.legend()
+fig.savefig('kl_plot.png')
+plt.close(fig)
+
+# Plot NLL and save as PNG
+fig, ax = plt.subplots()
+ax.set_title(r'$\log p_\theta(\mathbf{x} | \mathbf{z})$')
+ax.plot(training_data['log_px'], label='Training')
+ax.plot(validation_data['log_px'], label='Validation')
+ax.legend()
+fig.savefig('nll_plot.png')
+plt.close(fig)

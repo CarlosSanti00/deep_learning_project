@@ -6,9 +6,9 @@
 #BSUB -n 1
 #BSUB -W 10:00
 #BSUB -R "rusage[mem=16GB]"
-#BSUB -o Anu_VAE_231130.out
-#BSUB -e Anu_VAE_231130.err
+#BSUB -o Anu_ae.out
+#BSUB -e Anu_ae.err
 
 module load python3/3.11.4
 module load h5py
-python3 "Anu_vae.py"
+python3 "Anu_ae.py"

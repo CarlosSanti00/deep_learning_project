@@ -213,17 +213,17 @@ print("Gtex test set size:", len(gtex_test))
 # Initialization of the model, evaluator and optimizer
 
 # VAE
-latent_features = 64
+latent_features = 32 #changed from 64
 print(f'Shape of the archs4 dataset (hd5): {archs4_train[0].shape}')
 print(f'Shape of the gtex dataset (hd5): {gtex_test[0][0].shape}')
 vae = VariationalAutoencoder(archs4_train[0].shape, latent_features)
 
 # Evaluator: Variational Inference
-beta = 1
+beta = 2
 vi = VariationalInference(beta=beta)
 
 # The Adam optimizer works really well with VAEs.
-optimizer = torch.optim.Adam(vae.parameters(), lr=1e-3)
+optimizer = torch.optim.Adam(vae.parameters(), lr=1e-4)
 
 # Define dictionary to store the training curves
 training_data = defaultdict(list)
@@ -231,7 +231,7 @@ validation_data = defaultdict(list)
 
 # Initialize training loop
 epoch = 0
-num_epochs = 100
+num_epochs = 200
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(f">> Using device: {device}")
