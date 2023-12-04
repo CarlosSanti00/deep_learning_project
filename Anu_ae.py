@@ -176,8 +176,27 @@ for epoch in range(num_epochs):
         #                   epoch=epoch,
          #                  dimensionality_reduction_op=None)
     
-   
 
+	 # -- Plotting --
+    f, axarr = plt.subplots(2, 2, figsize=(20, 20))
+
+    # Loss
+    ax = axarr[0, 0]
+    ax.set_title("Error")
+    ax.set_xlabel('Epoch')
+    ax.set_ylabel('Error')
+
+    ax.plot(np.arange(epoch + 1), train_loss, color="black")
+    ax.plot(np.arange(epoch + 1), valid_loss, color="gray", linestyle="--")
+    ax.legend(['Training error', 'Validation error'])
+
+    # Latent space
+    ax = axarr[0, 1]
+
+    ax.set_title('Latent space')
+    ax.set_xlabel('Dimension 1')
+    ax.set_ylabel('Dimension 2')
+    plt.savefig('model.png')
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(f">> Using device: {device}")

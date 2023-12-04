@@ -12,3 +12,5 @@ Loaded module: h5py/3.8.0-python-3.11.4
 Loading h5py/3.8.0-python-3.11.4
   Loading requirement: openblas/0.3.23
     numpy/1.24.3-python-3.11.4-openblas-0.3.23 hdf5/1.12.2-gcc-11.3.0
+/zhome/36/6/181069/DL_project/deep_learning_project/Anu_ae.py:181: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`). Consider using `matplotlib.pyplot.close()`.
+  f, axarr = plt.subplots(2, 2, figsize=(20, 20))
