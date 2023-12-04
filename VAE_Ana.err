@@ -1,0 +1,65 @@
+Loaded dependency [python3/3.11.4]: gcc/12.3.0-binutils-2.40
+Loaded dependency [python3/3.11.4]: sqlite3/3.42.0
+Loaded module: python3/3.11.4
+
+Loading python3/3.11.4
+  Loading requirement: gcc/12.3.0-binutils-2.40 sqlite3/3.42.0
+Loaded dependency [numpy/1.24.3-python-3.11.4-openblas-0.3.23]: openblas/0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: numpy/1.24.3-python-3.11.4-openblas-0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: hdf5/1.12.2-gcc-11.3.0
+Loaded module: h5py/3.8.0-python-3.11.4
+
+Loading h5py/3.8.0-python-3.11.4
+  Loading requirement: openblas/0.3.23
+    numpy/1.24.3-python-3.11.4-openblas-0.3.23 hdf5/1.12.2-gcc-11.3.0
+Traceback (most recent call last):
+  File "/zhome/5a/4/181325/deep_learning/deep_learning_project/ANA_VAE_metrics.py", line 287, in <module>
+    average_nll = np.mean(reconstruction_losses)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<__array_function__ internals>", line 200, in mean
+  File "/appl/numpy/1.24.3-python-3.11.4-openblas-0.3.23/lib/python3.11/site-packages/numpy/core/fromnumeric.py", line 3462, in mean
+    return mean(axis=axis, dtype=dtype, out=out, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: mean() received an invalid combination of arguments - got (dtype=NoneType, out=NoneType, axis=NoneType, ), but expected one of:
+ * (*, torch.dtype dtype)
+ * (tuple of ints dim, bool keepdim, *, torch.dtype dtype)
+ * (tuple of names dim, bool keepdim, *, torch.dtype dtype)
+
+Loaded dependency [python3/3.11.4]: gcc/12.3.0-binutils-2.40
+Loaded dependency [python3/3.11.4]: sqlite3/3.42.0
+Loaded module: python3/3.11.4
+
+Loading python3/3.11.4
+  Loading requirement: gcc/12.3.0-binutils-2.40 sqlite3/3.42.0
+Loaded dependency [numpy/1.24.3-python-3.11.4-openblas-0.3.23]: openblas/0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: numpy/1.24.3-python-3.11.4-openblas-0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: hdf5/1.12.2-gcc-11.3.0
+Loaded module: h5py/3.8.0-python-3.11.4
+
+Loading h5py/3.8.0-python-3.11.4
+  Loading requirement: openblas/0.3.23
+    numpy/1.24.3-python-3.11.4-openblas-0.3.23 hdf5/1.12.2-gcc-11.3.0
+Traceback (most recent call last):
+  File "/zhome/5a/4/181325/deep_learning/deep_learning_project/ANA_VAE_metrics.py", line 251, in <module>
+    for x in archs4_train_dataloader:
+  File "/zhome/5a/4/181325/.local/lib/python3.11/site-packages/torch/utils/data/dataloader.py", line 630, in __next__
+    data = self._next_data()
+           ^^^^^^^^^^^^^^^^^
+  File "/zhome/5a/4/181325/.local/lib/python3.11/site-packages/torch/utils/data/dataloader.py", line 674, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/zhome/5a/4/181325/.local/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/zhome/5a/4/181325/.local/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+            ~~~~~~~~~~~~^^^^^
+  File "/zhome/5a/4/181325/deep_learning/deep_learning_project/IsoDatasets.py", line 18, in __getitem__
+    return self.dset[idx]
+           ~~~~~~~~~^^^^^
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "/appl/h5py/3.8.0-python-3.11.4/lib/python3.11/site-packages/h5py/_hl/dataset.py", line 768, in __getitem__
+    return self._fast_reader.read(args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

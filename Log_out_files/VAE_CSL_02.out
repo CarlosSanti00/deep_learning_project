@@ -1,0 +1,68 @@
+Archs4 training set size: 167884
+Gtex test set size: 2642
+Shape of the archs4 dataset (hd5): (18965,)
+Shape of the gtex dataset (hd5): (18965,)
+18965
+>> Using device: cpu
+Error in dataloader (last batch being less than 128): The size of tensor a (76) must match the size of tensor b (128) at non-singleton dimension 0
+Error in dataloader (last batch being less than 128): The size of tensor a (76) must match the size of tensor b (128) at non-singleton dimension 0
+Error in dataloader (last batch being less than 128): The size of tensor a (76) must match the size of tensor b (128) at non-singleton dimension 0
+Error in dataloader (last batch being less than 128): The size of tensor a (76) must match the size of tensor b (128) at non-singleton dimension 0
+Error in dataloader (last batch being less than 128): The size of tensor a (76) must match the size of tensor b (128) at non-singleton dimension 0
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19674934: <VAE_Ana> in cluster <dcc> Done
+
+Job <VAE_Ana> was submitted from host <gbarlogin2> by user <s222766> in cluster <dcc> at Sun Dec  3 03:38:55 2023
+Job was executed on host(s) <n-62-20-7>, in queue <gpuv100>, as user <s222766> in cluster <dcc> at Sun Dec  3 03:38:55 2023
+</zhome/5a/4/181325> was used as the home directory.
+</zhome/5a/4/181325/deep_learning/deep_learning_project/scripts_VAE> was used as the working directory.
+Started at Sun Dec  3 03:38:55 2023
+Terminated at Sun Dec  3 11:08:01 2023
+Results reported at Sun Dec  3 11:08:01 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J VAE_Ana
+#BSUB -n 1
+#BSUB -W 24:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -o ../Log_out_files/VAE_CSL_02.out
+#BSUB -e ../Log_out_files/VAE_CSL_02.err
+
+module load python3/3.11.4
+module load h5py
+python3 "CSL_231202_VAE.py"
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   31100.06 sec.
+    Max Memory :                                 7798 MB
+    Average Memory :                             6614.61 MB
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               8586.00 MB
+    Max Swap :                                   2 MB
+    Max Processes :                              4
+    Max Threads :                                10
+    Run time :                                   26985 sec.
+    Turnaround time :                            26946 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <../Log_out_files/VAE_CSL_02.err> for stderr output of this job.
+
