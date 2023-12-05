@@ -1,0 +1,58 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19699510: <VAE_23/11/30> in cluster <dcc> Exited
+
+Job <VAE_23/11/30> was submitted from host <hpclogin1> by user <s222498> in cluster <dcc> at Tue Dec  5 15:36:17 2023
+Job was executed on host(s) <n-62-20-14>, in queue <gpuv100>, as user <s222498> in cluster <dcc> at Tue Dec  5 15:36:18 2023
+</zhome/36/6/181069> was used as the home directory.
+</zhome/36/6/181069/DL_project/deep_learning_project> was used as the working directory.
+Started at Tue Dec  5 15:36:18 2023
+Terminated at Tue Dec  5 15:56:22 2023
+Results reported at Tue Dec  5 15:56:22 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J VAE_23/11/30
+#BSUB -n 1
+#BSUB -W 10:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -o Anu_pca.out
+#BSUB -e Anu_pca.err
+
+module load python3/3.11.4
+module load h5py
+python3 "pca.py"
+
+------------------------------------------------------------
+
+TERM_MEMLIMIT: job killed after reaching LSF memory usage limit.
+Exited with exit code 137.
+
+Resource usage summary:
+
+    CPU time :                                   29.35 sec.
+    Max Memory :                                 16384 MB
+    Average Memory :                             5970.82 MB
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               0.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                8
+    Run time :                                   1265 sec.
+    Turnaround time :                            1205 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <Anu_pca.err> for stderr output of this job.
+
