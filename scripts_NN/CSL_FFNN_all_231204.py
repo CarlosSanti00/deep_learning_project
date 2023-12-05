@@ -126,7 +126,7 @@ for fold, (train_indices, test_indices) in enumerate(stratified_kfold.split(np.z
     print(f"Train samples: {len(train_indices)}, Test samples: {len(test_indices)}")
 
     # Train the model
-    n_epochs = 20
+    n_epochs = 5
     for epoch in range(1, n_epochs+1, 1):
         
         # MSE total train vector definition for each epoch
@@ -173,8 +173,11 @@ for fold, (train_indices, test_indices) in enumerate(stratified_kfold.split(np.z
                 tqdm.write(f'\nEpoch {epoch}: train loss (last batch), mean MSE:\t{mse_train_batch:.4f},\t{mean_mse_train:.5f}')
                 tqdm.write(f'Epoch {epoch}: valid loss (last batch), mean MSE:\t{mse_valid_batch:.4f},\t{mean_mse_valid:.5f}')
 
+
+np.savetxt('valid_errors.txt', np.array(all_raw_errors))
+
 # Histogram plot
-plt.hist(all_raw_errors, bins=500, edgecolor='black')
+plt.hist(all_raw_errors, bins=10, edgecolor='black')
 plt.title('Validation Raw Error Histogram')
 plt.xlabel('Error Value')
 plt.ylabel('Frequency')
@@ -191,12 +194,12 @@ plt.show()
 # plt.savefig('validation_me_density_plot.png')
 # plt.show()
 
-# Create a KDE plot with shade
-sns.kdeplot(np.array(all_raw_errors), fill=True)
-# Set plot labels and title
-plt.title('Kernel Density Estimation (KDE) plot with Shade')
-plt.xlabel('Validation error value')
-plt.ylabel('Density')
-# Save or display the plot
-plt.savefig('kde_plot_with_shade.png')
-plt.show()
+# # Create a KDE plot with shade
+# sns.kdeplot(np.array(all_raw_errors), fill=True)
+# # Set plot labels and title
+# plt.title('Kernel Density Estimation (KDE) plot with Shade')
+# plt.xlabel('Validation error value')
+# plt.ylabel('Density')
+# # Save or display the plot
+# plt.savefig('kde_plot_with_shade.png')
+# plt.show()
