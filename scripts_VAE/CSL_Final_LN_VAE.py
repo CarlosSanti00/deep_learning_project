@@ -382,38 +382,38 @@ while epoch < num_epochs:
         reconstructed_baseline = baseline(x)['px'].sample().view(-1, *baseline.input_shape).cpu().numpy()
 
         # Print and save original and reconstructed data to a text file
-        with open('../Log_out_files/original_and_reconstructed_LN(final)_CSL.txt', 'a') as file:
-            file.write(f"Epoch [{epoch}/{num_epochs}]\n")
+        # with open('../Log_out_files/original_and_reconstructed_LN(final)_CSL.txt', 'a') as file:
+        #     file.write(f"Epoch [{epoch}/{num_epochs}]\n")
 
-            # Print and store a subset of samples for VAE
-            for i in range(num_samples):
-                original_sample = x[i][:num_proteins].squeeze().cpu().numpy()
-                reconstructed_sample = reconstructed_vae[i][:num_proteins].squeeze()
+        #     # Print and store a subset of samples for VAE
+        #     for i in range(num_samples):
+        #         original_sample = x[i][:num_proteins].squeeze().cpu().numpy()
+        #         reconstructed_sample = reconstructed_vae[i][:num_proteins].squeeze()
 
-                # Print the original and reconstructed data
-                print(f"Sample {i+1} - Original (VAE): {original_sample}")
-                print(f"Sample {i+1} - Reconstructed (VAE): {reconstructed_sample}")
+        #         # Print the original and reconstructed data
+        #         print(f"Sample {i+1} - Original (VAE): {original_sample}")
+        #         print(f"Sample {i+1} - Reconstructed (VAE): {reconstructed_sample}")
 
-                # Write the original and reconstructed data to the text file
-                file.write(f"Sample {i+1} - Original (VAE):\n")
-                file.write(f"{original_sample}\n")
-                file.write(f"Sample {i+1} - Reconstructed (VAE):\n")
-                file.write(f"{reconstructed_sample}\n\n")
+        #         # Write the original and reconstructed data to the text file
+        #         file.write(f"Sample {i+1} - Original (VAE):\n")
+        #         file.write(f"{original_sample}\n")
+        #         file.write(f"Sample {i+1} - Reconstructed (VAE):\n")
+        #         file.write(f"{reconstructed_sample}\n\n")
 
-            # Print and store a subset of samples for Baseline
-            for i in range(num_samples):
-                original_sample = x[i][:num_proteins].squeeze().cpu().numpy()
-                reconstructed_sample = reconstructed_baseline[i][:num_proteins].squeeze()
+        #     # Print and store a subset of samples for Baseline
+        #     for i in range(num_samples):
+        #         original_sample = x[i][:num_proteins].squeeze().cpu().numpy()
+        #         reconstructed_sample = reconstructed_baseline[i][:num_proteins].squeeze()
 
-                # Print the original and reconstructed data
-                print(f"Sample {i+1} - Original (Baseline): {original_sample}")
-                print(f"Sample {i+1} - Reconstructed (Baseline): {reconstructed_sample}")
+        #         # Print the original and reconstructed data
+        #         print(f"Sample {i+1} - Original (Baseline): {original_sample}")
+        #         print(f"Sample {i+1} - Reconstructed (Baseline): {reconstructed_sample}")
 
-                # Write the original and reconstructed data to the text file
-                file.write(f"Sample {i+1} - Original (Baseline):\n")
-                file.write(f"{original_sample}\n")
-                file.write(f"Sample {i+1} - Reconstructed (Baseline):\n")
-                file.write(f"{reconstructed_sample}\n\n")
+        #         # Write the original and reconstructed data to the text file
+        #         file.write(f"Sample {i+1} - Original (Baseline):\n")
+        #         file.write(f"{original_sample}\n")
+        #         file.write(f"Sample {i+1} - Reconstructed (Baseline):\n")
+        #         file.write(f"{reconstructed_sample}\n\n")
 
     # Generate plots every desired interval
     if epoch % 5 == 0:
@@ -423,10 +423,17 @@ while epoch < num_epochs:
         ax.set_title(r'ELBO: $\mathcal{L} ( \mathbf{x} )$')
         ax.plot(training_data['elbo'], label='VAE Training')
         ax.plot(validation_data['elbo'], label='VAE Validation')
-        ax.plot(baseline_data['elbo'], label='Baseline Training', linestyle='--')
-        ax.plot(validation_baseline_data['elbo'], label='Baseline Validation', linestyle='--')
         ax.legend()
-        fig.savefig('../plots/elbo_plot_LN(final)_CSL.png')
+        fig.savefig('../plots/elbo_plot_LN(final)_VAE_CSL.png')
+        plt.close(fig)
+
+        # Plot ELBO and save as PNG
+        fig, ax = plt.subplots()
+        ax.set_title(r'ELBO: $\mathcal{L} ( \mathbf{x} )$')
+        ax.plot(baseline_data['elbo'], label='Baseline Training')
+        ax.plot(validation_baseline_data['elbo'], label='Baseline Validation')
+        ax.legend()
+        fig.savefig('../plots/elbo_plot_LN(final)_baseline_CSL.png')
         plt.close(fig)
 
         # Plot KL and save as PNG
@@ -434,10 +441,17 @@ while epoch < num_epochs:
         ax.set_title(r'$\mathcal{D}_{\operatorname{KL}}\left(q_\phi(\mathbf{z}|\mathbf{x})\ |\ p(\mathbf{z})\right)$')
         ax.plot(training_data['kl'], label='VAE Training')
         ax.plot(validation_data['kl'], label='VAE Validation')
-        ax.plot(baseline_data['kl'], label='Baseline Training', linestyle='--')
-        ax.plot(validation_baseline_data['kl'], label='Baseline Validation', linestyle='--')
         ax.legend()
-        fig.savefig('../plots/kl_plot_LN(final)_CSL.png')
+        fig.savefig('../plots/kl_plot_LN(final)_VAE_CSL.png')
+        plt.close(fig)
+
+        # Plot KL and save as PNG
+        fig, ax = plt.subplots()
+        ax.set_title(r'$\mathcal{D}_{\operatorname{KL}}\left(q_\phi(\mathbf{z}|\mathbf{x})\ |\ p(\mathbf{z})\right)$')
+        ax.plot(baseline_data['kl'], label='Baseline Training')
+        ax.plot(validation_baseline_data['kl'], label='Baseline Validation')
+        ax.legend()
+        fig.savefig('../plots/kl_plot_LN(final)_baseline_CSL.png')
         plt.close(fig)
 
         # Plot NLL and save as PNG
@@ -445,10 +459,17 @@ while epoch < num_epochs:
         ax.set_title(r'$\log p_\theta(\mathbf{x} | \mathbf{z})$')
         ax.plot(training_data['log_px'], label='VAE Training')
         ax.plot(validation_data['log_px'], label='VAE Validation')
-        ax.plot(baseline_data['log_px'], label='Baseline Training', linestyle='--')
-        ax.plot(validation_baseline_data['log_px'], label='Baseline Validation', linestyle='--')
         ax.legend()
-        fig.savefig('../plots/nll_plot_LN(final)_CSL.png')
+        fig.savefig('../plots/nll_plot_LN(final)_VAE_CSL.png')
+        plt.close(fig)
+
+        # Plot NLL and save as PNG
+        fig, ax = plt.subplots()
+        ax.set_title(r'$\log p_\theta(\mathbf{x} | \mathbf{z})$')
+        ax.plot(baseline_data['log_px'], label='Baseline Training')
+        ax.plot(validation_baseline_data['log_px'], label='Baseline Validation')
+        ax.legend()
+        fig.savefig('../plots/nll_plot_LN(final)_baseline_CSL.png')
         plt.close(fig)
 
         # Plot the training loss values across iterations and save as PNG
@@ -456,10 +477,17 @@ while epoch < num_epochs:
         ax.set_title('Training Loss across Iterations')
         ax.plot(all_training_losses, label='VAE Training Loss')
         ax.plot(all_validation_losses, label='VAE Validation Loss')
-        ax.plot(all_training_baseline_losses, label='Baseline Training Loss', linestyle='--')
-        ax.plot(all_validation_baseline_losses, label='Baseline Validation Loss', linestyle='--')
         ax.legend()
         fig.savefig('../plots/loss_plot_LN(final)_CSL.png')
+        plt.close(fig)
+
+        # Plot the baseline loss values across iterations and save as PNG
+        fig, ax = plt.subplots()
+        ax.set_title('Validation Loss across Iterations')
+        ax.plot(all_training_baseline_losses, label='Baseline Training Loss')
+        ax.plot(all_validation_baseline_losses, label='Baseline Validation Loss')
+        ax.legend()
+        fig.savefig('../plots/loss_plot_LN(final)_baseline_CSL.png')
         plt.close(fig)
 
 
@@ -486,19 +514,17 @@ fig, ax = plt.subplots()
 ax.set_title(r'ELBO: $\mathcal{L} ( \mathbf{x} )$')
 ax.plot(training_data['elbo'], label='VAE Training')
 ax.plot(validation_data['elbo'], label='VAE Validation')
-ax.plot(baseline_data['elbo'], label='Baseline Training', linestyle='--')
-ax.plot(validation_baseline_data['elbo'], label='Baseline Validation', linestyle='--')
 ax.legend()
-fig.savefig('../plots/elbo_plot_LN(final)_CSL.png')
+fig.savefig('../plots/elbo_plot_LN(final)_VAE_CSL.png')
 plt.close(fig)
 
 # Plot ELBO and save as PNG
 fig, ax = plt.subplots()
 ax.set_title(r'ELBO: $\mathcal{L} ( \mathbf{x} )$')
-ax.plot(training_data['elbo'], label='VAE Training')
-ax.plot(baseline_data['elbo'], label='Baseline Training', linestyle='--')
+ax.plot(baseline_data['elbo'], label='Baseline Training')
+ax.plot(validation_baseline_data['elbo'], label='Baseline Validation')
 ax.legend()
-fig.savefig('../plots/elbo_plot_LN(final)_novalid_CSL.png')
+fig.savefig('../plots/elbo_plot_LN(final)_baseline_CSL.png')
 plt.close(fig)
 
 # Plot KL and save as PNG
@@ -506,21 +532,19 @@ fig, ax = plt.subplots()
 ax.set_title(r'$\mathcal{D}_{\operatorname{KL}}\left(q_\phi(\mathbf{z}|\mathbf{x})\ |\ p(\mathbf{z})\right)$')
 ax.plot(training_data['kl'][5:], label='VAE Training')
 ax.plot(validation_data['kl'][5:], label='VAE Validation')
-ax.plot(baseline_data['kl'][5:], label='Baseline Training', linestyle='--')
-ax.plot(validation_baseline_data['kl'][5:], label='Baseline Validation', linestyle='--')
 ax.legend()
 ax.set_xticks(range(5, num_epochs + 1))
-fig.savefig('../plots/kl_plot_LN(final)_CSL.png')
+fig.savefig('../plots/kl_plot_LN(final)_VAE_CSL.png')
 plt.close(fig)
 
 # Plot KL and save as PNG
 fig, ax = plt.subplots()
 ax.set_title(r'$\mathcal{D}_{\operatorname{KL}}\left(q_\phi(\mathbf{z}|\mathbf{x})\ |\ p(\mathbf{z})\right)$')
-ax.plot(training_data['kl'][5:], label='VAE Training')
-ax.plot(baseline_data['kl'][5:], label='Baseline Training', linestyle='--')
+ax.plot(baseline_data['kl'], label='Baseline Training')
+ax.plot(validation_baseline_data['kl'], label='Baseline Validation')
 ax.legend()
 ax.set_xticks(range(5, num_epochs + 1))
-fig.savefig('../plots/kl_plot_LN(final)_novalid_CSL.png')
+fig.savefig('../plots/kl_plot_LN(final)_baseline_CSL.png')
 plt.close(fig)
 
 # Plot NLL and save as PNG
@@ -528,19 +552,17 @@ fig, ax = plt.subplots()
 ax.set_title(r'$\log p_\theta(\mathbf{x} | \mathbf{z})$')
 ax.plot(training_data['log_px'], label='VAE Training')
 ax.plot(validation_data['log_px'], label='VAE Validation')
-ax.plot(baseline_data['log_px'], label='Baseline Training', linestyle='--')
-ax.plot(validation_baseline_data['log_px'], label='Baseline Validation', linestyle='--')
 ax.legend()
-fig.savefig('../plots/nll_plot_LN(final)_CSL.png')
+fig.savefig('../plots/nll_plot_LN(final)_VAE_CSL.png')
 plt.close(fig)
 
 # Plot NLL and save as PNG
 fig, ax = plt.subplots()
 ax.set_title(r'$\log p_\theta(\mathbf{x} | \mathbf{z})$')
-ax.plot(training_data['log_px'], label='VAE Training')
-ax.plot(baseline_data['log_px'], label='Baseline Training', linestyle='--')
+ax.plot(baseline_data['log_px'], label='Baseline Training')
+ax.plot(validation_baseline_data['log_px'], label='Baseline Validation')
 ax.legend()
-fig.savefig('../plots/nll_plot_LN(final)_novalid_CSL.png')
+fig.savefig('../plots/nll_plot_LN(final)_baseline_CSL.png')
 plt.close(fig)
 
 # Plot the training loss values across iterations and save as PNG
@@ -548,19 +570,39 @@ fig, ax = plt.subplots()
 ax.set_title('Training and Validation Loss across Iterations')
 ax.plot(all_training_losses[100:], label='Training Loss')
 ax.plot(all_validation_losses[100:], label='Validation Loss')
-ax.plot(all_training_baseline_losses[100:], label='Baseline Training Loss', linestyle='--')
-ax.plot(all_baseline_baseline_losses[100:], label='Baseline Training Loss', linestyle='--')
 ax.legend()
 ax.set_xticks(range(100, len(all_training_losses) + 1))
-fig.savefig('../plots/loss_plot_LN(final)_CSL.png')
+fig.savefig('../plots/loss_plot_LN(final)_VAE_CSL.png')
 plt.close(fig)
 
 # Plot the training loss values across iterations and save as PNG
 fig, ax = plt.subplots()
-ax.set_title('Training Loss across Iterations')
-ax.plot(all_training_losses[100:], label='Training Loss')
-ax.plot(all_training_baseline_losses[100:], label='Baseline Training Loss', linestyle='--')
+ax.set_title('Training and Validation Loss of the Baseline across Iterations')
+ax.plot(all_training_baseline_losses[100:], label='Baseline Training Loss')
+ax.plot(all_validation_baseline_losses[100:], label='Baseline Validation Loss')
 ax.legend()
-ax.set_xticks(range(100, len(all_training_losses) + 1))
-fig.savefig('../plots/loss_plot_LN(final)_novalid_CSL.png')
+ax.set_xticks(range(100, len(all_training_baseline_losses) + 1))
+fig.savefig('../plots/loss_plot_LN(final)_baseline_CSL.png')
 plt.close(fig)
+
+# Save parameters in txt files
+print('\nSaving metrics file:')
+np.savetxt('metrics_VAE/Training_ELBO.txt', training_data['elbo'])
+np.savetxt('metrics_VAE/Training_baseline_ELBO.txt', baseline_data['elbo'])
+np.savetxt('metrics_VAE/Validation_ELBO.txt', validation_data['elbo'])
+np.savetxt('metrics_VAE/Validation_baseline_ELBO.txt', validation_baseline_data['elbo'])
+
+np.savetxt('metrics_VAE/Training_KL.txt', training_data['kl'])
+np.savetxt('metrics_VAE/Training_baseline_KL.txt', baseline_data['kl'])
+np.savetxt('metrics_VAE/Validation_KL.txt', validation_data['kl'])
+np.savetxt('metrics_VAE/Validation_baseline_KL.txt', validation_baseline_data['kl'])
+
+np.savetxt('metrics_VAE/Training_nLL.txt', training_data['log_px'])
+np.savetxt('metrics_VAE/Training_baseline_nLL.txt', baseline_data['log_px'])
+np.savetxt('metrics_VAE/Validation_nLL.txt', validation_data['log_px'])
+np.savetxt('metrics_VAE/Validation_baseline_nLL.txt', validation_baseline_data['log_px'])
+
+np.savetxt('metrics_VAE/Training_loss.txt', all_training_losses)
+np.savetxt('metrics_VAE/Training_baseline_loss.txt', all_training_baseline_losses)
+np.savetxt('metrics_VAE/Validation_loss.txt', all_training_baseline_losses)
+np.savetxt('metrics_VAE/Validation_baseline_loss.txt', all_validation_baseline_losses)
