@@ -57,7 +57,7 @@ class VariationalAutoencoder(nn.Module):
     * a Gaussian posterior `q_\phi(z|x) = N(z | \mu(x), \sigma(x))`
     """
 
-    def __init__(self, input_shape:torch.Size, latent_features:int) -> None:
+    def __init__(self, input_shape: torch.Size, latent_features: int, use_baseline: bool = False) -> None:
         super(VariationalAutoencoder, self).__init__()
 
         self.input_shape = input_shape
@@ -65,48 +65,49 @@ class VariationalAutoencoder(nn.Module):
         self.observation_features = np.prod(input_shape)
         print(self.observation_features)
 
-
         # Inference Network
-        # Encode the observation `x` into the parameters of the posterior distribution
-        # `q_\phi(z|x) = N(z | \mu(x), \sigma(x)), \mu(x),\log\sigma(x) = h_\phi(x)`
-        self.encoder = nn.Sequential(
-            nn.Linear(in_features=self.observation_features, out_features=8192),
-            nn.ReLU(),
-            # nn.LeakyReLU(0.2),
-            nn.Linear(in_features=8192, out_features=4096),
-            nn.ReLU(),
-            nn.Linear(in_features=4096, out_features=2048),
-            nn.ReLU(),
-            # nn.LeakyReLU(0.2),
-            nn.Linear(in_features=2048, out_features=1024),
-            nn.ReLU(),
-            # nn.LeakyReLU(0.2),
-            # A Gaussian is fully characterised by its mean \mu and variance \sigma**2
-            nn.Linear(in_features=1024, out_features=2*latent_features), # <- note the 2*latent_features
-            nn.ReLU()  # Add ReLU activation after the last linear layer
-            # nn.Sigmoid()  # Sigmoid activation to the last layer
-        )
+        if use_baseline:
+            # Use the baseline structure
+            self.encoder = nn.Sequential(
+                nn.Linear(in_features=self.observation_features, out_features=2 * latent_features)  # <- note the 2*latent_features
+                # nn.ReLU()  # Add ReLU activation after the last linear layer
+            )
+        else:
+            # Use the original structure
+            self.encoder = nn.Sequential(
+                nn.Linear(in_features=self.observation_features, out_features=4096),
+                nn.ReLU(),
+                nn.Linear(in_features=4096, out_features=2048),
+                nn.ReLU(),
+                nn.Linear(in_features=2048, out_features=1024),
+                nn.ReLU(),
+                nn.Linear(in_features=1024, out_features=512),
+                nn.ReLU(),
+                nn.Linear(in_features=512, out_features=2 * latent_features)  # <- note the 2*latent_features
+            )
 
         # Generative Model
-        # Decode the latent sample `z` into the parameters of the observation model
-        # `p_\theta(x | z) = \prod_i B(x_i | g_\theta(x))`
-        self.decoder = nn.Sequential(
-            nn.Linear(in_features=latent_features, out_features=1024),
-            nn.ReLU(),
-            # nn.LeakyReLU(0.2),
-            nn.Linear(in_features=1024, out_features=2048),
-            nn.ReLU(),
-            # nn.LeakyReLU(0.2),
-            nn.Linear(in_features=2048, out_features=4096),
-            nn.ReLU(),
-            # nn.LeakyReLU(0.2),
-            nn.Linear(in_features=4096, out_features=8192),
-            nn.ReLU(),
-            nn.Linear(in_features=8192, out_features=self.observation_features)
-        )
+        if use_baseline:
+            # Use the baseline structure
+            self.decoder = nn.Sequential(
+                nn.Linear(in_features=latent_features, out_features=self.observation_features)
+            )
+        else:
+            # Use the original structure
+            self.decoder = nn.Sequential(
+                nn.Linear(in_features=latent_features, out_features=512),
+                nn.ReLU(),
+                nn.Linear(in_features=512, out_features=1024),
+                nn.ReLU(),
+                nn.Linear(in_features=1024, out_features=2048),
+                nn.ReLU(),
+                nn.Linear(in_features=2048, out_features=4096),
+                nn.ReLU(),
+                nn.Linear(in_features=4096, out_features=self.observation_features)
+            )
 
         # define the parameters of the prior, chosen as p(z) = N(0, I)
-        self.register_buffer('prior_params', torch.zeros(torch.Size([1, 2*latent_features])))
+        self.register_buffer('prior_params', torch.zeros(torch.Size([1, 2 * latent_features])))
 
     def posterior(self, x:Tensor) -> Distribution:
         """return the distribution `q(x|x) = N(z | \mu(x), \sigma(x))`"""
@@ -249,21 +250,25 @@ print("Gtex test set size:", len(gtex_test))
 # Initialization of the model, evaluator and optimizer
 
 # VAE
-latent_features = 512
+latent_features = 256
 print(f'Shape of the archs4 dataset (hd5): {archs4_train[0].shape}')
 print(f'Shape of the gtex dataset (hd5): {gtex_test[0][0].shape}')
 vae = VariationalAutoencoder(archs4_train[0].shape, latent_features)
+baseline = VariationalAutoencoder(archs4_train[0].shape, latent_features, use_baseline=True)
 
 # Evaluator: Variational Inference
 beta = 1
 vi = VariationalInference(beta=beta)
 
 # The Adam optimizer works really well with VAEs.
-optimizer = torch.optim.Adam(vae.parameters(), lr=1e-4)
+vae_optimizer = torch.optim.Adam(vae.parameters(), lr=1e-4)
+baseline_optimizer = torch.optim.Adam(vae.parameters(), lr=1e-4)
 
 # Define dictionary to store the training curves
 training_data = defaultdict(list)
+baseline_data = defaultdict(list)
 validation_data = defaultdict(list)
+validation_baseline_data = defaultdict(list)
 
 # Initialize training loop
 epoch = 0
@@ -275,10 +280,13 @@ print(f">> Using device: {device}")
 
 # Move the model to the device
 vae = vae.to(device)
+baseline = baseline.to(device)
 
 # Initialize list to store losses
 all_training_losses = []
+all_training_baseline_losses = []
 all_validation_losses = []
+all_validation_baseline_losses = []
 
 # Define the number of samples to print and save
 num_samples = 5  
@@ -289,7 +297,9 @@ while epoch < num_epochs:
 
     epoch += 1
     training_epoch_data = defaultdict(list)
+    baseline_epoch_data = defaultdict(list)
     vae.train()
+    baseline.train()
 
     # Shuffle the data loader for each epoch
     archs4_train_dataloader = DataLoader(archs4_train, batch_size=train_batch_size, shuffle=True)
@@ -309,26 +319,41 @@ while epoch < num_epochs:
         x = x + pseudocount
 
         # perform a forward pass through the model and compute the ELBO
-        loss, diagnostics, outputs = vi(vae, x)
+        vae_loss, vae_diagnostics, vae_outputs = vi(vae, x)
+        baseline_loss, baseline_diagnostics, baseline_outputs = vi(baseline, x)
 
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+        vae_optimizer.zero_grad()
+        vae_loss.backward()
+        vae_optimizer.step()
+
+        baseline_optimizer.zero_grad()
+        baseline_loss.backward()
+        baseline_optimizer.step()
 
         # Accumulate the losses for each iteration
-        all_training_losses.append(loss.item())
+        all_training_losses.append(vae_loss.item())
+        all_training_baseline_losses.append(baseline_loss.item())
 
         # gather data for the current bach
-        for k, v in diagnostics.items():
+        for k, v in vae_diagnostics.items():
             training_epoch_data[k] += [v.mean().item()]
+
+        # gather data for the Baseline
+        for k, v in baseline_diagnostics.items():
+            baseline_epoch_data[k] += [v.mean().item()]
 
     # gather data for the full epoch
     for k, v in training_epoch_data.items():
         training_data[k] += [np.mean(training_epoch_data[k])]
 
+    # gather data for the full epoch (baseline)
+    for k, v in baseline_epoch_data.items():
+        baseline_data[k] += [np.mean(baseline_epoch_data[k])]
+
     # Evaluate on a single batch, do not propagate gradients
     with torch.no_grad():
         vae.eval()
+        baseline.eval()
 
         # Just load a single batch from the test loader
         x, y = next(iter(gtex_test_dataloader))
@@ -336,36 +361,58 @@ while epoch < num_epochs:
         pseudocount = 1e-8
         x = x + pseudocount
 
-        # perform a forward pass through the model and compute the ELBO
-        loss, diagnostics, outputs = vi(vae, x)
+        # perform a forward pass through the models and compute the ELBO
+        vae_loss, vae_diagnostics, vae_outputs = vi(vae, x)
+        baseline_loss, baseline_diagnostics, baseline_outputs = vi(baseline, x)
 
         # Accumulate the losses for each iteration
-        all_validation_losses.append(loss.item())
+        all_validation_losses.append(vae_loss.item())
+        all_validation_baseline_losses.append(baseline_loss.item())
 
-        # gather data for the validation step
-        for k, v in diagnostics.items():
+        # gather data for the validation step for VAE
+        for k, v in vae_diagnostics.items():
             validation_data[k] += [v.mean().item()]
-        
-        # Get the reconstructions
-        reconstructed = vae(x)['px'].sample().view(-1, *vae.input_shape).cpu().numpy()
+
+        # gather data for the validation step for Baseline
+        for k, v in baseline_diagnostics.items():
+            validation_baseline_data[k] += [v.mean().item()]
+
+        # Get the reconstructions for both VAE and baseline
+        reconstructed_vae = vae(x)['px'].sample().view(-1, *vae.input_shape).cpu().numpy()
+        reconstructed_baseline = baseline(x)['px'].sample().view(-1, *baseline.input_shape).cpu().numpy()
 
         # Print and save original and reconstructed data to a text file
-        with open('../Log_out_files/original_and_reconstructed_LN(newSTRC)_CSL.txt', 'a') as file:
+        with open('../Log_out_files/original_and_reconstructed_LN(final)_CSL.txt', 'a') as file:
             file.write(f"Epoch [{epoch}/{num_epochs}]\n")
 
-            # Print and store a subset of samples
+            # Print and store a subset of samples for VAE
             for i in range(num_samples):
                 original_sample = x[i][:num_proteins].squeeze().cpu().numpy()
-                reconstructed_sample = reconstructed[i][:num_proteins].squeeze()
+                reconstructed_sample = reconstructed_vae[i][:num_proteins].squeeze()
 
                 # Print the original and reconstructed data
-                print(f"Sample {i+1} - Original: {original_sample}")
-                print(f"Sample {i+1} - Reconstructed: {reconstructed_sample}")
+                print(f"Sample {i+1} - Original (VAE): {original_sample}")
+                print(f"Sample {i+1} - Reconstructed (VAE): {reconstructed_sample}")
 
                 # Write the original and reconstructed data to the text file
-                file.write(f"Sample {i+1} - Original:\n")
+                file.write(f"Sample {i+1} - Original (VAE):\n")
                 file.write(f"{original_sample}\n")
-                file.write(f"Sample {i+1} - Reconstructed:\n")
+                file.write(f"Sample {i+1} - Reconstructed (VAE):\n")
+                file.write(f"{reconstructed_sample}\n\n")
+
+            # Print and store a subset of samples for Baseline
+            for i in range(num_samples):
+                original_sample = x[i][:num_proteins].squeeze().cpu().numpy()
+                reconstructed_sample = reconstructed_baseline[i][:num_proteins].squeeze()
+
+                # Print the original and reconstructed data
+                print(f"Sample {i+1} - Original (Baseline): {original_sample}")
+                print(f"Sample {i+1} - Reconstructed (Baseline): {reconstructed_sample}")
+
+                # Write the original and reconstructed data to the text file
+                file.write(f"Sample {i+1} - Original (Baseline):\n")
+                file.write(f"{original_sample}\n")
+                file.write(f"Sample {i+1} - Reconstructed (Baseline):\n")
                 file.write(f"{reconstructed_sample}\n\n")
 
     # Generate plots every desired interval
@@ -374,36 +421,45 @@ while epoch < num_epochs:
         # Plot ELBO and save as PNG
         fig, ax = plt.subplots()
         ax.set_title(r'ELBO: $\mathcal{L} ( \mathbf{x} )$')
-        ax.plot(training_data['elbo'], label='Training')
-        ax.plot(validation_data['elbo'], label='Validation')
+        ax.plot(training_data['elbo'], label='VAE Training')
+        ax.plot(validation_data['elbo'], label='VAE Validation')
+        ax.plot(baseline_data['elbo'], label='Baseline Training', linestyle='--')
+        ax.plot(validation_baseline_data['elbo'], label='Baseline Validation', linestyle='--')
         ax.legend()
-        fig.savefig('../plots/elbo_plot_LN(newSTRC)_CSL.png')
+        fig.savefig('../plots/elbo_plot_LN(final)_CSL.png')
         plt.close(fig)
 
         # Plot KL and save as PNG
         fig, ax = plt.subplots()
         ax.set_title(r'$\mathcal{D}_{\operatorname{KL}}\left(q_\phi(\mathbf{z}|\mathbf{x})\ |\ p(\mathbf{z})\right)$')
-        ax.plot(training_data['kl'], label='Training')
-        ax.plot(validation_data['kl'], label='Validation')
+        ax.plot(training_data['kl'], label='VAE Training')
+        ax.plot(validation_data['kl'], label='VAE Validation')
+        ax.plot(baseline_data['kl'], label='Baseline Training', linestyle='--')
+        ax.plot(validation_baseline_data['kl'], label='Baseline Validation', linestyle='--')
         ax.legend()
-        fig.savefig('../plots/kl_plot_LN(newSTRC)_CSL.png')
+        fig.savefig('../plots/kl_plot_LN(final)_CSL.png')
         plt.close(fig)
 
         # Plot NLL and save as PNG
         fig, ax = plt.subplots()
         ax.set_title(r'$\log p_\theta(\mathbf{x} | \mathbf{z})$')
-        ax.plot(training_data['log_px'], label='Training')
-        ax.plot(validation_data['log_px'], label='Validation')
+        ax.plot(training_data['log_px'], label='VAE Training')
+        ax.plot(validation_data['log_px'], label='VAE Validation')
+        ax.plot(baseline_data['log_px'], label='Baseline Training', linestyle='--')
+        ax.plot(validation_baseline_data['log_px'], label='Baseline Validation', linestyle='--')
         ax.legend()
-        fig.savefig('../plots/nll_plot_LN(newSTRC)_CSL.png')
+        fig.savefig('../plots/nll_plot_LN(final)_CSL.png')
         plt.close(fig)
 
         # Plot the training loss values across iterations and save as PNG
         fig, ax = plt.subplots()
         ax.set_title('Training Loss across Iterations')
-        ax.plot(all_training_losses, label='Training Loss')
+        ax.plot(all_training_losses, label='VAE Training Loss')
+        ax.plot(all_validation_losses, label='VAE Validation Loss')
+        ax.plot(all_training_baseline_losses, label='Baseline Training Loss', linestyle='--')
+        ax.plot(all_validation_baseline_losses, label='Baseline Validation Loss', linestyle='--')
         ax.legend()
-        fig.savefig('../plots/loss_plot_LN(newSTRC)_CSL.png')
+        fig.savefig('../plots/loss_plot_LN(final)_CSL.png')
         plt.close(fig)
 
 
@@ -414,11 +470,10 @@ while epoch < num_epochs:
     # Reproduce the figure from the begining of the notebook, plot the training curves and show latent samples
     # make_vae_plots(vae, x, outputs, training_data, validation_data)
 
-print('\nMetrics calculation:')
 
-# vae_path = "../VAE_settings/vae_settings_LN(newSTRC)_CSL.pth"
-encoder_path = "../VAE_settings/encoder_LN(newSTRC)_CSL.pth"
-# decoder_path = "../VAE_settings/decoder_LN(newSTRC)_CSL.pth"
+# vae_path = "../VAE_settings/vae_settings_LN(final)_CSL.pth"
+encoder_path = "../VAE_settings/encoder_LN(final)_CSL.pth"
+# decoder_path = "../VAE_settings/decoder_LN(final)_CSL.pth"
 
 # torch.save(vae.state_dict(), vae_path)
 torch.save(vae.encoder.state_dict(), encoder_path)
@@ -429,37 +484,83 @@ print('\nPlots representation:')
 # Plot ELBO and save as PNG
 fig, ax = plt.subplots()
 ax.set_title(r'ELBO: $\mathcal{L} ( \mathbf{x} )$')
-ax.plot(training_data['elbo'], label='Training')
-ax.plot(validation_data['elbo'], label='Validation')
+ax.plot(training_data['elbo'], label='VAE Training')
+ax.plot(validation_data['elbo'], label='VAE Validation')
+ax.plot(baseline_data['elbo'], label='Baseline Training', linestyle='--')
+ax.plot(validation_baseline_data['elbo'], label='Baseline Validation', linestyle='--')
 ax.legend()
-fig.savefig('../plots/elbo_plot_LN(newSTRC)_CSL.png')
+fig.savefig('../plots/elbo_plot_LN(final)_CSL.png')
+plt.close(fig)
+
+# Plot ELBO and save as PNG
+fig, ax = plt.subplots()
+ax.set_title(r'ELBO: $\mathcal{L} ( \mathbf{x} )$')
+ax.plot(training_data['elbo'], label='VAE Training')
+ax.plot(baseline_data['elbo'], label='Baseline Training', linestyle='--')
+ax.legend()
+fig.savefig('../plots/elbo_plot_LN(final)_novalid_CSL.png')
 plt.close(fig)
 
 # Plot KL and save as PNG
 fig, ax = plt.subplots()
 ax.set_title(r'$\mathcal{D}_{\operatorname{KL}}\left(q_\phi(\mathbf{z}|\mathbf{x})\ |\ p(\mathbf{z})\right)$')
-ax.plot(training_data['kl'][5:], label='Training')
-ax.plot(validation_data['kl'][5:], label='Validation')
+ax.plot(training_data['kl'][5:], label='VAE Training')
+ax.plot(validation_data['kl'][5:], label='VAE Validation')
+ax.plot(baseline_data['kl'][5:], label='Baseline Training', linestyle='--')
+ax.plot(validation_baseline_data['kl'][5:], label='Baseline Validation', linestyle='--')
 ax.legend()
 ax.set_xticks(range(5, num_epochs + 1))
-fig.savefig('../plots/kl_plot_LN(newSTRC)_CSL.png')
+fig.savefig('../plots/kl_plot_LN(final)_CSL.png')
+plt.close(fig)
+
+# Plot KL and save as PNG
+fig, ax = plt.subplots()
+ax.set_title(r'$\mathcal{D}_{\operatorname{KL}}\left(q_\phi(\mathbf{z}|\mathbf{x})\ |\ p(\mathbf{z})\right)$')
+ax.plot(training_data['kl'][5:], label='VAE Training')
+ax.plot(baseline_data['kl'][5:], label='Baseline Training', linestyle='--')
+ax.legend()
+ax.set_xticks(range(5, num_epochs + 1))
+fig.savefig('../plots/kl_plot_LN(final)_novalid_CSL.png')
 plt.close(fig)
 
 # Plot NLL and save as PNG
 fig, ax = plt.subplots()
 ax.set_title(r'$\log p_\theta(\mathbf{x} | \mathbf{z})$')
-ax.plot(training_data['log_px'], label='Training')
-ax.plot(validation_data['log_px'], label='Validation')
+ax.plot(training_data['log_px'], label='VAE Training')
+ax.plot(validation_data['log_px'], label='VAE Validation')
+ax.plot(baseline_data['log_px'], label='Baseline Training', linestyle='--')
+ax.plot(validation_baseline_data['log_px'], label='Baseline Validation', linestyle='--')
 ax.legend()
-fig.savefig('../plots/nll_plot_LN(newSTRC)_CSL.png')
+fig.savefig('../plots/nll_plot_LN(final)_CSL.png')
+plt.close(fig)
+
+# Plot NLL and save as PNG
+fig, ax = plt.subplots()
+ax.set_title(r'$\log p_\theta(\mathbf{x} | \mathbf{z})$')
+ax.plot(training_data['log_px'], label='VAE Training')
+ax.plot(baseline_data['log_px'], label='Baseline Training', linestyle='--')
+ax.legend()
+fig.savefig('../plots/nll_plot_LN(final)_novalid_CSL.png')
+plt.close(fig)
+
+# Plot the training loss values across iterations and save as PNG
+fig, ax = plt.subplots()
+ax.set_title('Training and Validation Loss across Iterations')
+ax.plot(all_training_losses[100:], label='Training Loss')
+ax.plot(all_validation_losses[100:], label='Validation Loss')
+ax.plot(all_training_baseline_losses[100:], label='Baseline Training Loss', linestyle='--')
+ax.plot(all_baseline_baseline_losses[100:], label='Baseline Training Loss', linestyle='--')
+ax.legend()
+ax.set_xticks(range(100, len(all_training_losses) + 1))
+fig.savefig('../plots/loss_plot_LN(final)_CSL.png')
 plt.close(fig)
 
 # Plot the training loss values across iterations and save as PNG
 fig, ax = plt.subplots()
 ax.set_title('Training Loss across Iterations')
 ax.plot(all_training_losses[100:], label='Training Loss')
+ax.plot(all_training_baseline_losses[100:], label='Baseline Training Loss', linestyle='--')
 ax.legend()
-ax.set_xticks(range(101, len(all_training_losses) + 1))
-fig.savefig('../plots/loss_plot_LN(newSTRC)_CSL.png')
+ax.set_xticks(range(100, len(all_training_losses) + 1))
+fig.savefig('../plots/loss_plot_LN(final)_novalid_CSL.png')
 plt.close(fig)
-
