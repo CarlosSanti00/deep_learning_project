@@ -1,3 +1,4 @@
+# Script to define a baseline autoencoder for further comparison
 # Module loads
 from typing import *
 import matplotlib
@@ -15,7 +16,7 @@ import torch
 import IsoDatasets
 from torch import nn, Tensor
 from torch.nn.functional import softplus
-from torch.distributions import Distribution
+from torch.distributions import Distribution, LogNormal
 from torch.distributions import Bernoulli
 from torch.utils.data import DataLoader
 from torch.utils.data.sampler import SubsetRandomSampler
@@ -52,7 +53,7 @@ class ReparameterizedDiagonalGaussian(Distribution):
 
 class VariationalAutoencoder(nn.Module):
     """A Variational Autoencoder with
-    * a Bernoulli observation model `p_\theta(x | z) = B(x | g_\theta(z))`
+    * a LogNormal observation model `p_\theta(x | z) = B(x | g_\theta(z))`
     * a Gaussian prior `p(z) = N(z | 0, I)`
     * a Gaussian posterior `q_\phi(z|x) = N(z | \mu(x), \sigma(x))`
     """
@@ -70,36 +71,15 @@ class VariationalAutoencoder(nn.Module):
         # Encode the observation `x` into the parameters of the posterior distribution
         # `q_\phi(z|x) = N(z | \mu(x), \sigma(x)), \mu(x),\log\sigma(x) = h_\phi(x)`
         self.encoder = nn.Sequential(
-            nn.Linear(in_features=self.observation_features, out_features=8192),
-            nn.LeakyReLU(0.2),
-            nn.Linear(in_features=8192, out_features=4096),            
-            nn.LeakyReLU(0.2),
-            nn.Linear(in_features=4096, out_features=2048),            
-            nn.LeakyReLU(0.2),
-            nn.Linear(in_features=2048, out_features=1024),
-            nn.LeakyReLU(0.2),
-            nn.Linear(in_features=1024, out_features=512),
-            nn.LeakyReLU(0.2),
-            # A Gaussian is fully characterised by its mean \mu and variance \sigma**2
-            nn.Linear(in_features=512, out_features=2*latent_features), # <- note the 2*latent_features
-            nn.Sigmoid()  # Sigmoid activation to the last layer
+            nn.Linear(in_features=self.observation_features, out_features=2*latent_features),
+            nn.ReLU()
         )
 
         # Generative Model
         # Decode the latent sample `z` into the parameters of the observation model
         # `p_\theta(x | z) = \prod_i B(x_i | g_\theta(x))`
         self.decoder = nn.Sequential(
-            nn.Linear(in_features=latent_features, out_features=512),
-            nn.LeakyReLU(0.2),
-            nn.Linear(in_features=512, out_features=1024),
-            nn.LeakyReLU(0.2),
-            nn.Linear(in_features=1024, out_features=2048),
-            nn.LeakyReLU(0.2),
-            nn.Linear(in_features=2048, out_features=4096),
-            nn.LeakyReLU(0.2),
-            nn.Linear(in_features=4096, out_features=8192),
-            nn.LeakyReLU(0.2),
-            nn.Linear(in_features=8192, out_features=self.observation_features)
+            nn.Linear(in_features=latent_features, out_features=self.observation_features)
         )
 
         # define the parameters of the prior, chosen as p(z) = N(0, I)
@@ -125,9 +105,9 @@ class VariationalAutoencoder(nn.Module):
 
     def observation_model(self, z:Tensor) -> Distribution:
         """return the distribution `p(x|z)`"""
-        px_logits = self.decoder(z)
-        px_logits = px_logits.view(-1, *self.input_shape) # reshape the output
-        return Bernoulli(logits=px_logits, validate_args=False)
+        px_params = self.decoder(z)
+        px_params = px_params.view(-1, *self.input_shape)
+        return LogNormal(px_params, 1.0)  # Assuming unit variance
 
 
     def forward(self, x) -> Dict[str, Any]:
@@ -206,6 +186,30 @@ class VariationalInference(nn.Module):
 
 ## --- Training and evaluation ---
 
+# Define a custom transformation for dynamic normalization
+class DynamicNormalizeTransform:
+    def __init__(self):
+        self.min_values = None
+        self.max_values = None
+
+    def __call__(self, samples):
+
+        # Convert the list of arrays to a list of PyTorch tensors
+        samples = [torch.from_numpy(x[0]) if isinstance(x, tuple) else torch.from_numpy(x) for x in samples]
+
+        # Convert the list of tensors to a stacked tensor
+        x = torch.stack(samples, dim=0)
+
+        # Calculate min and max dynamically
+        if self.min_values is None or self.max_values is None:
+            self.min_values = x.min(dim=1, keepdim=True).values
+            self.max_values = x.max(dim=1, keepdim=True).values
+
+        # Apply normalization
+        x = (x - self.min_values) / (self.max_values - self.min_values)
+
+        return x
+
 # Define the train sets
 train_batch_size = 64
 archs4_train = IsoDatasets.Archs4GeneExpressionDataset("/dtu-compute/datasets/iso_02456/hdf5/")
@@ -232,7 +236,7 @@ beta = 1
 vi = VariationalInference(beta=beta)
 
 # The Adam optimizer works really well with VAEs.
-optimizer = torch.optim.Adam(vae.parameters(), lr=1e-3)
+optimizer = torch.optim.Adam(vae.parameters(), lr=1e-4)
 
 # Define dictionary to store the training curves
 training_data = defaultdict(list)
@@ -242,7 +246,8 @@ validation_data = defaultdict(list)
 epoch = 0
 num_epochs = 100
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+#device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device = torch.device("cpu")
 print(f">> Using device: {device}")
 
 # Move the model to the device
@@ -252,7 +257,6 @@ vae = vae.to(device)
 all_training_losses = []
 all_validation_losses = []
 
-
 # Define the number of samples to print and save
 num_samples = 5  
 num_proteins = 10
@@ -260,15 +264,26 @@ num_proteins = 10
 # Training
 while epoch < num_epochs:
 
-    epoch+= 1
+    epoch += 1
     training_epoch_data = defaultdict(list)
     vae.train()
 
+    # Shuffle the data loader for each epoch
+    archs4_train_dataloader = DataLoader(archs4_train, batch_size=train_batch_size, shuffle=True)
+
     # Go through each batch in the training dataset using the loader
     # Note that y is not necessarily known as it is here
-    for x in archs4_train_dataloader:
+
+    # try:
+    for i, x in enumerate(archs4_train_dataloader):
+
+        # Check the condition to continue with a new epoch
+        if i > 100:
+            break
 
         x = x.to(device)
+        pseudocount = 1e-8
+        x = x + pseudocount
 
         # perform a forward pass through the model and compute the ELBO
         loss, diagnostics, outputs = vi(vae, x)
@@ -295,6 +310,8 @@ while epoch < num_epochs:
         # Just load a single batch from the test loader
         x, y = next(iter(gtex_test_dataloader))
         x = x.to(device)
+        pseudocount = 1e-8
+        x = x + pseudocount
 
         # perform a forward pass through the model and compute the ELBO
         loss, diagnostics, outputs = vi(vae, x)
@@ -307,10 +324,10 @@ while epoch < num_epochs:
             validation_data[k] += [v.mean().item()]
         
         # Get the reconstructions
-        reconstructed = vae(x)['px'].probs.view(-1, *vae.input_shape).cpu().numpy()
+        reconstructed = vae(x)['px'].sample().view(-1, *vae.input_shape).cpu().numpy()
 
         # Print and save original and reconstructed data to a text file
-        with open('../Log_out_files/original_and_reconstructed.txt', 'a') as file:
+        with open('../Log_out_files/original_and_reconstructed_LN_baseline_APM.txt', 'a') as file:
             file.write(f"Epoch [{epoch}/{num_epochs}]\n")
 
             # Print and store a subset of samples
@@ -328,18 +345,63 @@ while epoch < num_epochs:
                 file.write(f"Sample {i+1} - Reconstructed:\n")
                 file.write(f"{reconstructed_sample}\n\n")
 
+    # Generate plots every desired interval
+    if epoch % 5 == 0:
+
+        # Plot ELBO and save as PNG
+        fig, ax = plt.subplots()
+        ax.set_title(r'ELBO: $\mathcal{L} ( \mathbf{x} )$')
+        ax.plot(training_data['elbo'], label='Training')
+        ax.plot(validation_data['elbo'], label='Validation')
+        ax.legend()
+        fig.savefig('../plots/elbo_plot_LN_baseline_APM.png')
+        plt.close(fig)
+
+        # Plot KL and save as PNG
+        fig, ax = plt.subplots()
+        ax.set_title(r'$\mathcal{D}_{\operatorname{KL}}\left(q_\phi(\mathbf{z}|\mathbf{x})\ |\ p(\mathbf{z})\right)$')
+        ax.plot(training_data['kl'], label='Training')
+        ax.plot(validation_data['kl'], label='Validation')
+        ax.legend()
+        fig.savefig('../plots/kl_plot_LN_baseline_APM.png')
+        plt.close(fig)
+
+        # Plot NLL and save as PNG
+        fig, ax = plt.subplots()
+        ax.set_title(r'$\log p_\theta(\mathbf{x} | \mathbf{z})$')
+        ax.plot(training_data['log_px'], label='Training')
+        ax.plot(validation_data['log_px'], label='Validation')
+        ax.legend()
+        fig.savefig('../plots/nll_plot_LN_baseline_APM.png')
+        plt.close(fig)
+
+        # Plot the training loss values across iterations and save as PNG
+        fig, ax = plt.subplots()
+        ax.set_title('Training Loss across Iterations')
+        ax.plot(all_training_losses, label='Training Loss')
+        ax.legend()
+        fig.savefig('../plots/loss_plot_LN_baseline_APM.png')
+        plt.close(fig)
+
+
+    # except Exception as e:
+    #     print(f"Error in dataloader (last batch being less than {train_batch_size}): {e}")
+    #     continue
 
     # Reproduce the figure from the begining of the notebook, plot the training curves and show latent samples
     # make_vae_plots(vae, x, outputs, training_data, validation_data)
 
-vae_path = "../VAE_settings/vae_settings.pth"
-encoder_path = "../VAE_settings/encoder.pth"
-decoder_path = "../VAE_settings/encoder.pth"
+print('\nMetrics calculation:')
+
+vae_path = "../VAE_settings/vae_settings_LN_baseline_APM.pth"
+encoder_path = "../VAE_settings/encoder_LN_baseline_APM.pth"
+decoder_path = "../VAE_settings/decoder_LN_baseline_APM.pth"
 
 torch.save(vae.state_dict(), vae_path)
 torch.save(vae.encoder.state_dict(), encoder_path)
 torch.save(vae.decoder.state_dict(), decoder_path)
 
+print('\nPlots representation:')
 
 # Plot ELBO and save as PNG
 fig, ax = plt.subplots()
@@ -347,16 +409,16 @@ ax.set_title(r'ELBO: $\mathcal{L} ( \mathbf{x} )$')
 ax.plot(training_data['elbo'], label='Training')
 ax.plot(validation_data['elbo'], label='Validation')
 ax.legend()
-fig.savefig('../plots/elbo_plot3.png')
+fig.savefig('../plots/elbo_plot_LN_baseline_APM.png')
 plt.close(fig)
 
 # Plot KL and save as PNG
 fig, ax = plt.subplots()
 ax.set_title(r'$\mathcal{D}_{\operatorname{KL}}\left(q_\phi(\mathbf{z}|\mathbf{x})\ |\ p(\mathbf{z})\right)$')
-ax.plot(training_data['kl'], label='Training')
-ax.plot(validation_data['kl'], label='Validation')
+ax.plot(training_data['kl'][5:], label='Training')
+ax.plot(validation_data['kl'][5:], label='Validation')
 ax.legend()
-fig.savefig('../plots/kl_plot3.png')
+fig.savefig('../plots/kl_plot_LN_baseline_APM.png')
 plt.close(fig)
 
 # Plot NLL and save as PNG
@@ -365,15 +427,14 @@ ax.set_title(r'$\log p_\theta(\mathbf{x} | \mathbf{z})$')
 ax.plot(training_data['log_px'], label='Training')
 ax.plot(validation_data['log_px'], label='Validation')
 ax.legend()
-fig.savefig('../plots/nll_plot3.png')
+fig.savefig('../plots/nll_plot_LN_baseline_APM.png')
 plt.close(fig)
 
 # Plot the training loss values across iterations and save as PNG
 fig, ax = plt.subplots()
 ax.set_title('Training Loss across Iterations')
-ax.plot(all_training_losses, label='Training Loss')
-ax.plot(all_validation_losses, label='TValidation Loss')
+ax.plot(all_training_losses[100:], label='Training Loss')
 ax.legend()
-fig.savefig('../plots/loss_plot3.png')
+fig.savefig('../plots/loss_plot_LN_baseline_APM.png')
 plt.close(fig)
 

@@ -17,6 +17,7 @@ from torch import nn, Tensor
 from torch.nn.functional import softplus
 from torch.distributions import Distribution
 from torch.distributions import Bernoulli
+from torch.distributions import Normal
 from torch.utils.data import DataLoader
 from torch.utils.data.sampler import SubsetRandomSampler
 from functools import reduce
@@ -70,11 +71,7 @@ class VariationalAutoencoder(nn.Module):
         # Encode the observation `x` into the parameters of the posterior distribution
         # `q_\phi(z|x) = N(z | \mu(x), \sigma(x)), \mu(x),\log\sigma(x) = h_\phi(x)`
         self.encoder = nn.Sequential(
-            nn.Linear(in_features=self.observation_features, out_features=8192),
-            nn.LeakyReLU(0.2),
-            nn.Linear(in_features=8192, out_features=4096),            
-            nn.LeakyReLU(0.2),
-            nn.Linear(in_features=4096, out_features=2048),            
+            nn.Linear(in_features=self.observation_features, out_features=2048),
             nn.LeakyReLU(0.2),
             nn.Linear(in_features=2048, out_features=1024),
             nn.LeakyReLU(0.2),
@@ -82,7 +79,7 @@ class VariationalAutoencoder(nn.Module):
             nn.LeakyReLU(0.2),
             # A Gaussian is fully characterised by its mean \mu and variance \sigma**2
             nn.Linear(in_features=512, out_features=2*latent_features), # <- note the 2*latent_features
-            nn.Sigmoid()  # Sigmoid activation to the last layer
+            #nn.Sigmoid()  # Sigmoid activation to the last layer
         )
 
         # Generative Model
@@ -95,11 +92,7 @@ class VariationalAutoencoder(nn.Module):
             nn.LeakyReLU(0.2),
             nn.Linear(in_features=1024, out_features=2048),
             nn.LeakyReLU(0.2),
-            nn.Linear(in_features=2048, out_features=4096),
-            nn.LeakyReLU(0.2),
-            nn.Linear(in_features=4096, out_features=8192),
-            nn.LeakyReLU(0.2),
-            nn.Linear(in_features=8192, out_features=self.observation_features)
+            nn.Linear(in_features=2048, out_features=self.observation_features)
         )
 
         # define the parameters of the prior, chosen as p(z) = N(0, I)
@@ -125,9 +118,10 @@ class VariationalAutoencoder(nn.Module):
 
     def observation_model(self, z:Tensor) -> Distribution:
         """return the distribution `p(x|z)`"""
-        px_logits = self.decoder(z)
-        px_logits = px_logits.view(-1, *self.input_shape) # reshape the output
-        return Bernoulli(logits=px_logits, validate_args=False)
+        px_mu = self.decoder(z)
+        px_mu = px_mu.view(-1, *self.input_shape) # reshape the output
+        px_log_sigma = torch.ones_like(px_mu)
+        return Normal(loc=px_mu, scale=torch.exp(px_log_sigma))
 
 
     def forward(self, x) -> Dict[str, Any]:
@@ -252,10 +246,10 @@ vae = vae.to(device)
 all_training_losses = []
 all_validation_losses = []
 
-
 # Define the number of samples to print and save
 num_samples = 5  
 num_proteins = 10
+
 
 # Training
 while epoch < num_epochs:
@@ -305,8 +299,8 @@ while epoch < num_epochs:
         # gather data for the validation step
         for k, v in diagnostics.items():
             validation_data[k] += [v.mean().item()]
-        
-        # Get the reconstructions
+
+         # Get the reconstructions
         reconstructed = vae(x)['px'].probs.view(-1, *vae.input_shape).cpu().numpy()
 
         # Print and save original and reconstructed data to a text file
@@ -332,9 +326,9 @@ while epoch < num_epochs:
     # Reproduce the figure from the begining of the notebook, plot the training curves and show latent samples
     # make_vae_plots(vae, x, outputs, training_data, validation_data)
 
-vae_path = "../VAE_settings/vae_settings.pth"
-encoder_path = "../VAE_settings/encoder.pth"
-decoder_path = "../VAE_settings/encoder.pth"
+vae_path = "../VAE_settings/vae_settings02.pth"
+encoder_path = "../VAE_settings/encoder02.pth"
+decoder_path = "../VAE_settings/encoder02.pth"
 
 torch.save(vae.state_dict(), vae_path)
 torch.save(vae.encoder.state_dict(), encoder_path)
@@ -347,7 +341,7 @@ ax.set_title(r'ELBO: $\mathcal{L} ( \mathbf{x} )$')
 ax.plot(training_data['elbo'], label='Training')
 ax.plot(validation_data['elbo'], label='Validation')
 ax.legend()
-fig.savefig('../plots/elbo_plot3.png')
+fig.savefig('../plots/elbo_plot02.png')
 plt.close(fig)
 
 # Plot KL and save as PNG
@@ -356,7 +350,7 @@ ax.set_title(r'$\mathcal{D}_{\operatorname{KL}}\left(q_\phi(\mathbf{z}|\mathbf{x
 ax.plot(training_data['kl'], label='Training')
 ax.plot(validation_data['kl'], label='Validation')
 ax.legend()
-fig.savefig('../plots/kl_plot3.png')
+fig.savefig('../plots/kl_plot02.png')
 plt.close(fig)
 
 # Plot NLL and save as PNG
@@ -365,7 +359,7 @@ ax.set_title(r'$\log p_\theta(\mathbf{x} | \mathbf{z})$')
 ax.plot(training_data['log_px'], label='Training')
 ax.plot(validation_data['log_px'], label='Validation')
 ax.legend()
-fig.savefig('../plots/nll_plot3.png')
+fig.savefig('../plots/nll_plot02.png')
 plt.close(fig)
 
 # Plot the training loss values across iterations and save as PNG
@@ -374,6 +368,6 @@ ax.set_title('Training Loss across Iterations')
 ax.plot(all_training_losses, label='Training Loss')
 ax.plot(all_validation_losses, label='TValidation Loss')
 ax.legend()
-fig.savefig('../plots/loss_plot3.png')
+fig.savefig('../plots/loss_plot02.png')
 plt.close(fig)
 
