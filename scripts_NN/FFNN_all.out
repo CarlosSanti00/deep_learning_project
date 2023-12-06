@@ -1,0 +1,134 @@
+
+Starting Fold 1:
+Train samples: 13884, Test samples: 3472
+
+Epoch 10: train loss (last batch), mean MSE:	0.8816,	0.96064
+Epoch 10: valid loss (last batch), mean MSE:	0.9252,	0.92837
+
+Epoch 20: train loss (last batch), mean MSE:	0.6083,	0.59864
+Epoch 20: valid loss (last batch), mean MSE:	0.6362,	0.59154
+
+Starting Fold 2:
+Train samples: 13885, Test samples: 3471
+
+Epoch 10: train loss (last batch), mean MSE:	0.5283,	0.50781
+Epoch 10: valid loss (last batch), mean MSE:	0.4177,	0.50464
+
+Epoch 20: train loss (last batch), mean MSE:	0.5090,	0.48470
+Epoch 20: valid loss (last batch), mean MSE:	0.4320,	0.48372
+
+Starting Fold 3:
+Train samples: 13885, Test samples: 3471
+
+Epoch 10: train loss (last batch), mean MSE:	0.4782,	0.47811
+Epoch 10: valid loss (last batch), mean MSE:	0.6152,	0.48203
+
+Epoch 20: train loss (last batch), mean MSE:	0.5087,	0.47650
+Epoch 20: valid loss (last batch), mean MSE:	0.4366,	0.47806
+
+Starting Fold 4:
+Train samples: 13885, Test samples: 3471
+
+Epoch 10: train loss (last batch), mean MSE:	0.4626,	0.47686
+Epoch 10: valid loss (last batch), mean MSE:	0.4355,	0.47445
+
+Epoch 20: train loss (last batch), mean MSE:	0.4664,	0.47677
+Epoch 20: valid loss (last batch), mean MSE:	0.4106,	0.47402
+
+Starting Fold 5:
+Train samples: 13885, Test samples: 3471
+
+Epoch 10: train loss (last batch), mean MSE:	0.4514,	0.47667
+Epoch 10: valid loss (last batch), mean MSE:	0.4374,	0.47480
+
+Epoch 20: train loss (last batch), mean MSE:	0.4915,	0.47668
+Epoch 20: valid loss (last batch), mean MSE:	0.4229,	0.47461
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19694914: <FFNN_all> in cluster <dcc> Exited
+
+Job <FFNN_all> was submitted from host <gbarlogin2> by user <s222766> in cluster <dcc> at Mon Dec  4 23:35:50 2023
+Job was executed on host(s) <n-62-20-14>, in queue <gpuv100>, as user <s222766> in cluster <dcc> at Mon Dec  4 23:39:15 2023
+</zhome/5a/4/181325> was used as the home directory.
+</zhome/5a/4/181325/deep_learning/deep_learning_project/scripts_NN> was used as the working directory.
+Started at Mon Dec  4 23:39:15 2023
+Terminated at Tue Dec  5 00:31:20 2023
+Results reported at Tue Dec  5 00:31:20 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J FFNN_all
+#BSUB -n 1
+#BSUB -W 10:00
+#BSUB -R "rusage[mem=32GB]"
+#BSUB -o FFNN_all.out
+#BSUB -e FFNN_all.err
+
+module load python3/3.11.4
+module load h5py
+python3 "CSL_FFNN_all_231204.py"
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   11093.09 sec.
+    Max Memory :                                 12022 MB
+    Average Memory :                             5516.05 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               20746.00 MB
+    Max Swap :                                   2 MB
+    Max Processes :                              4
+    Max Threads :                                11
+    Run time :                                   3124 sec.
+    Turnaround time :                            3330 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <FFNN_all.err> for stderr output of this job.
+
+
+Starting Fold 1:
+Train samples: 13884, Test samples: 3472
+
+Epoch 10: train loss (last batch), mean MSE:	0.8891,	0.95960
+Epoch 10: valid loss (last batch), mean MSE:	0.8390,	0.92626
+
+Epoch 20: train loss (last batch), mean MSE:	0.6061,	0.59855
+Epoch 20: valid loss (last batch), mean MSE:	0.6001,	0.59096
+
+Starting Fold 2:
+Train samples: 13885, Test samples: 3471
+
+Epoch 10: train loss (last batch), mean MSE:	0.5036,	0.50772
+Epoch 10: valid loss (last batch), mean MSE:	0.4681,	0.50526
+
+Epoch 20: train loss (last batch), mean MSE:	0.5107,	0.48464
+Epoch 20: valid loss (last batch), mean MSE:	0.4697,	0.48420
+
+Starting Fold 3:
+Train samples: 13885, Test samples: 3471
+
+Epoch 10: train loss (last batch), mean MSE:	0.5222,	0.47809
+Epoch 10: valid loss (last batch), mean MSE:	0.4771,	0.48007
+
+Epoch 20: train loss (last batch), mean MSE:	0.4957,	0.47647
+Epoch 20: valid loss (last batch), mean MSE:	0.4262,	0.47789
+
+Starting Fold 4:
+Train samples: 13885, Test samples: 3471
+
+Epoch 10: train loss (last batch), mean MSE:	0.5182,	0.47687
+Epoch 10: valid loss (last batch), mean MSE:	0.4414,	0.47453

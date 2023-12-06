@@ -1,0 +1,125 @@
+Archs4 training set size: 167884
+Gtex test set size: 2642
+Shape of the archs4 dataset (hd5): (18965,)
+Shape of the gtex dataset (hd5): (18965,)
+>> Using device: cuda:0
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19674887: <VAE_Ana> in cluster <dcc> Exited
+
+Job <VAE_Ana> was submitted from host <gbarlogin2> by user <s222766> in cluster <dcc> at Sun Dec  3 03:25:28 2023
+Job was executed on host(s) <n-62-20-7>, in queue <gpuv100>, as user <s222766> in cluster <dcc> at Sun Dec  3 03:25:29 2023
+</zhome/5a/4/181325> was used as the home directory.
+</zhome/5a/4/181325/deep_learning/deep_learning_project> was used as the working directory.
+Started at Sun Dec  3 03:25:29 2023
+Terminated at Sun Dec  3 03:31:17 2023
+Results reported at Sun Dec  3 03:31:17 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J VAE_Ana
+#BSUB -n 1
+#BSUB -W 05:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -o VAE_Ana.out
+#BSUB -e VAE_Ana.err
+
+module load python3/3.11.4
+module load h5py
+python3 "ANA_VAE_metrics.py"
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   60.89 sec.
+    Max Memory :                                 603 MB
+    Average Memory :                             550.00 MB
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               15781.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                11
+    Run time :                                   400 sec.
+    Turnaround time :                            349 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <VAE_Ana.err> for stderr output of this job.
+
+Archs4 training set size: 167884
+Gtex test set size: 2642
+Shape of the archs4 dataset (hd5): (18965,)
+Shape of the gtex dataset (hd5): (18965,)
+>> Using device: cuda:0
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19676178: <VAE_Ana> in cluster <dcc> Exited
+
+Job <VAE_Ana> was submitted from host <gbarlogin2> by user <s222766> in cluster <dcc> at Sun Dec  3 11:40:13 2023
+Job was executed on host(s) <n-62-20-7>, in queue <gpuv100>, as user <s222766> in cluster <dcc> at Sun Dec  3 11:40:15 2023
+</zhome/5a/4/181325> was used as the home directory.
+</zhome/5a/4/181325/deep_learning/deep_learning_project> was used as the working directory.
+Started at Sun Dec  3 11:40:15 2023
+Terminated at Sun Dec  3 11:47:50 2023
+Results reported at Sun Dec  3 11:47:50 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J VAE_Ana
+#BSUB -n 1
+#BSUB -W 05:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -o VAE_Ana.out
+#BSUB -e VAE_Ana.err
+
+module load python3/3.11.4
+module load h5py
+python3 "ANA_VAE_metrics.py"
+
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   11.28 sec.
+    Max Memory :                                 602 MB
+    Average Memory :                             530.17 MB
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               15782.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                11
+    Run time :                                   461 sec.
+    Turnaround time :                            457 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <VAE_Ana.err> for stderr output of this job.
+
