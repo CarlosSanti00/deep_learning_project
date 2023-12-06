@@ -8,6 +8,7 @@ import seaborn as sns
 import pandas as pd
 sns.set_style("whitegrid")
 from plotting import make_vae_plots
+import h5py
 
 
 import math
@@ -69,8 +70,8 @@ class VariationalAutoencoder(nn.Module):
         if use_baseline:
             # Use the baseline structure
             self.encoder = nn.Sequential(
-                nn.Linear(in_features=self.observation_features, out_features=2 * latent_features)  # <- note the 2*latent_features
-                # nn.ReLU()  # Add ReLU activation after the last linear layer
+                nn.Linear(in_features=self.observation_features, out_features=2 * latent_features),  # <- note the 2*latent_features
+                nn.ReLU()  # Add ReLU activation after the last linear layer
             )
         else:
             # Use the original structure
@@ -83,7 +84,8 @@ class VariationalAutoencoder(nn.Module):
                 nn.ReLU(),
                 nn.Linear(in_features=1024, out_features=512),
                 nn.ReLU(),
-                nn.Linear(in_features=512, out_features=2 * latent_features)  # <- note the 2*latent_features
+                nn.Linear(in_features=512, out_features=2 * latent_features),  # <- note the 2*latent_features
+                nn.ReLU()
             )
 
         # Generative Model
@@ -311,7 +313,7 @@ while epoch < num_epochs:
     for i, x in enumerate(archs4_train_dataloader):
 
         # Check the condition to continue with a new epoch
-        if i > 200:
+        if i > 100:
             break
 
         x = x.to(device)
@@ -499,12 +501,14 @@ while epoch < num_epochs:
     # make_vae_plots(vae, x, outputs, training_data, validation_data)
 
 
-# vae_path = "../VAE_settings/vae_settings_LN(final)_CSL.pth"
-encoder_path = "../VAE_settings/encoder_LN(final)_CSL.pth"
+vae_path = "../VAE_settings/vae_settings_LN(final)_CSL.pth"
+# encoder_path = "../VAE_settings/encoder_LN(final)_CSL.pth"
 # decoder_path = "../VAE_settings/decoder_LN(final)_CSL.pth"
 
-# torch.save(vae.state_dict(), vae_path)
-torch.save(vae.encoder.state_dict(), encoder_path)
+# Save the entire model (including parameters and architecture)
+torch.save(vae, vae_path)
+
+# torch.save(vae.encoder.state_dict(), encoder_path)
 # torch.save(vae.decoder.state_dict(), decoder_path)
 
 print('\nPlots representation:')
@@ -533,7 +537,7 @@ ax.set_title(r'$\mathcal{D}_{\operatorname{KL}}\left(q_\phi(\mathbf{z}|\mathbf{x
 ax.plot(training_data['kl'][5:], label='VAE Training')
 ax.plot(validation_data['kl'][5:], label='VAE Validation')
 ax.legend()
-ax.set_xticks(range(5, num_epochs + 1))
+ax.set_xticks(range(5, num_epochs + 1, 10))
 fig.savefig('../plots/kl_plot_LN(final)_VAE_CSL.png')
 plt.close(fig)
 
@@ -543,7 +547,7 @@ ax.set_title(r'$\mathcal{D}_{\operatorname{KL}}\left(q_\phi(\mathbf{z}|\mathbf{x
 ax.plot(baseline_data['kl'], label='Baseline Training')
 ax.plot(validation_baseline_data['kl'], label='Baseline Validation')
 ax.legend()
-ax.set_xticks(range(5, num_epochs + 1))
+ax.set_xticks(range(5, num_epochs + 1, 10))
 fig.savefig('../plots/kl_plot_LN(final)_baseline_CSL.png')
 plt.close(fig)
 
@@ -571,7 +575,7 @@ ax.set_title('Training and Validation Loss across Iterations')
 ax.plot(all_training_losses[100:], label='Training Loss')
 ax.plot(all_validation_losses[100:], label='Validation Loss')
 ax.legend()
-ax.set_xticks(range(100, len(all_training_losses) + 1))
+ax.set_xticks(range(100, len(all_training_losses)+1, 100))
 fig.savefig('../plots/loss_plot_LN(final)_VAE_CSL.png')
 plt.close(fig)
 
@@ -581,28 +585,64 @@ ax.set_title('Training and Validation Loss of the Baseline across Iterations')
 ax.plot(all_training_baseline_losses[100:], label='Baseline Training Loss')
 ax.plot(all_validation_baseline_losses[100:], label='Baseline Validation Loss')
 ax.legend()
-ax.set_xticks(range(100, len(all_training_baseline_losses) + 1))
+ax.set_xticks(range(100, len(all_training_baseline_losses) + 1, 100))
 fig.savefig('../plots/loss_plot_LN(final)_baseline_CSL.png')
 plt.close(fig)
 
-# Save parameters in txt files
-print('\nSaving metrics file:')
-np.savetxt('metrics_VAE/Training_ELBO.txt', training_data['elbo'])
-np.savetxt('metrics_VAE/Training_baseline_ELBO.txt', baseline_data['elbo'])
-np.savetxt('metrics_VAE/Validation_ELBO.txt', validation_data['elbo'])
-np.savetxt('metrics_VAE/Validation_baseline_ELBO.txt', validation_baseline_data['elbo'])
+# Create an h5py file and pass the gtex_data through the encoder of the VAE
+output_file_path = "../VAE_settings/latent_features.h5"
 
-np.savetxt('metrics_VAE/Training_KL.txt', training_data['kl'])
-np.savetxt('metrics_VAE/Training_baseline_KL.txt', baseline_data['kl'])
-np.savetxt('metrics_VAE/Validation_KL.txt', validation_data['kl'])
-np.savetxt('metrics_VAE/Validation_baseline_KL.txt', validation_baseline_data['kl'])
+# Load the gtex_data using the DataLoader
+gtex_test = IsoDatasets.GtexDataset("/dtu-compute/datasets/iso_02456/hdf5/")
+gtex_test_dataloader = DataLoader(gtex_test, batch_size=eval_batch_size, shuffle=False)
 
-np.savetxt('metrics_VAE/Training_nLL.txt', training_data['log_px'])
-np.savetxt('metrics_VAE/Training_baseline_nLL.txt', baseline_data['log_px'])
-np.savetxt('metrics_VAE/Validation_nLL.txt', validation_data['log_px'])
-np.savetxt('metrics_VAE/Validation_baseline_nLL.txt', validation_baseline_data['log_px'])
 
-np.savetxt('metrics_VAE/Training_loss.txt', all_training_losses)
-np.savetxt('metrics_VAE/Training_baseline_loss.txt', all_training_baseline_losses)
-np.savetxt('metrics_VAE/Validation_loss.txt', all_training_baseline_losses)
-np.savetxt('metrics_VAE/Validation_baseline_loss.txt', all_validation_baseline_losses)
+with h5py.File(output_file_path, 'w') as hf:
+
+    latent_features_dataset = hf.create_dataset('latent_features', shape=(len(gtex_test), latent_features), dtype='float32')
+
+    # Encode and save latent features in batches
+    start_index = 0
+
+    with torch.no_grad():
+        
+        vae.to(device)
+        vae.eval()
+
+        for x, y in gtex_test_dataloader:
+            x = x.to(device)
+            pseudocount = 1e-8
+            x = x + pseudocount
+
+            # Get the latent features from the encoder
+            qz = vae.posterior(x)
+            latent_features = qz.mu.cpu().numpy()  # Assuming you want to use the mean of the latent features
+
+            # Save the latent features in the h5py file
+            latent_features_dataset[start_index:start_index + len(latent_features)] = latent_features
+
+            start_index += len(latent_features)
+
+print(f"Latent features saved to {output_file_path}")
+
+# # Save parameters in txt files
+# print('\nSaving metrics file:')
+# np.savetxt('metrics_VAE/Training_ELBO.txt', training_data['elbo'])
+# np.savetxt('metrics_VAE/Training_baseline_ELBO.txt', baseline_data['elbo'])
+# np.savetxt('metrics_VAE/Validation_ELBO.txt', validation_data['elbo'])
+# np.savetxt('metrics_VAE/Validation_baseline_ELBO.txt', validation_baseline_data['elbo'])
+
+# np.savetxt('metrics_VAE/Training_KL.txt', training_data['kl'])
+# np.savetxt('metrics_VAE/Training_baseline_KL.txt', baseline_data['kl'])
+# np.savetxt('metrics_VAE/Validation_KL.txt', validation_data['kl'])
+# np.savetxt('metrics_VAE/Validation_baseline_KL.txt', validation_baseline_data['kl'])
+
+# np.savetxt('metrics_VAE/Training_nLL.txt', training_data['log_px'])
+# np.savetxt('metrics_VAE/Training_baseline_nLL.txt', baseline_data['log_px'])
+# np.savetxt('metrics_VAE/Validation_nLL.txt', validation_data['log_px'])
+# np.savetxt('metrics_VAE/Validation_baseline_nLL.txt', validation_baseline_data['log_px'])
+
+# np.savetxt('metrics_VAE/Training_loss.txt', all_training_losses)
+# np.savetxt('metrics_VAE/Training_baseline_loss.txt', all_training_baseline_losses)
+# np.savetxt('metrics_VAE/Validation_loss.txt', all_training_baseline_losses)
+# np.savetxt('metrics_VAE/Validation_baseline_loss.txt', all_validation_baseline_losses)
