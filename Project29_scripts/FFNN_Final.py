@@ -38,7 +38,7 @@ class RegressionModel(nn.Module):
 class GtexExpressionDataset(torch.utils.data.Dataset):
     def __init__(self, data_dir: str, include: str = "", exclude: str = "", load_in_mem: bool = False, col_names: list = None, VAE: bool = False):
         f_gtex_gene = h5py.File(data_dir + 'gtex_gene_expression_norm_transposed.hdf5', mode='r')
-        f_gtex_latent = h5py.File('/zhome/5a/4/181325/deep_learning/deep_learning_project/VAE_settings/latent_features.h5', mode='r')
+        f_gtex_latent = h5py.File('../VAE_settings/latent_features.h5', mode='r')
         f_gtex_isoform = h5py.File(data_dir + 'gtex_isoform_expression_norm_transposed.hdf5', mode='r')
 
         # self.dset_gene = f_gtex_gene['expressions']
@@ -209,7 +209,7 @@ for fold, (train_indices, test_indices) in enumerate(stratified_kfold.split(np.z
                 baseline_mse_valid_batch = baseline_loss.item()
                 baseline_mse_valid += baseline_mse_valid_batch
                     
-                if (epoch) = 100:
+                if (epoch) == 100:
                     vae_mse_epochs.append(mse_valid_batch)
                     non_vae_mse_epochs.append(mse_valid_batch_og)
                     baseline_mse_epochs.append(baseline_mse_valid_batch)
