@@ -6,8 +6,8 @@
 #BSUB -n 1
 #BSUB -W 24:00
 #BSUB -R "rusage[mem=32GB]"
-#BSUB -o FFNN_final.out
-#BSUB -e FFNN_final.err
+#BSUB -o FFNN_all.out
+#BSUB -e FFNN_all.err
 
 module load python3/3.11.4
 module load h5py

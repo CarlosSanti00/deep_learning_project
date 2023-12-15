@@ -42,7 +42,7 @@ class GtexExpressionDataset(torch.utils.data.Dataset):
         f_gtex_isoform = h5py.File(data_dir + 'gtex_isoform_expression_norm_transposed.hdf5', mode='r')
 
         # self.dset_gene = f_gtex_gene['expressions']
-        if VAE:
+        if (VAE == True):
             self.dset_gene = f_gtex_latent['latent_features']
         else:
             self.dset_gene = f_gtex_gene['expressions']
@@ -87,17 +87,21 @@ class GtexExpressionDataset(torch.utils.data.Dataset):
             return torch.Tensor(self.dset_gene[self.idxs[idx]]), torch.Tensor(self.dset_isoform[self.idxs[idx]]), self.tissue_labels[self.idxs[idx]]
 
 
+
+
 # Load the dataset (predicting all isoform ids)
-gtex_all_data_og = GtexExpressionDataset("/dtu-compute/datasets/iso_02456/hdf5/")
-gtex_all_data = GtexExpressionDataset("/dtu-compute/datasets/iso_02456/hdf5/", VAE=True)
+gtex_all_data_og = GtexExpressionDataset("/dtu-compute/datasets/iso_02456/hdf5/", VAE = False)
+gtex_all_data = GtexExpressionDataset("/dtu-compute/datasets/iso_02456/hdf5/", VAE = True)
 
 # Model parameters
 input_size = len(gtex_all_data[0][0])
+input_size_og = len(gtex_all_data_og[0][0])
 n_hidden = 32
 output_size = 156958
 
 # Saving the all possible tissues for stratification
 tissue_labels = np.array([tissue for _, _, tissue in gtex_all_data])
+tissue_labels_og = np.array([tissue for _, _, tissue in gtex_all_data_og])
 
 # Model training and stratification parameters
 num_folds = 5
@@ -107,7 +111,7 @@ stratified_kfold = StratifiedKFold(n_splits=num_folds, shuffle=True, random_stat
 # Lists to store individual validation raw errors for the last model of each fold 
 all_raw_errors = []
 
-for fold, (train_indices, test_indices) in enumerate(stratified_kfold.split(np.zeros(len(tissue_labels)), tissue_labels)):
+for fold, (train_indices, test_indices) in enumerate(stratified_kfold.split(np.zeros(len(tissue_labels_og)), tissue_labels_og)):
 
     # Random sampling of the stratified partition
     train_sampler = SubsetRandomSampler(train_indices)
@@ -126,7 +130,7 @@ for fold, (train_indices, test_indices) in enumerate(stratified_kfold.split(np.z
 
     # Instantiate the model with dropout
     model = RegressionModel(input_size, n_hidden, output_size, dropout_rate=0)
-    model_og = RegressionModel(input_size, n_hidden, output_size, dropout_rate=0)
+    model_og = RegressionModel(input_size_og, n_hidden, output_size, dropout_rate=0)
 
     # Define loss function and optimizer
     criterion = nn.MSELoss()
@@ -160,6 +164,9 @@ for fold, (train_indices, test_indices) in enumerate(stratified_kfold.split(np.z
             # Metric calculation (training)
             mse_train_batch = loss.item()
             mse_train += mse_train_batch
+
+            # Baseline
+            baseline_mean = torch.mean(y.float(), dim=0, keepdim=True)
         
         # TRAIN MODEL WITH THE ORIGINAL DATA
         for X_og, y_og, _ in tqdm(gtex_train_dataloader_og):
@@ -196,34 +203,27 @@ for fold, (train_indices, test_indices) in enumerate(stratified_kfold.split(np.z
                 valid_loss = criterion(outputs_val, y_val.float())
                 mse_valid_batch = valid_loss.item()
                 mse_valid += mse_valid_batch
-
-                # FOR THE NON-VAE MODEL
-                outputs_val_og = model_og(X_val.float())
-                valid_loss_og = criterion(outputs_val_og, y_val.float())
-                mse_valid_batch_og = valid_loss_og.item()
-                mse_valid_og += mse_valid_batch_og
                     
                 # Baseline predictions
-                baseline_predictions = torch.mean(y_val.float(), dim=0, keepdim=True).repeat(len(y_val), 1)
+                baseline_predictions = baseline_mean.repeat(len(y_val), 1)
                 baseline_loss = criterion(baseline_predictions, y_val.float())
                 baseline_mse_valid_batch = baseline_loss.item()
                 baseline_mse_valid += baseline_mse_valid_batch
                     
                 if (epoch) == 100:
                     vae_mse_epochs.append(mse_valid_batch)
-                    non_vae_mse_epochs.append(mse_valid_batch_og)
                     baseline_mse_epochs.append(baseline_mse_valid_batch)
-                    
-                # # Store individual absolute errors for the current fold and last epoch
-                # if epoch == n_epochs:
-                #     print('Comparison thing:')
-                #     print(y_val.shape)
-                #     print(outputs_val.shape)
-                #     raw_errors = (outputs_val - y_val.float()).numpy()
-                #     print(raw_errors.shape)
-                #     row_means = np.mean(raw_errors, axis=1)
-                #     print(row_means)
-                #     # all_raw_errors.extend(raw_errors)
+
+            for X_val, y_val, _ in (gtex_test_dataloader_og):
+                # FOR THE NON-VAE MODEL
+                outputs_val_og = model_og(X_val.float())
+                valid_loss_og = criterion(outputs_val_og, y_val.float())
+                mse_valid_batch_og = valid_loss_og.item()
+                mse_valid_og += mse_valid_batch_og
+
+                if (epoch) == 100:
+                    non_vae_mse_epochs.append(mse_valid_batch_og)
+
 
             # Mean mse value according all batches
             mean_mse_valid = mse_valid / len(gtex_test_dataloader)
@@ -241,6 +241,8 @@ for fold, (train_indices, test_indices) in enumerate(stratified_kfold.split(np.z
                 tqdm.write(f'\nEpoch {epoch}: valid baseline mean MSE:\t{baseline_mean_mse_valid:.5f}')
 
     # TESTING
+    print(len(vae_mse_epochs))
+    print(len(non_vae_mse_epochs))
     p_value_vae_vs_non_vae = ttest_rel(vae_mse_epochs, non_vae_mse_epochs).pvalue
     p_value_vae_vs_baseline = ttest_rel(vae_mse_epochs, baseline_mse_epochs).pvalue
     p_value_non_vae_vs_baseline = ttest_rel(non_vae_mse_epochs, baseline_mse_epochs).pvalue

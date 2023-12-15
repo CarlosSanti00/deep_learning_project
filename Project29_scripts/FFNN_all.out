@@ -1,0 +1,922 @@
+
+Starting Fold 1:
+Train samples: 13884, Test samples: 3472
+
+Epoch 5 - VAE model: train loss (last batch), mean MSE:	0.4202,	0.42069
+Epoch 5 - VAE model: valid loss (last batch), mean MSE:	0.3706,	0.41939
+
+Epoch 5 - NON-VAE model: train loss (last batch), mean MSE:	1.4115,	1.44550
+Epoch 5: - NON-VAE model: valid loss (last batch), mean MSE:	1.2935,	1.37681
+
+Epoch 5: valid baseline mean MSE:	0.48356
+
+Epoch 10 - VAE model: train loss (last batch), mean MSE:	0.3849,	0.41235
+Epoch 10 - VAE model: valid loss (last batch), mean MSE:	0.3998,	0.41138
+
+Epoch 10 - NON-VAE model: train loss (last batch), mean MSE:	0.9665,	0.95769
+Epoch 10: - NON-VAE model: valid loss (last batch), mean MSE:	1.0522,	0.92744
+
+Epoch 10: valid baseline mean MSE:	0.48322
+
+Epoch 15 - VAE model: train loss (last batch), mean MSE:	0.3654,	0.39221
+Epoch 15 - VAE model: valid loss (last batch), mean MSE:	0.3919,	0.39028
+
+Epoch 15 - NON-VAE model: train loss (last batch), mean MSE:	0.7049,	0.71856
+Epoch 15: - NON-VAE model: valid loss (last batch), mean MSE:	0.6602,	0.70221
+
+Epoch 15: valid baseline mean MSE:	0.48265
+
+Epoch 20 - VAE model: train loss (last batch), mean MSE:	0.3608,	0.37580
+Epoch 20 - VAE model: valid loss (last batch), mean MSE:	0.4366,	0.37546
+
+Epoch 20 - NON-VAE model: train loss (last batch), mean MSE:	0.5944,	0.59817
+Epoch 20: - NON-VAE model: valid loss (last batch), mean MSE:	0.5292,	0.58966
+
+Epoch 20: valid baseline mean MSE:	0.48524
+
+Epoch 25 - VAE model: train loss (last batch), mean MSE:	0.3638,	0.36497
+Epoch 25 - VAE model: valid loss (last batch), mean MSE:	0.4855,	0.36504
+
+Epoch 25 - NON-VAE model: train loss (last batch), mean MSE:	0.5281,	0.53780
+Epoch 25: - NON-VAE model: valid loss (last batch), mean MSE:	0.5142,	0.53396
+
+Epoch 25: valid baseline mean MSE:	0.48547
+
+Epoch 30 - VAE model: train loss (last batch), mean MSE:	0.3678,	0.35940
+Epoch 30 - VAE model: valid loss (last batch), mean MSE:	0.3312,	0.35773
+
+Epoch 30 - NON-VAE model: train loss (last batch), mean MSE:	0.4521,	0.50764
+Epoch 30: - NON-VAE model: valid loss (last batch), mean MSE:	0.5587,	0.50688
+
+Epoch 30: valid baseline mean MSE:	0.48647
+
+Epoch 35 - VAE model: train loss (last batch), mean MSE:	0.3753,	0.35611
+Epoch 35 - VAE model: valid loss (last batch), mean MSE:	0.4067,	0.35506
+
+Epoch 35 - NON-VAE model: train loss (last batch), mean MSE:	0.4832,	0.49246
+Epoch 35: - NON-VAE model: valid loss (last batch), mean MSE:	0.4722,	0.49170
+
+Epoch 35: valid baseline mean MSE:	0.49590
+
+Epoch 40 - VAE model: train loss (last batch), mean MSE:	0.3536,	0.35346
+Epoch 40 - VAE model: valid loss (last batch), mean MSE:	0.3097,	0.35172
+
+Epoch 40 - NON-VAE model: train loss (last batch), mean MSE:	0.5136,	0.48464
+Epoch 40: - NON-VAE model: valid loss (last batch), mean MSE:	0.5662,	0.48575
+
+Epoch 40: valid baseline mean MSE:	0.48145
+
+Epoch 45 - VAE model: train loss (last batch), mean MSE:	0.3548,	0.35069
+Epoch 45 - VAE model: valid loss (last batch), mean MSE:	0.3425,	0.34954
+
+Epoch 45 - NON-VAE model: train loss (last batch), mean MSE:	0.5011,	0.48054
+Epoch 45: - NON-VAE model: valid loss (last batch), mean MSE:	0.4376,	0.48023
+
+Epoch 45: valid baseline mean MSE:	0.48318
+
+Epoch 50 - VAE model: train loss (last batch), mean MSE:	0.3591,	0.34761
+Epoch 50 - VAE model: valid loss (last batch), mean MSE:	0.3562,	0.34909
+
+Epoch 50 - NON-VAE model: train loss (last batch), mean MSE:	0.4809,	0.47842
+Epoch 50: - NON-VAE model: valid loss (last batch), mean MSE:	0.4605,	0.47858
+
+Epoch 50: valid baseline mean MSE:	0.48579
+
+Epoch 55 - VAE model: train loss (last batch), mean MSE:	0.3498,	0.34383
+Epoch 55 - VAE model: valid loss (last batch), mean MSE:	0.3287,	0.34292
+
+Epoch 55 - NON-VAE model: train loss (last batch), mean MSE:	0.4843,	0.47734
+Epoch 55: - NON-VAE model: valid loss (last batch), mean MSE:	0.4261,	0.47712
+
+Epoch 55: valid baseline mean MSE:	0.48827
+
+Epoch 60 - VAE model: train loss (last batch), mean MSE:	0.3106,	0.34090
+Epoch 60 - VAE model: valid loss (last batch), mean MSE:	0.3039,	0.33886
+
+Epoch 60 - NON-VAE model: train loss (last batch), mean MSE:	0.4428,	0.47679
+Epoch 60: - NON-VAE model: valid loss (last batch), mean MSE:	0.4194,	0.47652
+
+Epoch 60: valid baseline mean MSE:	0.48293
+
+Epoch 65 - VAE model: train loss (last batch), mean MSE:	0.3230,	0.33803
+Epoch 65 - VAE model: valid loss (last batch), mean MSE:	0.3348,	0.34032
+
+Epoch 65 - NON-VAE model: train loss (last batch), mean MSE:	0.5064,	0.47653
+Epoch 65: - NON-VAE model: valid loss (last batch), mean MSE:	0.4088,	0.47614
+
+Epoch 65: valid baseline mean MSE:	0.48205
+
+Epoch 70 - VAE model: train loss (last batch), mean MSE:	0.3264,	0.33568
+Epoch 70 - VAE model: valid loss (last batch), mean MSE:	0.3157,	0.33471
+
+Epoch 70 - NON-VAE model: train loss (last batch), mean MSE:	0.5180,	0.47639
+Epoch 70: - NON-VAE model: valid loss (last batch), mean MSE:	0.4062,	0.47596
+
+Epoch 70: valid baseline mean MSE:	0.48470
+
+Epoch 75 - VAE model: train loss (last batch), mean MSE:	0.3485,	0.33343
+Epoch 75 - VAE model: valid loss (last batch), mean MSE:	0.3349,	0.33305
+
+Epoch 75 - NON-VAE model: train loss (last batch), mean MSE:	0.4597,	0.47631
+Epoch 75: - NON-VAE model: valid loss (last batch), mean MSE:	0.5012,	0.47720
+
+Epoch 75: valid baseline mean MSE:	0.48158
+
+Epoch 80 - VAE model: train loss (last batch), mean MSE:	0.3262,	0.33163
+Epoch 80 - VAE model: valid loss (last batch), mean MSE:	0.3067,	0.33038
+
+Epoch 80 - NON-VAE model: train loss (last batch), mean MSE:	0.4851,	0.47630
+Epoch 80: - NON-VAE model: valid loss (last batch), mean MSE:	0.5839,	0.47832
+
+Epoch 80: valid baseline mean MSE:	0.49358
+
+Epoch 85 - VAE model: train loss (last batch), mean MSE:	0.3296,	0.32921
+Epoch 85 - VAE model: valid loss (last batch), mean MSE:	0.3289,	0.33068
+
+Epoch 85 - NON-VAE model: train loss (last batch), mean MSE:	0.4664,	0.47628
+Epoch 85: - NON-VAE model: valid loss (last batch), mean MSE:	0.4591,	0.47662
+
+Epoch 85: valid baseline mean MSE:	0.48648
+
+Epoch 90 - VAE model: train loss (last batch), mean MSE:	0.3062,	0.32694
+Epoch 90 - VAE model: valid loss (last batch), mean MSE:	0.3681,	0.32657
+
+Epoch 90 - NON-VAE model: train loss (last batch), mean MSE:	0.4743,	0.47629
+Epoch 90: - NON-VAE model: valid loss (last batch), mean MSE:	0.4774,	0.47685
+
+Epoch 90: valid baseline mean MSE:	0.48310
+
+Epoch 95 - VAE model: train loss (last batch), mean MSE:	0.3756,	0.32508
+Epoch 95 - VAE model: valid loss (last batch), mean MSE:	0.2956,	0.32288
+
+Epoch 95 - NON-VAE model: train loss (last batch), mean MSE:	0.4888,	0.47630
+Epoch 95: - NON-VAE model: valid loss (last batch), mean MSE:	0.5048,	0.47723
+
+Epoch 95: valid baseline mean MSE:	0.48418
+
+Epoch 100 - VAE model: train loss (last batch), mean MSE:	0.3071,	0.32151
+Epoch 100 - VAE model: valid loss (last batch), mean MSE:	0.3149,	0.31994
+
+Epoch 100 - NON-VAE model: train loss (last batch), mean MSE:	0.5004,	0.47631
+Epoch 100: - NON-VAE model: valid loss (last batch), mean MSE:	0.4492,	0.47647
+
+Epoch 100: valid baseline mean MSE:	0.48408
+55
+55
+
+Fold 1 Results:
+VAE MSE: 0.31993607661940837
+Non-VAE MSE: 0.47646848505193534
+Baseline MSE: 0.48407549316232856
+VAE vs. Non-VAE p-value: 8.37559616948511e-46
+VAE vs. Baseline p-value: 1.0152143647824103e-50
+Non-VAE vs. Baseline p-value: 0.042345635919680255
+
+Starting Fold 2:
+Train samples: 13885, Test samples: 3471
+
+Epoch 5 - VAE model: train loss (last batch), mean MSE:	0.4247,	0.42114
+Epoch 5 - VAE model: valid loss (last batch), mean MSE:	0.3921,	0.41886
+
+Epoch 5 - NON-VAE model: train loss (last batch), mean MSE:	1.3348,	1.44817
+Epoch 5: - NON-VAE model: valid loss (last batch), mean MSE:	1.4935,	1.37645
+
+Epoch 5: valid baseline mean MSE:	0.48459
+
+Epoch 10 - VAE model: train loss (last batch), mean MSE:	0.4021,	0.41334
+Epoch 10 - VAE model: valid loss (last batch), mean MSE:	0.3588,	0.41106
+
+Epoch 10 - NON-VAE model: train loss (last batch), mean MSE:	0.9007,	0.95905
+Epoch 10: - NON-VAE model: valid loss (last batch), mean MSE:	1.0403,	0.92531
+
+Epoch 10: valid baseline mean MSE:	0.48598
+
+Epoch 15 - VAE model: train loss (last batch), mean MSE:	0.3823,	0.39573
+Epoch 15 - VAE model: valid loss (last batch), mean MSE:	0.3345,	0.39236
+
+Epoch 15 - NON-VAE model: train loss (last batch), mean MSE:	0.7224,	0.71931
+Epoch 15: - NON-VAE model: valid loss (last batch), mean MSE:	0.6964,	0.70148
+
+Epoch 15: valid baseline mean MSE:	0.48293
+
+Epoch 20 - VAE model: train loss (last batch), mean MSE:	0.4325,	0.38134
+Epoch 20 - VAE model: valid loss (last batch), mean MSE:	0.4845,	0.38096
+
+Epoch 20 - NON-VAE model: train loss (last batch), mean MSE:	0.6121,	0.59860
+Epoch 20: - NON-VAE model: valid loss (last batch), mean MSE:	0.7034,	0.59138
+
+Epoch 20: valid baseline mean MSE:	0.48816
+
+Epoch 25 - VAE model: train loss (last batch), mean MSE:	0.3815,	0.37264
+Epoch 25 - VAE model: valid loss (last batch), mean MSE:	0.4728,	0.37228
+
+Epoch 25 - NON-VAE model: train loss (last batch), mean MSE:	0.5457,	0.53807
+Epoch 25: - NON-VAE model: valid loss (last batch), mean MSE:	0.4917,	0.53325
+
+Epoch 25: valid baseline mean MSE:	0.48557
+
+Epoch 30 - VAE model: train loss (last batch), mean MSE:	0.3811,	0.36450
+Epoch 30 - VAE model: valid loss (last batch), mean MSE:	0.4766,	0.36490
+
+Epoch 30 - NON-VAE model: train loss (last batch), mean MSE:	0.5021,	0.50784
+Epoch 30: - NON-VAE model: valid loss (last batch), mean MSE:	0.5065,	0.50592
+
+Epoch 30: valid baseline mean MSE:	0.48268
+
+Epoch 35 - VAE model: train loss (last batch), mean MSE:	0.3415,	0.35893
+Epoch 35 - VAE model: valid loss (last batch), mean MSE:	0.3866,	0.35817
+
+Epoch 35 - NON-VAE model: train loss (last batch), mean MSE:	0.4927,	0.49259
+Epoch 35: - NON-VAE model: valid loss (last batch), mean MSE:	0.4528,	0.49124
+
+Epoch 35: valid baseline mean MSE:	0.48234
+
+Epoch 40 - VAE model: train loss (last batch), mean MSE:	0.3553,	0.35580
+Epoch 40 - VAE model: valid loss (last batch), mean MSE:	0.3233,	0.35791
+
+Epoch 40 - NON-VAE model: train loss (last batch), mean MSE:	0.4700,	0.48473
+Epoch 40: - NON-VAE model: valid loss (last batch), mean MSE:	0.4426,	0.48392
+
+Epoch 40: valid baseline mean MSE:	0.48131
+
+Epoch 45 - VAE model: train loss (last batch), mean MSE:	0.3720,	0.35295
+Epoch 45 - VAE model: valid loss (last batch), mean MSE:	0.3278,	0.35179
+
+Epoch 45 - NON-VAE model: train loss (last batch), mean MSE:	0.4669,	0.48061
+Epoch 45: - NON-VAE model: valid loss (last batch), mean MSE:	0.4528,	0.48029
+
+Epoch 45: valid baseline mean MSE:	0.48136
+
+Epoch 50 - VAE model: train loss (last batch), mean MSE:	0.3442,	0.34898
+Epoch 50 - VAE model: valid loss (last batch), mean MSE:	0.3186,	0.34790
+
+Epoch 50 - NON-VAE model: train loss (last batch), mean MSE:	0.4763,	0.47848
+Epoch 50: - NON-VAE model: valid loss (last batch), mean MSE:	0.4441,	0.47824
+
+Epoch 50: valid baseline mean MSE:	0.48195
+
+Epoch 55 - VAE model: train loss (last batch), mean MSE:	0.3096,	0.34377
+Epoch 55 - VAE model: valid loss (last batch), mean MSE:	0.3086,	0.34233
+
+Epoch 55 - NON-VAE model: train loss (last batch), mean MSE:	0.4453,	0.47739
+Epoch 55: - NON-VAE model: valid loss (last batch), mean MSE:	0.4485,	0.47728
+
+Epoch 55: valid baseline mean MSE:	0.48469
+
+Epoch 60 - VAE model: train loss (last batch), mean MSE:	0.3425,	0.33946
+Epoch 60 - VAE model: valid loss (last batch), mean MSE:	0.3409,	0.33826
+
+Epoch 60 - NON-VAE model: train loss (last batch), mean MSE:	0.4810,	0.47685
+Epoch 60: - NON-VAE model: valid loss (last batch), mean MSE:	0.5093,	0.47764
+
+Epoch 60: valid baseline mean MSE:	0.48219
+
+Epoch 65 - VAE model: train loss (last batch), mean MSE:	0.3344,	0.33510
+Epoch 65 - VAE model: valid loss (last batch), mean MSE:	0.2498,	0.33317
+
+Epoch 65 - NON-VAE model: train loss (last batch), mean MSE:	0.4867,	0.47656
+Epoch 65: - NON-VAE model: valid loss (last batch), mean MSE:	0.5725,	0.47825
+
+Epoch 65: valid baseline mean MSE:	0.48532
+
+Epoch 70 - VAE model: train loss (last batch), mean MSE:	0.3468,	0.33231
+Epoch 70 - VAE model: valid loss (last batch), mean MSE:	0.2879,	0.33010
+
+Epoch 70 - NON-VAE model: train loss (last batch), mean MSE:	0.4454,	0.47641
+Epoch 70: - NON-VAE model: valid loss (last batch), mean MSE:	0.4801,	0.47683
+
+Epoch 70: valid baseline mean MSE:	0.48432
+
+Epoch 75 - VAE model: train loss (last batch), mean MSE:	0.3031,	0.32873
+Epoch 75 - VAE model: valid loss (last batch), mean MSE:	0.3850,	0.33020
+
+Epoch 75 - NON-VAE model: train loss (last batch), mean MSE:	0.4301,	0.47634
+Epoch 75: - NON-VAE model: valid loss (last batch), mean MSE:	0.4279,	0.47605
+
+Epoch 75: valid baseline mean MSE:	0.48314
+
+Epoch 80 - VAE model: train loss (last batch), mean MSE:	0.3234,	0.32601
+Epoch 80 - VAE model: valid loss (last batch), mean MSE:	0.3149,	0.32567
+
+Epoch 80 - NON-VAE model: train loss (last batch), mean MSE:	0.4699,	0.47633
+Epoch 80: - NON-VAE model: valid loss (last batch), mean MSE:	0.4082,	0.47577
+
+Epoch 80: valid baseline mean MSE:	0.48250
+
+Epoch 85 - VAE model: train loss (last batch), mean MSE:	0.3342,	0.32316
+Epoch 85 - VAE model: valid loss (last batch), mean MSE:	0.3079,	0.32253
+
+Epoch 85 - NON-VAE model: train loss (last batch), mean MSE:	0.4676,	0.47633
+Epoch 85: - NON-VAE model: valid loss (last batch), mean MSE:	0.5631,	0.47791
+
+Epoch 85: valid baseline mean MSE:	0.48468
+
+Epoch 90 - VAE model: train loss (last batch), mean MSE:	0.3181,	0.32100
+Epoch 90 - VAE model: valid loss (last batch), mean MSE:	0.3213,	0.32088
+
+Epoch 90 - NON-VAE model: train loss (last batch), mean MSE:	0.4800,	0.47633
+Epoch 90: - NON-VAE model: valid loss (last batch), mean MSE:	0.4038,	0.47572
+
+Epoch 90: valid baseline mean MSE:	0.48259
+
+Epoch 95 - VAE model: train loss (last batch), mean MSE:	0.3071,	0.31714
+Epoch 95 - VAE model: valid loss (last batch), mean MSE:	0.3113,	0.31617
+
+Epoch 95 - NON-VAE model: train loss (last batch), mean MSE:	0.5173,	0.47634
+Epoch 95: - NON-VAE model: valid loss (last batch), mean MSE:	0.4902,	0.47690
+
+Epoch 95: valid baseline mean MSE:	0.48155
+
+Epoch 100 - VAE model: train loss (last batch), mean MSE:	0.3419,	0.31395
+Epoch 100 - VAE model: valid loss (last batch), mean MSE:	0.3251,	0.31285
+
+Epoch 100 - NON-VAE model: train loss (last batch), mean MSE:	0.5243,	0.47634
+Epoch 100: - NON-VAE model: valid loss (last batch), mean MSE:	0.5798,	0.47814
+
+Epoch 100: valid baseline mean MSE:	0.48469
+55
+55
+
+Fold 2 Results:
+VAE MSE: 0.31285419193181124
+Non-VAE MSE: 0.47814038612625814
+Baseline MSE: 0.4846901541406458
+VAE vs. Non-VAE p-value: 5.16710394569751e-44
+VAE vs. Baseline p-value: 1.8409933444018947e-59
+Non-VAE vs. Baseline p-value: 0.11280500505381202
+
+Starting Fold 3:
+Train samples: 13885, Test samples: 3471
+
+Epoch 5 - VAE model: train loss (last batch), mean MSE:	0.3873,	0.42144
+Epoch 5 - VAE model: valid loss (last batch), mean MSE:	0.3970,	0.41960
+
+Epoch 5 - NON-VAE model: train loss (last batch), mean MSE:	1.4555,	1.44718
+Epoch 5: - NON-VAE model: valid loss (last batch), mean MSE:	1.4733,	1.37802
+
+Epoch 5: valid baseline mean MSE:	0.48396
+
+Epoch 10 - VAE model: train loss (last batch), mean MSE:	0.3697,	0.41497
+Epoch 10 - VAE model: valid loss (last batch), mean MSE:	0.3486,	0.41243
+
+Epoch 10 - NON-VAE model: train loss (last batch), mean MSE:	0.9153,	0.95860
+Epoch 10: - NON-VAE model: valid loss (last batch), mean MSE:	1.0112,	0.92644
+
+Epoch 10: valid baseline mean MSE:	0.48519
+
+Epoch 15 - VAE model: train loss (last batch), mean MSE:	0.3957,	0.40158
+Epoch 15 - VAE model: valid loss (last batch), mean MSE:	0.3974,	0.39815
+
+Epoch 15 - NON-VAE model: train loss (last batch), mean MSE:	0.7015,	0.71896
+Epoch 15: - NON-VAE model: valid loss (last batch), mean MSE:	0.6612,	0.70237
+
+Epoch 15: valid baseline mean MSE:	0.48241
+
+Epoch 20 - VAE model: train loss (last batch), mean MSE:	0.3822,	0.38278
+Epoch 20 - VAE model: valid loss (last batch), mean MSE:	0.3109,	0.37928
+
+Epoch 20 - NON-VAE model: train loss (last batch), mean MSE:	0.5773,	0.59826
+Epoch 20: - NON-VAE model: valid loss (last batch), mean MSE:	0.5969,	0.59125
+
+Epoch 20: valid baseline mean MSE:	0.48163
+
+Epoch 25 - VAE model: train loss (last batch), mean MSE:	0.3626,	0.37203
+Epoch 25 - VAE model: valid loss (last batch), mean MSE:	0.3713,	0.37095
+
+Epoch 25 - NON-VAE model: train loss (last batch), mean MSE:	0.5272,	0.53774
+Epoch 25: - NON-VAE model: valid loss (last batch), mean MSE:	0.5668,	0.53568
+
+Epoch 25: valid baseline mean MSE:	0.48563
+
+Epoch 30 - VAE model: train loss (last batch), mean MSE:	0.4007,	0.36457
+Epoch 30 - VAE model: valid loss (last batch), mean MSE:	0.3134,	0.36306
+
+Epoch 30 - NON-VAE model: train loss (last batch), mean MSE:	0.5046,	0.50751
+Epoch 30: - NON-VAE model: valid loss (last batch), mean MSE:	0.5344,	0.50772
+
+Epoch 30: valid baseline mean MSE:	0.48573
+
+Epoch 35 - VAE model: train loss (last batch), mean MSE:	0.3283,	0.35999
+Epoch 35 - VAE model: valid loss (last batch), mean MSE:	0.3405,	0.35836
+
+Epoch 35 - NON-VAE model: train loss (last batch), mean MSE:	0.4876,	0.49225
+Epoch 35: - NON-VAE model: valid loss (last batch), mean MSE:	0.4432,	0.49256
+
+Epoch 35: valid baseline mean MSE:	0.48917
+
+Epoch 40 - VAE model: train loss (last batch), mean MSE:	0.3729,	0.35711
+Epoch 40 - VAE model: valid loss (last batch), mean MSE:	0.3445,	0.35544
+
+Epoch 40 - NON-VAE model: train loss (last batch), mean MSE:	0.5202,	0.48439
+Epoch 40: - NON-VAE model: valid loss (last batch), mean MSE:	0.4795,	0.48588
+
+Epoch 40: valid baseline mean MSE:	0.48713
+
+Epoch 45 - VAE model: train loss (last batch), mean MSE:	0.3091,	0.35459
+Epoch 45 - VAE model: valid loss (last batch), mean MSE:	0.3502,	0.35436
+
+Epoch 45 - NON-VAE model: train loss (last batch), mean MSE:	0.4875,	0.48027
+Epoch 45: - NON-VAE model: valid loss (last batch), mean MSE:	0.4573,	0.48180
+
+Epoch 45: valid baseline mean MSE:	0.48680
+
+Epoch 50 - VAE model: train loss (last batch), mean MSE:	0.3657,	0.35198
+Epoch 50 - VAE model: valid loss (last batch), mean MSE:	0.3154,	0.35051
+
+Epoch 50 - NON-VAE model: train loss (last batch), mean MSE:	0.4815,	0.47813
+Epoch 50: - NON-VAE model: valid loss (last batch), mean MSE:	0.4496,	0.47974
+
+Epoch 50: valid baseline mean MSE:	0.48520
+
+Epoch 55 - VAE model: train loss (last batch), mean MSE:	0.3298,	0.34894
+Epoch 55 - VAE model: valid loss (last batch), mean MSE:	0.3069,	0.34658
+
+Epoch 55 - NON-VAE model: train loss (last batch), mean MSE:	0.4589,	0.47704
+Epoch 55: - NON-VAE model: valid loss (last batch), mean MSE:	0.4649,	0.47895
+
+Epoch 55: valid baseline mean MSE:	0.48569
+
+Epoch 60 - VAE model: train loss (last batch), mean MSE:	0.3729,	0.34459
+Epoch 60 - VAE model: valid loss (last batch), mean MSE:	0.3811,	0.34356
+
+Epoch 60 - NON-VAE model: train loss (last batch), mean MSE:	0.4530,	0.47648
+Epoch 60: - NON-VAE model: valid loss (last batch), mean MSE:	0.5707,	0.47992
+
+Epoch 60: valid baseline mean MSE:	0.48592
+
+Epoch 65 - VAE model: train loss (last batch), mean MSE:	0.3351,	0.34048
+Epoch 65 - VAE model: valid loss (last batch), mean MSE:	0.4036,	0.33994
+
+Epoch 65 - NON-VAE model: train loss (last batch), mean MSE:	0.4862,	0.47620
+Epoch 65: - NON-VAE model: valid loss (last batch), mean MSE:	0.4055,	0.47737
+
+Epoch 65: valid baseline mean MSE:	0.48381
+
+Epoch 70 - VAE model: train loss (last batch), mean MSE:	0.3445,	0.33787
+Epoch 70 - VAE model: valid loss (last batch), mean MSE:	0.2931,	0.33505
+
+Epoch 70 - NON-VAE model: train loss (last batch), mean MSE:	0.4654,	0.47605
+Epoch 70: - NON-VAE model: valid loss (last batch), mean MSE:	0.5149,	0.47876
+
+Epoch 70: valid baseline mean MSE:	0.48729
+
+Epoch 75 - VAE model: train loss (last batch), mean MSE:	0.3330,	0.33531
+Epoch 75 - VAE model: valid loss (last batch), mean MSE:	0.3419,	0.33435
+
+Epoch 75 - NON-VAE model: train loss (last batch), mean MSE:	0.4708,	0.47599
+Epoch 75: - NON-VAE model: valid loss (last batch), mean MSE:	0.4534,	0.47785
+
+Epoch 75: valid baseline mean MSE:	0.48368
+
+Epoch 80 - VAE model: train loss (last batch), mean MSE:	0.3299,	0.33357
+Epoch 80 - VAE model: valid loss (last batch), mean MSE:	0.3031,	0.33238
+
+Epoch 80 - NON-VAE model: train loss (last batch), mean MSE:	0.4479,	0.47596
+Epoch 80: - NON-VAE model: valid loss (last batch), mean MSE:	0.3946,	0.47701
+
+Epoch 80: valid baseline mean MSE:	0.48179
+
+Epoch 85 - VAE model: train loss (last batch), mean MSE:	0.2922,	0.33234
+Epoch 85 - VAE model: valid loss (last batch), mean MSE:	0.3127,	0.33087
+
+Epoch 85 - NON-VAE model: train loss (last batch), mean MSE:	0.4673,	0.47596
+Epoch 85: - NON-VAE model: valid loss (last batch), mean MSE:	0.4669,	0.47801
+
+Epoch 85: valid baseline mean MSE:	0.48540
+
+Epoch 90 - VAE model: train loss (last batch), mean MSE:	0.3465,	0.33103
+Epoch 90 - VAE model: valid loss (last batch), mean MSE:	0.3078,	0.32943
+
+Epoch 90 - NON-VAE model: train loss (last batch), mean MSE:	0.4948,	0.47596
+Epoch 90: - NON-VAE model: valid loss (last batch), mean MSE:	0.4939,	0.47838
+
+Epoch 90: valid baseline mean MSE:	0.48525
+
+Epoch 95 - VAE model: train loss (last batch), mean MSE:	0.3143,	0.32990
+Epoch 95 - VAE model: valid loss (last batch), mean MSE:	0.2922,	0.32774
+
+Epoch 95 - NON-VAE model: train loss (last batch), mean MSE:	0.4982,	0.47597
+Epoch 95: - NON-VAE model: valid loss (last batch), mean MSE:	0.4573,	0.47787
+
+Epoch 95: valid baseline mean MSE:	0.48947
+
+Epoch 100 - VAE model: train loss (last batch), mean MSE:	0.3164,	0.32863
+Epoch 100 - VAE model: valid loss (last batch), mean MSE:	0.3065,	0.32757
+
+Epoch 100 - NON-VAE model: train loss (last batch), mean MSE:	0.4712,	0.47596
+Epoch 100: - NON-VAE model: valid loss (last batch), mean MSE:	0.4743,	0.47813
+
+Epoch 100: valid baseline mean MSE:	0.48801
+55
+55
+
+Fold 3 Results:
+VAE MSE: 0.32756642374125394
+Non-VAE MSE: 0.4781284164298664
+Baseline MSE: 0.488010110096498
+VAE vs. Non-VAE p-value: 4.132736466439145e-40
+VAE vs. Baseline p-value: 1.8565132448523225e-57
+Non-VAE vs. Baseline p-value: 0.02670264944991003
+
+Starting Fold 4:
+Train samples: 13885, Test samples: 3471
+
+Epoch 5 - VAE model: train loss (last batch), mean MSE:	0.4004,	0.42123
+Epoch 5 - VAE model: valid loss (last batch), mean MSE:	0.4084,	0.41866
+
+Epoch 5 - NON-VAE model: train loss (last batch), mean MSE:	1.3789,	1.44590
+Epoch 5: - NON-VAE model: valid loss (last batch), mean MSE:	1.2476,	1.37445
+
+Epoch 5: valid baseline mean MSE:	0.48234
+
+Epoch 10 - VAE model: train loss (last batch), mean MSE:	0.3983,	0.41351
+Epoch 10 - VAE model: valid loss (last batch), mean MSE:	0.4803,	0.41191
+
+Epoch 10 - NON-VAE model: train loss (last batch), mean MSE:	0.9651,	0.95798
+Epoch 10: - NON-VAE model: valid loss (last batch), mean MSE:	1.0498,	0.92574
+
+Epoch 10: valid baseline mean MSE:	0.48066
+
+Epoch 15 - VAE model: train loss (last batch), mean MSE:	0.3931,	0.39456
+Epoch 15 - VAE model: valid loss (last batch), mean MSE:	0.3990,	0.39304
+
+Epoch 15 - NON-VAE model: train loss (last batch), mean MSE:	0.6845,	0.71884
+Epoch 15: - NON-VAE model: valid loss (last batch), mean MSE:	0.6571,	0.70035
+
+Epoch 15: valid baseline mean MSE:	0.48508
+
+Epoch 20 - VAE model: train loss (last batch), mean MSE:	0.3826,	0.37939
+Epoch 20 - VAE model: valid loss (last batch), mean MSE:	0.3262,	0.37596
+
+Epoch 20 - NON-VAE model: train loss (last batch), mean MSE:	0.5827,	0.59850
+Epoch 20: - NON-VAE model: valid loss (last batch), mean MSE:	0.5754,	0.58843
+
+Epoch 20: valid baseline mean MSE:	0.48113
+
+Epoch 25 - VAE model: train loss (last batch), mean MSE:	0.3780,	0.36965
+Epoch 25 - VAE model: valid loss (last batch), mean MSE:	0.3922,	0.36851
+
+Epoch 25 - NON-VAE model: train loss (last batch), mean MSE:	0.5219,	0.53820
+Epoch 25: - NON-VAE model: valid loss (last batch), mean MSE:	0.5487,	0.53257
+
+Epoch 25: valid baseline mean MSE:	0.48206
+
+Epoch 30 - VAE model: train loss (last batch), mean MSE:	0.3767,	0.36258
+Epoch 30 - VAE model: valid loss (last batch), mean MSE:	0.3455,	0.36116
+
+Epoch 30 - NON-VAE model: train loss (last batch), mean MSE:	0.4767,	0.50811
+Epoch 30: - NON-VAE model: valid loss (last batch), mean MSE:	0.4816,	0.50394
+
+Epoch 30: valid baseline mean MSE:	0.48486
+
+Epoch 35 - VAE model: train loss (last batch), mean MSE:	0.3637,	0.35802
+Epoch 35 - VAE model: valid loss (last batch), mean MSE:	0.3674,	0.35762
+
+Epoch 35 - NON-VAE model: train loss (last batch), mean MSE:	0.4854,	0.49295
+Epoch 35: - NON-VAE model: valid loss (last batch), mean MSE:	0.4250,	0.48916
+
+Epoch 35: valid baseline mean MSE:	0.48110
+
+Epoch 40 - VAE model: train loss (last batch), mean MSE:	0.3379,	0.35418
+Epoch 40 - VAE model: valid loss (last batch), mean MSE:	0.3216,	0.35269
+
+Epoch 40 - NON-VAE model: train loss (last batch), mean MSE:	0.4872,	0.48513
+Epoch 40: - NON-VAE model: valid loss (last batch), mean MSE:	0.5862,	0.48417
+
+Epoch 40: valid baseline mean MSE:	0.48177
+
+Epoch 45 - VAE model: train loss (last batch), mean MSE:	0.3515,	0.35015
+Epoch 45 - VAE model: valid loss (last batch), mean MSE:	0.3743,	0.35026
+
+Epoch 45 - NON-VAE model: train loss (last batch), mean MSE:	0.5052,	0.48105
+Epoch 45: - NON-VAE model: valid loss (last batch), mean MSE:	0.4652,	0.47872
+
+Epoch 45: valid baseline mean MSE:	0.48034
+
+Epoch 50 - VAE model: train loss (last batch), mean MSE:	0.3395,	0.34617
+Epoch 50 - VAE model: valid loss (last batch), mean MSE:	0.4113,	0.34562
+
+Epoch 50 - NON-VAE model: train loss (last batch), mean MSE:	0.5077,	0.47893
+Epoch 50: - NON-VAE model: valid loss (last batch), mean MSE:	0.4431,	0.47646
+
+Epoch 50: valid baseline mean MSE:	0.48439
+
+Epoch 55 - VAE model: train loss (last batch), mean MSE:	0.3274,	0.34221
+Epoch 55 - VAE model: valid loss (last batch), mean MSE:	0.5209,	0.34372
+
+Epoch 55 - NON-VAE model: train loss (last batch), mean MSE:	0.4634,	0.47785
+Epoch 55: - NON-VAE model: valid loss (last batch), mean MSE:	0.4783,	0.47594
+
+Epoch 55: valid baseline mean MSE:	0.48483
+
+Epoch 60 - VAE model: train loss (last batch), mean MSE:	0.3677,	0.33947
+Epoch 60 - VAE model: valid loss (last batch), mean MSE:	0.3151,	0.33793
+
+Epoch 60 - NON-VAE model: train loss (last batch), mean MSE:	0.5113,	0.47730
+Epoch 60: - NON-VAE model: valid loss (last batch), mean MSE:	0.4371,	0.47487
+
+Epoch 60: valid baseline mean MSE:	0.48155
+
+Epoch 65 - VAE model: train loss (last batch), mean MSE:	0.3324,	0.33767
+Epoch 65 - VAE model: valid loss (last batch), mean MSE:	0.3184,	0.33606
+
+Epoch 65 - NON-VAE model: train loss (last batch), mean MSE:	0.4986,	0.47702
+Epoch 65: - NON-VAE model: valid loss (last batch), mean MSE:	0.4384,	0.47462
+
+Epoch 65: valid baseline mean MSE:	0.48294
+
+Epoch 70 - VAE model: train loss (last batch), mean MSE:	0.3466,	0.33587
+Epoch 70 - VAE model: valid loss (last batch), mean MSE:	0.3749,	0.33509
+
+Epoch 70 - NON-VAE model: train loss (last batch), mean MSE:	0.4615,	0.47687
+Epoch 70: - NON-VAE model: valid loss (last batch), mean MSE:	0.3863,	0.47377
+
+Epoch 70: valid baseline mean MSE:	0.48135
+
+Epoch 75 - VAE model: train loss (last batch), mean MSE:	0.2968,	0.33436
+Epoch 75 - VAE model: valid loss (last batch), mean MSE:	0.3084,	0.33291
+
+Epoch 75 - NON-VAE model: train loss (last batch), mean MSE:	0.4546,	0.47680
+Epoch 75: - NON-VAE model: valid loss (last batch), mean MSE:	0.4895,	0.47514
+
+Epoch 75: valid baseline mean MSE:	0.48187
+
+Epoch 80 - VAE model: train loss (last batch), mean MSE:	0.3390,	0.33242
+Epoch 80 - VAE model: valid loss (last batch), mean MSE:	0.3093,	0.33169
+
+Epoch 80 - NON-VAE model: train loss (last batch), mean MSE:	0.4610,	0.47677
+Epoch 80: - NON-VAE model: valid loss (last batch), mean MSE:	0.4692,	0.47484
+
+Epoch 80: valid baseline mean MSE:	0.47924
+
+Epoch 85 - VAE model: train loss (last batch), mean MSE:	0.3385,	0.33152
+Epoch 85 - VAE model: valid loss (last batch), mean MSE:	0.3390,	0.33160
+
+Epoch 85 - NON-VAE model: train loss (last batch), mean MSE:	0.4740,	0.47678
+Epoch 85: - NON-VAE model: valid loss (last batch), mean MSE:	0.4573,	0.47468
+
+Epoch 85: valid baseline mean MSE:	0.48776
+
+Epoch 90 - VAE model: train loss (last batch), mean MSE:	0.2909,	0.33006
+Epoch 90 - VAE model: valid loss (last batch), mean MSE:	0.3660,	0.33083
+
+Epoch 90 - NON-VAE model: train loss (last batch), mean MSE:	0.4918,	0.47678
+Epoch 90: - NON-VAE model: valid loss (last batch), mean MSE:	0.4351,	0.47436
+
+Epoch 90: valid baseline mean MSE:	0.49720
+
+Epoch 95 - VAE model: train loss (last batch), mean MSE:	0.3106,	0.32891
+Epoch 95 - VAE model: valid loss (last batch), mean MSE:	0.3043,	0.32754
+
+Epoch 95 - NON-VAE model: train loss (last batch), mean MSE:	0.5044,	0.47678
+Epoch 95: - NON-VAE model: valid loss (last batch), mean MSE:	0.4618,	0.47474
+
+Epoch 95: valid baseline mean MSE:	0.48299
+
+Epoch 100 - VAE model: train loss (last batch), mean MSE:	0.3375,	0.32766
+Epoch 100 - VAE model: valid loss (last batch), mean MSE:	0.3181,	0.32658
+
+Epoch 100 - NON-VAE model: train loss (last batch), mean MSE:	0.4694,	0.47678
+Epoch 100: - NON-VAE model: valid loss (last batch), mean MSE:	0.4852,	0.47506
+
+Epoch 100: valid baseline mean MSE:	0.48632
+55
+55
+
+Fold 4 Results:
+VAE MSE: 0.326575246182355
+Non-VAE MSE: 0.4750619888305664
+Baseline MSE: 0.48632070964032953
+VAE vs. Non-VAE p-value: 1.0026690770957827e-45
+VAE vs. Baseline p-value: 2.2235008384403777e-46
+Non-VAE vs. Baseline p-value: 0.005972685419914202
+
+Starting Fold 5:
+Train samples: 13885, Test samples: 3471
+
+Epoch 5 - VAE model: train loss (last batch), mean MSE:	0.3875,	0.42043
+Epoch 5 - VAE model: valid loss (last batch), mean MSE:	0.4383,	0.42234
+
+Epoch 5 - NON-VAE model: train loss (last batch), mean MSE:	1.4089,	1.44561
+Epoch 5: - NON-VAE model: valid loss (last batch), mean MSE:	1.5137,	1.38722
+
+Epoch 5: valid baseline mean MSE:	0.48418
+
+Epoch 10 - VAE model: train loss (last batch), mean MSE:	0.3610,	0.41244
+Epoch 10 - VAE model: valid loss (last batch), mean MSE:	0.3582,	0.41238
+
+Epoch 10 - NON-VAE model: train loss (last batch), mean MSE:	0.9325,	0.95778
+Epoch 10: - NON-VAE model: valid loss (last batch), mean MSE:	0.9418,	0.92986
+
+Epoch 10: valid baseline mean MSE:	0.48383
+
+Epoch 15 - VAE model: train loss (last batch), mean MSE:	0.4265,	0.39413
+Epoch 15 - VAE model: valid loss (last batch), mean MSE:	0.3747,	0.39476
+
+Epoch 15 - NON-VAE model: train loss (last batch), mean MSE:	0.7178,	0.71875
+Epoch 15: - NON-VAE model: valid loss (last batch), mean MSE:	0.7166,	0.70465
+
+Epoch 15: valid baseline mean MSE:	0.48216
+
+Epoch 20 - VAE model: train loss (last batch), mean MSE:	0.3646,	0.37926
+Epoch 20 - VAE model: valid loss (last batch), mean MSE:	0.3270,	0.37949
+
+Epoch 20 - NON-VAE model: train loss (last batch), mean MSE:	0.5858,	0.59849
+Epoch 20: - NON-VAE model: valid loss (last batch), mean MSE:	0.5357,	0.59010
+
+Epoch 20: valid baseline mean MSE:	0.48261
+
+Epoch 25 - VAE model: train loss (last batch), mean MSE:	0.3666,	0.37005
+Epoch 25 - VAE model: valid loss (last batch), mean MSE:	0.3608,	0.37129
+
+Epoch 25 - NON-VAE model: train loss (last batch), mean MSE:	0.5161,	0.53818
+Epoch 25: - NON-VAE model: valid loss (last batch), mean MSE:	0.5819,	0.53445
+
+Epoch 25: valid baseline mean MSE:	0.47945
+
+Epoch 30 - VAE model: train loss (last batch), mean MSE:	0.3242,	0.36244
+Epoch 30 - VAE model: valid loss (last batch), mean MSE:	0.3203,	0.36346
+
+Epoch 30 - NON-VAE model: train loss (last batch), mean MSE:	0.4859,	0.50808
+Epoch 30: - NON-VAE model: valid loss (last batch), mean MSE:	0.4400,	0.50432
+
+Epoch 30: valid baseline mean MSE:	0.48308
+
+Epoch 35 - VAE model: train loss (last batch), mean MSE:	0.3245,	0.35798
+Epoch 35 - VAE model: valid loss (last batch), mean MSE:	0.3911,	0.36006
+
+Epoch 35 - NON-VAE model: train loss (last batch), mean MSE:	0.4785,	0.49288
+Epoch 35: - NON-VAE model: valid loss (last batch), mean MSE:	0.6044,	0.49234
+
+Epoch 35: valid baseline mean MSE:	0.48474
+
+Epoch 40 - VAE model: train loss (last batch), mean MSE:	0.3712,	0.35527
+Epoch 40 - VAE model: valid loss (last batch), mean MSE:	0.3247,	0.35723
+
+Epoch 40 - NON-VAE model: train loss (last batch), mean MSE:	0.4578,	0.48504
+Epoch 40: - NON-VAE model: valid loss (last batch), mean MSE:	0.4585,	0.48294
+
+Epoch 40: valid baseline mean MSE:	0.47947
+
+Epoch 45 - VAE model: train loss (last batch), mean MSE:	0.3660,	0.35327
+Epoch 45 - VAE model: valid loss (last batch), mean MSE:	0.3730,	0.35545
+
+Epoch 45 - NON-VAE model: train loss (last batch), mean MSE:	0.4694,	0.48095
+Epoch 45: - NON-VAE model: valid loss (last batch), mean MSE:	0.5090,	0.47978
+
+Epoch 45: valid baseline mean MSE:	0.48057
+
+Epoch 50 - VAE model: train loss (last batch), mean MSE:	0.3456,	0.35065
+Epoch 50 - VAE model: valid loss (last batch), mean MSE:	0.3613,	0.35287
+
+Epoch 50 - NON-VAE model: train loss (last batch), mean MSE:	0.4823,	0.47882
+Epoch 50: - NON-VAE model: valid loss (last batch), mean MSE:	0.5311,	0.47810
+
+Epoch 50: valid baseline mean MSE:	0.48461
+
+Epoch 55 - VAE model: train loss (last batch), mean MSE:	0.3281,	0.34771
+Epoch 55 - VAE model: valid loss (last batch), mean MSE:	0.2887,	0.34874
+
+Epoch 55 - NON-VAE model: train loss (last batch), mean MSE:	0.5045,	0.47774
+Epoch 55: - NON-VAE model: valid loss (last batch), mean MSE:	0.4865,	0.47648
+
+Epoch 55: valid baseline mean MSE:	0.48718
+
+Epoch 60 - VAE model: train loss (last batch), mean MSE:	0.3725,	0.34288
+Epoch 60 - VAE model: valid loss (last batch), mean MSE:	0.2924,	0.34456
+
+Epoch 60 - NON-VAE model: train loss (last batch), mean MSE:	0.5129,	0.47719
+Epoch 60: - NON-VAE model: valid loss (last batch), mean MSE:	0.4564,	0.47553
+
+Epoch 60: valid baseline mean MSE:	0.48330
+
+Epoch 65 - VAE model: train loss (last batch), mean MSE:	0.3520,	0.33748
+Epoch 65 - VAE model: valid loss (last batch), mean MSE:	0.2841,	0.33828
+
+Epoch 65 - NON-VAE model: train loss (last batch), mean MSE:	0.4770,	0.47690
+Epoch 65: - NON-VAE model: valid loss (last batch), mean MSE:	0.4909,	0.47578
+
+Epoch 65: valid baseline mean MSE:	0.48000
+
+Epoch 70 - VAE model: train loss (last batch), mean MSE:	0.3312,	0.33224
+Epoch 70 - VAE model: valid loss (last batch), mean MSE:	0.2939,	0.33391
+
+Epoch 70 - NON-VAE model: train loss (last batch), mean MSE:	0.4650,	0.47676
+Epoch 70: - NON-VAE model: valid loss (last batch), mean MSE:	0.5040,	0.47582
+
+Epoch 70: valid baseline mean MSE:	0.48389
+
+Epoch 75 - VAE model: train loss (last batch), mean MSE:	0.3465,	0.32764
+Epoch 75 - VAE model: valid loss (last batch), mean MSE:	0.3197,	0.32980
+
+Epoch 75 - NON-VAE model: train loss (last batch), mean MSE:	0.5147,	0.47671
+Epoch 75: - NON-VAE model: valid loss (last batch), mean MSE:	0.5201,	0.47597
+
+Epoch 75: valid baseline mean MSE:	0.48434
+
+Epoch 80 - VAE model: train loss (last batch), mean MSE:	0.3099,	0.32440
+Epoch 80 - VAE model: valid loss (last batch), mean MSE:	0.3302,	0.32587
+
+Epoch 80 - NON-VAE model: train loss (last batch), mean MSE:	0.4712,	0.47668
+Epoch 80: - NON-VAE model: valid loss (last batch), mean MSE:	0.5121,	0.47584
+
+Epoch 80: valid baseline mean MSE:	0.48172
+
+Epoch 85 - VAE model: train loss (last batch), mean MSE:	0.3223,	0.32085
+Epoch 85 - VAE model: valid loss (last batch), mean MSE:	0.4075,	0.32418
+
+Epoch 85 - NON-VAE model: train loss (last batch), mean MSE:	0.4819,	0.47668
+Epoch 85: - NON-VAE model: valid loss (last batch), mean MSE:	0.4819,	0.47541
+
+Epoch 85: valid baseline mean MSE:	0.48777
+
+Epoch 90 - VAE model: train loss (last batch), mean MSE:	0.3442,	0.31897
+Epoch 90 - VAE model: valid loss (last batch), mean MSE:	0.4170,	0.32288
+
+Epoch 90 - NON-VAE model: train loss (last batch), mean MSE:	0.4957,	0.47667
+Epoch 90: - NON-VAE model: valid loss (last batch), mean MSE:	0.4079,	0.47441
+
+Epoch 90: valid baseline mean MSE:	0.48224
+
+Epoch 95 - VAE model: train loss (last batch), mean MSE:	0.3140,	0.31692
+Epoch 95 - VAE model: valid loss (last batch), mean MSE:	0.3154,	0.31866
+
+Epoch 95 - NON-VAE model: train loss (last batch), mean MSE:	0.4792,	0.47667
+Epoch 95: - NON-VAE model: valid loss (last batch), mean MSE:	0.4757,	0.47534
+
+Epoch 95: valid baseline mean MSE:	0.48063
+
+Epoch 100 - VAE model: train loss (last batch), mean MSE:	0.3179,	0.31556
+Epoch 100 - VAE model: valid loss (last batch), mean MSE:	0.3194,	0.31940
+
+Epoch 100 - NON-VAE model: train loss (last batch), mean MSE:	0.4946,	0.47668
+Epoch 100: - NON-VAE model: valid loss (last batch), mean MSE:	0.4791,	0.47538
+
+Epoch 100: valid baseline mean MSE:	0.48335
+55
+55
+
+Fold 5 Results:
+VAE MSE: 0.31939859010956506
+Non-VAE MSE: 0.47538045698946174
+Baseline MSE: 0.48334879658438945
+VAE vs. Non-VAE p-value: 7.449330040018371e-41
+VAE vs. Baseline p-value: 2.0397231356795972e-52
+Non-VAE vs. Baseline p-value: 0.07811170853813489
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19773515: <FFNN_all> in cluster <dcc> Done
+
+Job <FFNN_all> was submitted from host <gbarlogin2> by user <s222761> in cluster <dcc> at Thu Dec 14 00:21:50 2023
+Job was executed on host(s) <n-62-20-12>, in queue <gpuv100>, as user <s222761> in cluster <dcc> at Thu Dec 14 01:00:42 2023
+</zhome/98/3/181284> was used as the home directory.
+</zhome/98/3/181284/Project29/Git_Repo/deep_learning_project/Project29_scripts> was used as the working directory.
+Started at Thu Dec 14 01:00:42 2023
+Terminated at Thu Dec 14 05:53:13 2023
+Results reported at Thu Dec 14 05:53:13 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J FFNN_all
+#BSUB -n 1
+#BSUB -W 24:00
+#BSUB -R "rusage[mem=32GB]"
+#BSUB -o FFNN_all.out
+#BSUB -e FFNN_all.err
+
+module load python3/3.11.4
+module load h5py
+python3 "FFNN_Final.py"
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   68104.94 sec.
+    Max Memory :                                 1023 MB
+    Average Memory :                             861.99 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               31745.00 MB
+    Max Swap :                                   2 MB
+    Max Processes :                              4
+    Max Threads :                                11
+    Run time :                                   17551 sec.
+    Turnaround time :                            19883 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <FFNN_all.err> for stderr output of this job.
+
