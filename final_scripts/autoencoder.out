@@ -1,0 +1,197 @@
+Archs4 training set size: 167884
+Gtex test set size: 2642
+Shape of the archs4 dataset (hd5): (18965,)
+Shape of the gtex dataset (hd5): (18965,)
+18965
+18965
+>> Using device: cpu
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19792710: <VAE_to_AE> in cluster <dcc> Exited
+
+Job <VAE_to_AE> was submitted from host <hpclogin1> by user <s222797> in cluster <dcc> at Fri Dec 15 14:29:06 2023
+Job was executed on host(s) <n-62-20-12>, in queue <gpuv100>, as user <s222797> in cluster <dcc> at Fri Dec 15 14:32:15 2023
+</zhome/e7/a/181331> was used as the home directory.
+</zhome/e7/a/181331/deep_learning_project/final_scripts> was used as the working directory.
+Started at Fri Dec 15 14:32:15 2023
+Terminated at Fri Dec 15 15:06:54 2023
+Results reported at Fri Dec 15 15:06:54 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J VAE_to_AE
+#BSUB -n 1
+#BSUB -W 10:00
+#BSUB -R "rusage[mem=32GB]"
+#BSUB -o autoencoder.out
+#BSUB -e autoencoder.err
+
+module load python3/3.11.4
+module load h5py
+python3 "VAE_to_AE.py"
+
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   4294.42 sec.
+    Max Memory :                                 3751 MB
+    Average Memory :                             2972.69 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               29017.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                10
+    Run time :                                   2079 sec.
+    Turnaround time :                            2268 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <autoencoder.err> for stderr output of this job.
+
+Archs4 training set size: 167884
+Gtex test set size: 2642
+Shape of the archs4 dataset (hd5): (18965,)
+Shape of the gtex dataset (hd5): (18965,)
+18965
+18965
+>> Using device: cpu
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19792791: <VAE_to_AE> in cluster <dcc> Exited
+
+Job <VAE_to_AE> was submitted from host <hpclogin1> by user <s222797> in cluster <dcc> at Fri Dec 15 15:06:26 2023
+Job was executed on host(s) <n-62-20-7>, in queue <gpuv100>, as user <s222797> in cluster <dcc> at Fri Dec 15 15:06:27 2023
+</zhome/e7/a/181331> was used as the home directory.
+</zhome/e7/a/181331/deep_learning_project/final_scripts> was used as the working directory.
+Started at Fri Dec 15 15:06:27 2023
+Terminated at Fri Dec 15 15:07:10 2023
+Results reported at Fri Dec 15 15:07:10 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J VAE_to_AE
+#BSUB -n 1
+#BSUB -W 10:00
+#BSUB -R "rusage[mem=32GB]"
+#BSUB -o autoencoder.out
+#BSUB -e autoencoder.err
+
+module load python3/3.11.4
+module load h5py
+python3 "VAE_to_AE.py"
+
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   58.46 sec.
+    Max Memory :                                 2669 MB
+    Average Memory :                             1885.67 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               30099.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                10
+    Run time :                                   61 sec.
+    Turnaround time :                            44 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <autoencoder.err> for stderr output of this job.
+
+Archs4 training set size: 167884
+Gtex test set size: 2642
+Shape of the archs4 dataset (hd5): (18965,)
+Shape of the gtex dataset (hd5): (18965,)
+18965
+18965
+>> Using device: cpu
+
+Plots representation:
+Latent features saved to ../VAE_settings/latent_features.h5
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19792792: <VAE_to_AE> in cluster <dcc> Done
+
+Job <VAE_to_AE> was submitted from host <hpclogin1> by user <s222797> in cluster <dcc> at Fri Dec 15 15:07:34 2023
+Job was executed on host(s) <n-62-20-5>, in queue <gpuv100>, as user <s222797> in cluster <dcc> at Fri Dec 15 15:07:35 2023
+</zhome/e7/a/181331> was used as the home directory.
+</zhome/e7/a/181331/deep_learning_project/final_scripts> was used as the working directory.
+Started at Fri Dec 15 15:07:35 2023
+Terminated at Fri Dec 15 17:51:48 2023
+Results reported at Fri Dec 15 17:51:48 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J VAE_to_AE
+#BSUB -n 1
+#BSUB -W 10:00
+#BSUB -R "rusage[mem=32GB]"
+#BSUB -o autoencoder.out
+#BSUB -e autoencoder.err
+
+module load python3/3.11.4
+module load h5py
+python3 "VAE_to_AE.py"
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   31659.62 sec.
+    Max Memory :                                 3977 MB
+    Average Memory :                             3298.79 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               28791.00 MB
+    Max Swap :                                   4 MB
+    Max Processes :                              4
+    Max Threads :                                10
+    Run time :                                   9939 sec.
+    Turnaround time :                            9854 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <autoencoder.err> for stderr output of this job.
+

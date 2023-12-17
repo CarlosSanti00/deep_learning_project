@@ -1,0 +1,38 @@
+/bin/bash: ./bsub_Autoencoder.sh: Permission denied
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19767113: <NONAME> in cluster <dcc> Exited
+
+Job <NONAME> was submitted from host <hpclogin1> by user <s222797> in cluster <dcc> at Wed Dec 13 13:06:51 2023
+Job was executed on host(s) <n-62-31-4>, in queue <hpc>, as user <s222797> in cluster <dcc> at Wed Dec 13 13:06:53 2023
+</zhome/e7/a/181331> was used as the home directory.
+</zhome/e7/a/181331/deep_learning_project/final_scripts> was used as the working directory.
+Started at Wed Dec 13 13:06:53 2023
+Terminated at Wed Dec 13 13:06:54 2023
+Results reported at Wed Dec 13 13:06:54 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+bsub_Autoencoder.sh
+------------------------------------------------------------
+
+Exited with exit code 126.
+
+Resource usage summary:
+
+    CPU time :                                   0.29 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     1024.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   7 sec.
+    Turnaround time :                            3 sec.
+
+The output (if any) is above this job summary.
+
