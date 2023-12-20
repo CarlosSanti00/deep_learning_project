@@ -12,25 +12,10 @@ Loaded module: h5py/3.8.0-python-3.11.4
 Loading h5py/3.8.0-python-3.11.4
   Loading requirement: openblas/0.3.23
     numpy/1.24.3-python-3.11.4-openblas-0.3.23 hdf5/1.12.2-gcc-11.3.0
-  File "/zhome/98/3/181284/Project29/Git_Repo/deep_learning_project/scripts_VAE/2_011223_VAE.py", line 75
-    nn.Linear(in_features=8192, out_features=4096)            
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-SyntaxError: invalid syntax. Perhaps you forgot a comma?
-Loaded dependency [python3/3.11.4]: gcc/12.3.0-binutils-2.40
-Loaded dependency [python3/3.11.4]: sqlite3/3.42.0
-Loaded module: python3/3.11.4
-
-Loading python3/3.11.4
-  Loading requirement: gcc/12.3.0-binutils-2.40 sqlite3/3.42.0
-Loaded dependency [numpy/1.24.3-python-3.11.4-openblas-0.3.23]: openblas/0.3.23
-Loaded dependency [h5py/3.8.0-python-3.11.4]: numpy/1.24.3-python-3.11.4-openblas-0.3.23
-Loaded dependency [h5py/3.8.0-python-3.11.4]: hdf5/1.12.2-gcc-11.3.0
-Loaded module: h5py/3.8.0-python-3.11.4
-
-Loading h5py/3.8.0-python-3.11.4
-  Loading requirement: openblas/0.3.23
-    numpy/1.24.3-python-3.11.4-openblas-0.3.23 hdf5/1.12.2-gcc-11.3.0
-User defined signal 2
+Traceback (most recent call last):
+  File "/zhome/e7/a/181331/deep_learning_project/scripts_VAE/try2.py", line 13, in <module>
+    from tqdm import tqdm
+ModuleNotFoundError: No module named 'tqdm'
 Loaded dependency [python3/3.11.4]: gcc/12.3.0-binutils-2.40
 Loaded dependency [python3/3.11.4]: sqlite3/3.42.0
 Loaded module: python3/3.11.4
@@ -46,9 +31,9 @@ Loading h5py/3.8.0-python-3.11.4
   Loading requirement: openblas/0.3.23
     numpy/1.24.3-python-3.11.4-openblas-0.3.23 hdf5/1.12.2-gcc-11.3.0
 Traceback (most recent call last):
-  File "/zhome/e7/a/181331/deep_learning_project/scripts_VAE/2_011223_VAE.py", line 5, in <module>
-    from IPython.display import Image, display, clear_output
-ModuleNotFoundError: No module named 'IPython'
+  File "/zhome/e7/a/181331/deep_learning_project/scripts_VAE/try2.py", line 13, in <module>
+    from tqdm import tqdm
+ModuleNotFoundError: No module named 'tqdm'
 Loaded dependency [python3/3.11.4]: gcc/12.3.0-binutils-2.40
 Loaded dependency [python3/3.11.4]: sqlite3/3.42.0
 Loaded module: python3/3.11.4
@@ -64,6 +49,21 @@ Loading h5py/3.8.0-python-3.11.4
   Loading requirement: openblas/0.3.23
     numpy/1.24.3-python-3.11.4-openblas-0.3.23 hdf5/1.12.2-gcc-11.3.0
 Traceback (most recent call last):
-  File "/zhome/e7/a/181331/deep_learning_project/scripts_VAE/2_011223_VAE.py", line 5, in <module>
-    from IPython.display import Image, display, clear_output
-ModuleNotFoundError: No module named 'IPython'
+  File "/zhome/e7/a/181331/deep_learning_project/scripts_VAE/try2.py", line 20, in <module>
+    gtex_all_data = GtexExpressionDataset("/dtu-compute/datasets/iso_02456/hdf5/")
+                    ^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'GtexExpressionDataset' is not defined
+Loaded dependency [python3/3.11.4]: gcc/12.3.0-binutils-2.40
+Loaded dependency [python3/3.11.4]: sqlite3/3.42.0
+Loaded module: python3/3.11.4
+
+Loading python3/3.11.4
+  Loading requirement: gcc/12.3.0-binutils-2.40 sqlite3/3.42.0
+Loaded dependency [numpy/1.24.3-python-3.11.4-openblas-0.3.23]: openblas/0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: numpy/1.24.3-python-3.11.4-openblas-0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: hdf5/1.12.2-gcc-11.3.0
+Loaded module: h5py/3.8.0-python-3.11.4
+
+Loading h5py/3.8.0-python-3.11.4
+  Loading requirement: openblas/0.3.23
+    numpy/1.24.3-python-3.11.4-openblas-0.3.23 hdf5/1.12.2-gcc-11.3.0

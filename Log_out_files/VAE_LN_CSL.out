@@ -1,0 +1,57 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19692024: <VAE_LN_CSL> in cluster <dcc> Exited
+
+Job <VAE_LN_CSL> was submitted from host <hpclogin1> by user <s222797> in cluster <dcc> at Mon Dec  4 19:25:51 2023
+Job was executed on host(s) <n-62-20-3>, in queue <gpuv100>, as user <s222797> in cluster <dcc> at Mon Dec  4 19:25:51 2023
+</zhome/e7/a/181331> was used as the home directory.
+</zhome/e7/a/181331/deep_learning_project/scripts_VAE> was used as the working directory.
+Started at Mon Dec  4 19:25:51 2023
+Terminated at Mon Dec  4 19:25:53 2023
+Results reported at Mon Dec  4 19:25:53 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J VAE_LN_CSL
+#BSUB -n 1
+#BSUB -W 24:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -o ../Log_out_files/VAE_LN_CSL.out
+#BSUB -e ../Log_out_files/VAE_LN_CSL.err
+
+module load python3/3.11.4
+module load h5py
+python3 "CSL_231203_LogNormalVAE.py"
+
+------------------------------------------------------------
+
+Exited with exit code 2.
+
+Resource usage summary:
+
+    CPU time :                                   0.42 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   93 sec.
+    Turnaround time :                            2 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <../Log_out_files/VAE_LN_CSL.err> for stderr output of this job.
+

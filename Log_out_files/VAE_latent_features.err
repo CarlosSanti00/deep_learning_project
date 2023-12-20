@@ -1,0 +1,131 @@
+Loaded dependency [python3/3.11.4]: gcc/12.3.0-binutils-2.40
+Loaded dependency [python3/3.11.4]: sqlite3/3.42.0
+Loaded module: python3/3.11.4
+
+Loading python3/3.11.4
+  Loading requirement: gcc/12.3.0-binutils-2.40 sqlite3/3.42.0
+Loaded dependency [numpy/1.24.3-python-3.11.4-openblas-0.3.23]: openblas/0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: numpy/1.24.3-python-3.11.4-openblas-0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: hdf5/1.12.2-gcc-11.3.0
+Loaded module: h5py/3.8.0-python-3.11.4
+
+Loading h5py/3.8.0-python-3.11.4
+  Loading requirement: openblas/0.3.23
+    numpy/1.24.3-python-3.11.4-openblas-0.3.23 hdf5/1.12.2-gcc-11.3.0
+Traceback (most recent call last):
+  File "/zhome/e7/a/181331/deep_learning_project/scripts_VAE/VAE_latent_features.py", line 5, in <module>
+    from IPython.display import Image, display, clear_output
+ModuleNotFoundError: No module named 'IPython'
+Loaded dependency [python3/3.11.4]: gcc/12.3.0-binutils-2.40
+Loaded dependency [python3/3.11.4]: sqlite3/3.42.0
+Loaded module: python3/3.11.4
+
+Loading python3/3.11.4
+  Loading requirement: gcc/12.3.0-binutils-2.40 sqlite3/3.42.0
+Loaded dependency [numpy/1.24.3-python-3.11.4-openblas-0.3.23]: openblas/0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: numpy/1.24.3-python-3.11.4-openblas-0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: hdf5/1.12.2-gcc-11.3.0
+Loaded module: h5py/3.8.0-python-3.11.4
+
+Loading h5py/3.8.0-python-3.11.4
+  Loading requirement: openblas/0.3.23
+    numpy/1.24.3-python-3.11.4-openblas-0.3.23 hdf5/1.12.2-gcc-11.3.0
+Traceback (most recent call last):
+  File "/zhome/e7/a/181331/deep_learning_project/scripts_VAE/VAE_latent_features.py", line 10, in <module>
+    from plotting import make_vae_plots
+  File "/zhome/e7/a/181331/deep_learning_project/scripts_VAE/plotting.py", line 9, in <module>
+    from sklearn.manifold import TSNE
+ModuleNotFoundError: No module named 'sklearn'
+Loaded dependency [python3/3.11.4]: gcc/12.3.0-binutils-2.40
+Loaded dependency [python3/3.11.4]: sqlite3/3.42.0
+Loaded module: python3/3.11.4
+
+Loading python3/3.11.4
+  Loading requirement: gcc/12.3.0-binutils-2.40 sqlite3/3.42.0
+Loaded dependency [numpy/1.24.3-python-3.11.4-openblas-0.3.23]: openblas/0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: numpy/1.24.3-python-3.11.4-openblas-0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: hdf5/1.12.2-gcc-11.3.0
+Loaded module: h5py/3.8.0-python-3.11.4
+
+Loading h5py/3.8.0-python-3.11.4
+  Loading requirement: openblas/0.3.23
+    numpy/1.24.3-python-3.11.4-openblas-0.3.23 hdf5/1.12.2-gcc-11.3.0
+Traceback (most recent call last):
+  File "/zhome/e7/a/181331/deep_learning_project/scripts_VAE/VAE_latent_features.py", line 443, in <module>
+    torch.save(vae.state_dict(), vae_path)
+  File "/zhome/e7/a/181331/.local/lib/python3.11/site-packages/torch/serialization.py", line 618, in save
+    with _open_zipfile_writer(f) as opened_zipfile:
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/zhome/e7/a/181331/.local/lib/python3.11/site-packages/torch/serialization.py", line 492, in _open_zipfile_writer
+    return container(name_or_buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/zhome/e7/a/181331/.local/lib/python3.11/site-packages/torch/serialization.py", line 463, in __init__
+    super().__init__(torch._C.PyTorchFileWriter(self.name))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Parent directory ../VAE_settings does not exist.
+Loaded dependency [python3/3.11.4]: gcc/12.3.0-binutils-2.40
+Loaded dependency [python3/3.11.4]: sqlite3/3.42.0
+Loaded module: python3/3.11.4
+
+Loading python3/3.11.4
+  Loading requirement: gcc/12.3.0-binutils-2.40 sqlite3/3.42.0
+Loaded dependency [numpy/1.24.3-python-3.11.4-openblas-0.3.23]: openblas/0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: numpy/1.24.3-python-3.11.4-openblas-0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: hdf5/1.12.2-gcc-11.3.0
+Loaded module: h5py/3.8.0-python-3.11.4
+
+Loading h5py/3.8.0-python-3.11.4
+  Loading requirement: openblas/0.3.23
+    numpy/1.24.3-python-3.11.4-openblas-0.3.23 hdf5/1.12.2-gcc-11.3.0
+Loaded dependency [python3/3.11.4]: gcc/12.3.0-binutils-2.40
+Loaded dependency [python3/3.11.4]: sqlite3/3.42.0
+Loaded module: python3/3.11.4
+
+Loading python3/3.11.4
+  Loading requirement: gcc/12.3.0-binutils-2.40 sqlite3/3.42.0
+Loaded dependency [numpy/1.24.3-python-3.11.4-openblas-0.3.23]: openblas/0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: numpy/1.24.3-python-3.11.4-openblas-0.3.23
+Loaded dependency [h5py/3.8.0-python-3.11.4]: hdf5/1.12.2-gcc-11.3.0
+Loaded module: h5py/3.8.0-python-3.11.4
+
+Loading h5py/3.8.0-python-3.11.4
+  Loading requirement: openblas/0.3.23
+    numpy/1.24.3-python-3.11.4-openblas-0.3.23 hdf5/1.12.2-gcc-11.3.0
+Traceback (most recent call last):
+  File "/zhome/e7/a/181331/deep_learning_project/scripts_VAE/VAE_latent_features_v2.py", line 324, in <module>
+    loss, diagnostics, outputs = vi(vae, x)
+    ^^^^^^^^^^^^^^^^
+  File "/zhome/e7/a/181331/.local/lib/python3.11/site-packages/torch/optim/optimizer.py", line 373, in wrapper
+    out = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/zhome/e7/a/181331/.local/lib/python3.11/site-packages/torch/optim/optimizer.py", line 76, in _use_grad
+    ret = func(self, *args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/zhome/e7/a/181331/.local/lib/python3.11/site-packages/torch/optim/adam.py", line 163, in step
+    adam(
+  File "/zhome/e7/a/181331/.local/lib/python3.11/site-packages/torch/optim/adam.py", line 311, in adam
+    func(params,
+  File "/zhome/e7/a/181331/.local/lib/python3.11/site-packages/torch/optim/adam.py", line 434, in _single_tensor_adam
+    param.addcdiv_(exp_avg, denom, value=-step_size)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/zhome/e7/a/181331/deep_learning_project/scripts_VAE/VAE_latent_features_v2.py", line 449, in <module>
+    fig.savefig(f'{save_dir}elbo_plot_LN(newRELU)_CSL.png')
+  File "/zhome/e7/a/181331/.local/lib/python3.11/site-packages/matplotlib/figure.py", line 3390, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/zhome/e7/a/181331/.local/lib/python3.11/site-packages/matplotlib/backend_bases.py", line 2193, in print_figure
+    result = print_method(
+             ^^^^^^^^^^^^^
+  File "/zhome/e7/a/181331/.local/lib/python3.11/site-packages/matplotlib/backend_bases.py", line 2043, in <lambda>
+    print_method = functools.wraps(meth)(lambda *args, **kwargs: meth(
+                                                                 ^^^^^
+  File "/zhome/e7/a/181331/.local/lib/python3.11/site-packages/matplotlib/backends/backend_agg.py", line 497, in print_png
+    self._print_pil(filename_or_obj, "png", pil_kwargs, metadata)
+  File "/zhome/e7/a/181331/.local/lib/python3.11/site-packages/matplotlib/backends/backend_agg.py", line 446, in _print_pil
+    mpl.image.imsave(
+  File "/zhome/e7/a/181331/.local/lib/python3.11/site-packages/matplotlib/image.py", line 1656, in imsave
+    image.save(fname, **pil_kwargs)
+  File "/zhome/e7/a/181331/.local/lib/python3.11/site-packages/PIL/Image.py", line 2435, in save
+    fp = builtins.open(filename, "w+b")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '../plots/latent_128_LN(newRELU)_CSL/elbo_plot_LN(newRELU)_CSL.png'

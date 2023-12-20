@@ -1,0 +1,127 @@
+Requirement already satisfied: tqdm in /zhome/e7/a/181331/.local/lib/python3.6/site-packages
+Requirement already satisfied: importlib-resources; python_version < "3.7" in /zhome/e7/a/181331/.local/lib/python3.6/site-packages (from tqdm)
+Requirement already satisfied: zipp>=3.1.0; python_version < "3.10" in /zhome/e7/a/181331/.local/lib/python3.6/site-packages (from importlib-resources; python_version < "3.7"->tqdm)
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19703286: <FFNN_baseline> in cluster <dcc> Exited
+
+Job <FFNN_baseline> was submitted from host <hpclogin1> by user <s222797> in cluster <dcc> at Wed Dec  6 12:04:37 2023
+Job was executed on host(s) <n-62-20-14>, in queue <gpuv100>, as user <s222797> in cluster <dcc> at Wed Dec  6 12:05:36 2023
+</zhome/e7/a/181331> was used as the home directory.
+</zhome/e7/a/181331/deep_learning_project/scripts_NN> was used as the working directory.
+Started at Wed Dec  6 12:05:36 2023
+Terminated at Wed Dec  6 12:05:45 2023
+Results reported at Wed Dec  6 12:05:45 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J FFNN_baseline
+#BSUB -n 1
+#BSUB -W 10:00
+#BSUB -R "rusage[mem=32GB]"
+#BSUB -o ../Log_out_files/FFNN_BS2_1HL.out
+#BSUB -e ../Log_out_files/FFNN_BS2_1HL.err
+
+pip3 install --user tqdm
+module load python3/3.11.4
+module load h5py
+python3 "CSL_FFNN_BS_1HL.py"
+
+
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   4.00 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   9 sec.
+    Turnaround time :                            68 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <../Log_out_files/FFNN_BS2_1HL.err> for stderr output of this job.
+
+Requirement already satisfied: tqdm in /zhome/e7/a/181331/.local/lib/python3.6/site-packages
+Requirement already satisfied: importlib-resources; python_version < "3.7" in /zhome/e7/a/181331/.local/lib/python3.6/site-packages (from tqdm)
+Requirement already satisfied: zipp>=3.1.0; python_version < "3.10" in /zhome/e7/a/181331/.local/lib/python3.6/site-packages (from importlib-resources; python_version < "3.7"->tqdm)
+['/zhome/e7/a/181331/deep_learning_project/scripts_NN', '/appl/h5py/3.8.0-python-3.11.4/lib/python3.11/site-packages', '/appl/numpy/1.24.3-python-3.11.4-openblas-0.3.23/lib/python3.11/site-packages', '/appl/python/3.11.4/lib/python3.11/site-packages', '/appl/python/3.11.4/lib/python311.zip', '/appl/python/3.11.4/lib/python3.11', '/appl/python/3.11.4/lib/python3.11/lib-dynload', '/zhome/e7/a/181331/.local/lib/python3.11/site-packages']
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19703332: <FFNN_baseline> in cluster <dcc> Exited
+
+Job <FFNN_baseline> was submitted from host <hpclogin1> by user <s222797> in cluster <dcc> at Wed Dec  6 12:10:43 2023
+Job was executed on host(s) <n-62-20-14>, in queue <gpuv100>, as user <s222797> in cluster <dcc> at Wed Dec  6 12:10:45 2023
+</zhome/e7/a/181331> was used as the home directory.
+</zhome/e7/a/181331/deep_learning_project/scripts_NN> was used as the working directory.
+Started at Wed Dec  6 12:10:45 2023
+Terminated at Wed Dec  6 12:10:52 2023
+Results reported at Wed Dec  6 12:10:52 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J FFNN_baseline
+#BSUB -n 1
+#BSUB -W 10:00
+#BSUB -R "rusage[mem=32GB]"
+#BSUB -o ../Log_out_files/FFNN_BS2_1HL.out
+#BSUB -e ../Log_out_files/FFNN_BS2_1HL.err
+
+pip3 install --user tqdm
+module load python3/3.11.4
+module load h5py
+python3 "CSL_FFNN_BS_1HL.py"
+
+
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   4.02 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   27 sec.
+    Turnaround time :                            9 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <../Log_out_files/FFNN_BS2_1HL.err> for stderr output of this job.
+

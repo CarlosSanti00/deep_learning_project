@@ -113,3 +113,117 @@ PS:
 
 Read file <../Log_out_files/VAE_Ana_02.err> for stderr output of this job.
 
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19691838: <VAE_Ana> in cluster <dcc> Exited
+
+Job <VAE_Ana> was submitted from host <hpclogin1> by user <s222797> in cluster <dcc> at Mon Dec  4 18:08:23 2023
+Job was executed on host(s) <n-62-20-16>, in queue <gpuv100>, as user <s222797> in cluster <dcc> at Mon Dec  4 18:08:23 2023
+</zhome/e7/a/181331> was used as the home directory.
+</zhome/e7/a/181331/deep_learning_project/scripts_VAE> was used as the working directory.
+Started at Mon Dec  4 18:08:23 2023
+Terminated at Mon Dec  4 18:08:36 2023
+Results reported at Mon Dec  4 18:08:36 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J VAE_Ana
+#BSUB -n 1
+#BSUB -W 05:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -o ../Log_out_files/VAE_Ana_02.out
+#BSUB -e ../Log_out_files/VAE_Ana_02.err
+
+module load python3/3.11.4
+module load h5py
+python3 "2_011223_VAE.py"
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   1.56 sec.
+    Max Memory :                                 43 MB
+    Average Memory :                             43.00 MB
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               16341.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   30 sec.
+    Turnaround time :                            13 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <../Log_out_files/VAE_Ana_02.err> for stderr output of this job.
+
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 19691840: <VAE_Ana> in cluster <dcc> Exited
+
+Job <VAE_Ana> was submitted from host <hpclogin1> by user <s222797> in cluster <dcc> at Mon Dec  4 18:09:54 2023
+Job was executed on host(s) <n-62-20-16>, in queue <gpuv100>, as user <s222797> in cluster <dcc> at Mon Dec  4 18:10:37 2023
+</zhome/e7/a/181331> was used as the home directory.
+</zhome/e7/a/181331/deep_learning_project/scripts_VAE> was used as the working directory.
+Started at Mon Dec  4 18:10:37 2023
+Terminated at Mon Dec  4 18:10:39 2023
+Results reported at Mon Dec  4 18:10:39 2023
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J VAE_Ana
+#BSUB -n 1
+#BSUB -W 05:00
+#BSUB -R "rusage[mem=16GB]"
+#BSUB -o ../Log_out_files/VAE_Ana_02.out
+#BSUB -e ../Log_out_files/VAE_Ana_02.err
+
+module load python3/3.11.4
+module load h5py
+python3 "2_011223_VAE.py"
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   0.98 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   3 sec.
+    Turnaround time :                            45 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <../Log_out_files/VAE_Ana_02.err> for stderr output of this job.
+
