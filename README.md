@@ -4,6 +4,8 @@
 
 Final project for the course 02456 - Deep Learning, for the Fall Semester 2023.
 
+The main and final version of the scripts developed for this project can be found in the folder 'Project29_scripts'.
+
 ## Contributors
 
 -   Ana Pastor Mediavilla (s222761)
@@ -23,7 +25,7 @@ The data used for this project was supplied from the supervisors, and consists o
 
 The data files were suplemented in the HPC server from DTU in the following path: /dtu-compute/datasets/iso_02456. As the files were extremely huge, HDF5 files were supported for an eassier way of using the data in the deep learning algorithms implemented. The path in the HPC server for this HDF5 files is the following: /dtu-compute/datasets/iso 02456/hdf5/.
 
-Therefore, the data files are not included in this repository. For being able to run the scripts of this repository, you will need to clone this GitHub repository in the HPC server for running the codes without any problem.
+Therefore, the data files are not included in this repository (the folders 'data' and 'hdf5_scripts' only include symbolic links to the paths in the HPC server). For being able to run the scripts of this repository, you will need to clone this GitHub repository in the HPC server for running the codes without any problem.
 
 For this project., a total of 5 files were used:
 
