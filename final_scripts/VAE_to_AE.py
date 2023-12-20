@@ -590,7 +590,7 @@ fig.savefig('../plots/VAE_to_AE_loss_plot_baseline.png')
 plt.close(fig)
 
 # Create an h5py file and pass the gtex_data through the encoder of the VAE
-output_file_path = "../VAE_settings/latent_features.h5"
+output_file_path = "../VAE_settings/latent_features_VAE_to_AE.h5"
 
 # Load the gtex_data using the DataLoader
 gtex_test = IsoDatasets.GtexDataset("/dtu-compute/datasets/iso_02456/hdf5/")

@@ -37,7 +37,7 @@ class RegressionModel(nn.Module):
 class GtexExpressionDataset(torch.utils.data.Dataset):
     def __init__(self, data_dir: str, include: str = "", exclude: str = "", load_in_mem: bool = False, col_names: list = None):
         f_gtex_gene = h5py.File(data_dir + 'gtex_gene_expression_norm_transposed.hdf5', mode='r')
-        f_gtex_latent = h5py.File('latent_features.h5', mode='r')
+        f_gtex_latent = h5py.File('../VAE_settings/latent_features_VAE_to_AE.h5', mode='r')
         f_gtex_isoform = h5py.File(data_dir + 'gtex_isoform_expression_norm_transposed.hdf5', mode='r')
 
         # self.dset_gene = f_gtex_gene['expressions']
@@ -123,7 +123,7 @@ for fold, (train_indices, test_indices) in enumerate(stratified_kfold.split(np.z
     optimizer = optim.Adam(model.parameters(), lr=1e-3)
 
     # Train the model
-    n_epochs = 50
+    n_epochs = 100
     for epoch in range(1, n_epochs+1, 1):
         
         # MSE total train vector definition for each epoch
